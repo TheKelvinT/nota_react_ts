@@ -28,7 +28,7 @@ export type HomeContent = {
     bannerURL: string;
   };
   cards: {
-    description: string;
+    description: PortableTextBlock[] ;
     image: string;
     title: string;
     callToAction: {

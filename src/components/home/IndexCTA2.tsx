@@ -3,11 +3,19 @@
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import { PortableText } from "@portabletext/react";
+import { HomeContent } from "@/types/Home";
+import handleNullData from "@/utils/handleNullData";
 
-type Props = {content:any };
+type Props = {content:HomeContent | null | undefined};
 
 const IndexCTA2 = ({content}: Props) => {
-const  data = content.cards
+  handleNullData(content);
+
+  if (!content || !content.homeSectionTwo) {
+    return null;
+  }
+
+  const data = content.cards;
 
 return (
     <section className=" flex flex-col items-center gap-32 mt-20 md:mt-48 screen-limit ">

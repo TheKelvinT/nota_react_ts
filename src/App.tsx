@@ -13,7 +13,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer.js";
 import { FloatButton } from 'antd';
 import WhatsappIcon from './assets/whatsapp-logo.svg'
-import { WhatsAppOutlined } from '@ant-design/icons';
+
 function App() {
   return (
     <>

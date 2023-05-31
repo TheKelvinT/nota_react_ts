@@ -22,10 +22,10 @@ const IndexNavigation = ({ content }: Props) => {
         <h3 className="text-3xl text-main">Navigation</h3>
       </div>
       <div className=" md:w-auto   gap-x-4 gap-y-16  flex justify-center flex-wrap ">
-        {data.map((nav: any) => (
+        {data.map((nav: any, index: number) => (
           // eslint-disable-next-line react/jsx-key
           <div
-            key={nav.index}
+            key={index}
             className=" max-w-[450px] flex flex-col items-center justify-center w-11/12"
           >
             <div className="max-w-[396px] max-h-[396px] overflow-hidden">
