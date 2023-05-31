@@ -9,15 +9,18 @@ import IndexNavigation from "@/components/home/IndexNavigation";
 import ContactSection from "@/components/ContactSection";
 import Loading from "@/components/Loading";
 import { CarouselImage, HomeContent } from "@/types/Home";
+import useLoadingStore from "@/store/loadingStore";
 
 
 const HomePage = () => {
   const [carouselImages, setCarouselImages] = useState<CarouselImage[] | null>([]);
   const [homeContent, setHomeContent] = useState<HomeContent | null>(null);
-  const [isLoading, setIsLoading] = useState(true)
-
+  // const [isLoading, setIsLoading] = useState(true)
+  const loading = useLoadingStore((state: any) => state.loading);
+  const setLoading = useLoadingStore((state: any) => state.setLoading);
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
         const carouselResponse = await axios.get(
           "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22homeCarousel%22%20%5D%7Bcarousel%5B%5D%20%7B%0A%20%20%20%20%20%20%22imageURL%22%3A%20asset%20-%3E%20url%0A%20%20%20%20%7D%7D"
@@ -27,7 +30,7 @@ const HomePage = () => {
         );
 
         const data = carouselResponse.data.result[0].carousel
-        const contentData = contentResponse.data.result[0]
+        const contentData = contentResponse?.data?.result[0]
       
 
     
@@ -38,8 +41,9 @@ const HomePage = () => {
      
       } catch (error) {
         console.error("Error fetching carousel images:", error);
+        setLoading(false)
       } finally {
-        setIsLoading(false)
+        setLoading(false)
       }
     };
 
@@ -49,7 +53,7 @@ const HomePage = () => {
 
   return (
     <div className="">
-         {isLoading ? (
+         {loading ? (
           
           <Loading/>
 
