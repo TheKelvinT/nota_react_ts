@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Marcellus&display=swap");
+
+@font-face {
+    font-family: "BiroScriptPlus";
+    src: url("./assets/fonts/BiroScriptPlus.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gothic";
+    src: url("./assets/fonts/gothic.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
