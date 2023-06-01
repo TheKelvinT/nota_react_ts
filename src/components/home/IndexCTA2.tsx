@@ -5,6 +5,7 @@ import Button from "../Button";
 import { PortableText } from "@portabletext/react";
 import { HomeContent } from "@/types/Home";
 import handleNullData from "@/utils/handleNullData";
+import { PortableTextComponent } from "../PortableTextComponent";
 
 type Props = {content:HomeContent | null | undefined};
 
@@ -41,7 +42,7 @@ return (
             <div className="space-y-10 text-main text-start ">
               <h3>{card.title}</h3>
               <div className="text-xs leading-5">
-                <PortableText value={card.description} />
+                <PortableText value={card.description} components={PortableTextComponent}   onMissingComponent={false}/>
               </div>
               <div className="mt-10">
                 <Link to={card.callToAction.routes}>
@@ -78,7 +79,7 @@ return (
             <div className="space-y-6 text-main text-start ">
               <h3>{card.title}</h3>
               <div className="text-xs leading-5">
-                <PortableText value={card.description} />
+                <PortableText value={card.description} components={PortableTextComponent}   onMissingComponent={false}/>
               </div>
               <div className="mt-10">
                 <Link to={card.callToAction.routes}>
@@ -111,7 +112,7 @@ return (
             <div className="space-y-6 text-main text-center ">
               <h3>{card.title}</h3>
               <div className="text-xs leading-5">
-                <PortableText value={card.description} />
+                <PortableText value={card.description} components={PortableTextComponent}   onMissingComponent={false}/>
               </div>
               <div className="mt-10">
                 <Link to={card.callToAction.routes}>

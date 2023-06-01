@@ -13,14 +13,17 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer.js";
 import { FloatButton } from 'antd';
 import WhatsappIcon from './assets/whatsapp-logo.svg'
+import useLoadingStore from "./store/loadingStore.js";
 
 function App() {
+  const loading = useLoadingStore((state: any) => state.loading);
+
   return (
     <>
       <BrowserRouter>
       <FloatButton icon={<div className="h-16 w-16 absolute top-1 left-1 opacity-60 hover:opacity-100 transition-all hover:scale-110"><img src={WhatsappIcon} className=""/></div>} tooltip={<div className="">Chat with us now!</div>} type="default" style={{ right: 25 }} href="" className="h-16 w-16 " />
-
-        <Navbar />
+      <Navbar/>
+      {/* {loading? "" : <Navbar />} */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
@@ -30,7 +33,7 @@ function App() {
           <Route path="/careers" element={<Careers />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>
-        <Footer/>
+        {loading? "" : <Footer/>}
       </BrowserRouter>
     </>
   );

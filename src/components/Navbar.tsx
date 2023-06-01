@@ -2,11 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Drawer } from "antd";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import useLoadingStore from "@/store/loadingStore";
 import NotaLogo from "@/assets/Nota-Logo.png";
 import DarkLogo from "@/assets/nota-logo-black.png"
 
-type Props = {};
 
 const leftNavigation = [
   { name: "About", href: "/about" },
@@ -20,11 +19,12 @@ const rightNavigation = [
   { name: "Reservations", href: "/reservations" },
   { name: "Blog", href: "/blog" },
 ];
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes: string[]) {
+//   return classes.filter(Boolean).join(" ");
+// }
 
-const Navbar = (props: Props) => {
+const Navbar = () => {
+  const loading = useLoadingStore((state: any) => state.loading);
   const location = useLocation();
   const { pathname } = location;
   const [scrollDown, setScrollDown] = useState(false);
@@ -58,7 +58,7 @@ const Navbar = (props: Props) => {
     pathname === "/admin" ||
     pathname === "/careers";
   const bgColor =
-    scrollDown || isDarkNav
+    scrollDown || isDarkNav || loading
       ? "bg-secondary ease-out duration-300"
       : "bg-transparent ease-in duration-300";
 

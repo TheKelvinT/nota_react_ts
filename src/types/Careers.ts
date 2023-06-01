@@ -1,3 +1,4 @@
+import { PortableText } from "@portabletext/react";
 import { PortableTextBlock } from "sanity";
 
 export type JobOpeningModel = {
@@ -32,7 +33,7 @@ export type CareersModel = {
   title: string;
   valuesSection: {
     valuesTitle: string;
-    description: string;
+    description: PortableTextBlock[];
     values: {
       image: string;
       alt: string;
@@ -40,4 +41,28 @@ export type CareersModel = {
       description: string;
     }[];
   };
-}[];
+  sectionOne: {
+    pageHeader: string;
+    description: PortableTextBlock[] 
+    callToAction1: {
+      routes: string;
+      buttonText: string;
+    };
+    callToAction2: {
+      routes: string;
+      buttonText: string;
+    };
+  };
+  lastSection: {
+    pageHeader: string;
+    description: PortableTextBlock[]
+    callToAction1: {
+      routes: string;
+      buttonText: string;
+    };
+    callToAction2: {
+      routes: string;
+      buttonText: string;
+    };
+  };
+};

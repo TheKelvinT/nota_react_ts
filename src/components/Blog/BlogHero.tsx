@@ -36,7 +36,7 @@ export default function BlogHero({ data }: Props) {
           <div className=" space-y-8  max-w-[480px]">
             <h3 className="text-4xl">{data?.featured?.title}</h3>
             <div className="text-xs">
-              <PortableText value={data?.featured?.summary ?? []} components={PortableTextComponent}/>
+              <PortableText value={data?.featured?.summary ?? []} components={PortableTextComponent}   onMissingComponent={false}/>
             </div>
             <p className="text-xs">{formatDate(data?.featured?._createdAt)}</p>
             <div>

@@ -6,6 +6,7 @@ import { MenuContent, MenuList } from "@/types/Menu";
 
 import { PortableText } from "@portabletext/react";
 import { Link } from "react-router-dom";
+import { PortableTextComponent } from "../PortableTextComponent";
 type Props = { content: MenuList[] | MenuContent[] | null, image: MenuList[] | MenuContent | null, };
 
 const MenuOption = ({ content, image }: Props) => {
@@ -26,7 +27,7 @@ const MenuOption = ({ content, image }: Props) => {
                 <div className="font-gothic text-xs">{menu.time}</div>
               </div>
               <div className="flex justify-center text-center text-xs">
-                <PortableText value={menu.description} />
+                <PortableText value={menu.description} components={PortableTextComponent}   onMissingComponent={false}/>
               </div>
               <div className="text-center">
                 <Link to={menu?.callToAction.routes}>

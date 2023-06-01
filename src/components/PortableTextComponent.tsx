@@ -20,3 +20,4 @@ export const PortableTextComponent: PortableTextReactComponents & { list: Custom
     },
   
   }as PortableTextReactComponents & { list: CustomPortableTextComponent };
+

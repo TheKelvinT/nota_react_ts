@@ -8,7 +8,7 @@ export type FaqModel ={
 export type ReservationsModel = {
   _id: string;
   _createdAt: string;
-  banner:string;
+  banner: string;
   desc: string;
   callToAction: {
     _type: string;
@@ -22,4 +22,4 @@ export type ReservationsModel = {
     _type: string;
   };
   title: string;
-}[];
+};

@@ -18,8 +18,8 @@ const EventCTA = ({ data }: Props) => {
         </p>
       </div>
       <div className=" flex justify-center gap-x-6">
-        <Link to={data?.sectionOne?.callToAction?.routes}>
-          <Button title={data?.sectionOne?.callToAction?.buttonText} />
+        <Link to={data?.sectionOne?.callToAction?.routes || ""}>
+          <Button title={data?.sectionOne?.callToAction?.buttonText || ""} />
         </Link>
       </div>
     </section>

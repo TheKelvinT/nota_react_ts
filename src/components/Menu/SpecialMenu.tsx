@@ -2,6 +2,7 @@
 import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
 import { Link } from "react-router-dom";
+import { PortableTextComponent } from "../PortableTextComponent";
 
 type Props = { content: any };
 
@@ -10,7 +11,7 @@ const SpecialMenu = ({ content }: Props) => {
     <section className="bg-primary mx-auto  lg:flex lg:justify-center  ">
       <div className="sm:hidden max-w-[639px] max-h-[337px] overflow-hidden">
         <img
-          src={content.image}
+          src={content?.image}
           height="337"
           width="639"
           alt="menu-img"
@@ -21,26 +22,26 @@ const SpecialMenu = ({ content }: Props) => {
         <div className="my-auto md:pl-8 md:basis-1/2 lg:basis-1/3 flex justify-center w-11/12 mx-auto ">
           <div className="flex flex-col items-center text-center max-w-[400px]  lg:ml-4 sm:w-auto md:py-4 sm:max-w-[330px] gap-y-5">
             <div className="text-main">
-              <h3 className="text-4xl ">{content.intro}</h3>
-              <h4 className="text-5xl font-biro">{content.title}</h4>
+              <h3 className="text-4xl ">{content?.intro}</h3>
+              <h4 className="text-5xl font-biro">{content?.title}</h4>
             </div>
             <div className="font-gothic text-xs">
-              <p>{content.date}</p>
-              <p>{content.time}</p>
+              <p>{content?.date}</p>
+              <p>{content?.time}</p>
             </div>
             <div className="text-xs py-2">
-              <PortableText value={content.description} />
+              <PortableText value={content?.description} components={PortableTextComponent}   onMissingComponent={false}/>
             </div>
             <div>
-              <Link to={content.callToAction.routes}>
-                <Button title={content.callToAction.buttonText} />
+              <Link to={content?.callToAction?.routes}>
+                <Button title={content?.callToAction?.buttonText} />
               </Link>
             </div>
           </div>
         </div>
         <div className="hidden sm:block basis-1/2 md:basis-2/3  max-h-[400px] overflow-hidden">
           <img
-            src={content.image}
+            src={content?.image}
             width="847"
             height="447"
             alt="menu-img"

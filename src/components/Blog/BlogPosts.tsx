@@ -34,7 +34,7 @@ export default function BlogPosts({ data }: Props) {
                 {blog.title}
               </h3>
               <div className=" flex flex-col flex-auto text-xs text-main ">
-                <PortableText value={blog.summary} components={PortableTextComponent} />
+                <PortableText value={blog.summary} components={PortableTextComponent}   onMissingComponent={false}/>
               </div>
 
               <div className="py-4">

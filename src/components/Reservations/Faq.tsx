@@ -1,6 +1,8 @@
 
 
 import Button from "@/components/Button";
+import { FaqModel } from "@/types/Reservations";
+import handleNullData from "@/utils/handleNullData";
 
 
 
@@ -13,10 +15,10 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-type Props = { faq: any };
+type Props = { faq: FaqModel | null };
 
 export default function Faq({ faq }: Props) {
-  console.log(faq)
+handleNullData(faq)
   return (
     <div className="mb-28 max-w-[1920px] mx-auto">
       <div>
@@ -25,7 +27,7 @@ export default function Faq({ faq }: Props) {
             Frequently Asked Questions [FAQ]
           </h3>
 
-          {faq.map(
+          {faq?.map(
             (faqs:any) => (
               <div key={faqs._id} className="space-y-8 hidden md:block ">
                 <div>
@@ -43,7 +45,7 @@ export default function Faq({ faq }: Props) {
         <div className="mx-auto w-11/12 md:w-4/5 lg:w-7/12 block md:hidden">
           <div className="accordion-wrapper ">
             <Accordion className="w-full text-main " allowMultiple>
-              {faq.map(
+              {faq?.map(
                 (faq:any) => (
                   <AccordionItem
                     key={faq._id}
