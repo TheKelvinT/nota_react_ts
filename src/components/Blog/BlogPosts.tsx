@@ -20,13 +20,11 @@ export default function BlogPosts({ data }: Props) {
             key={blog._id}
             className="flex flex-col flex-auto max-w-[489px] "
           >
-            <div className="max-w-[489px] max-h-[368px] overflow-hidden ">
+            <div className="max-w-[489px] max-h-[366px] overflow-hidden ">
               <img
                 src={blog.image}
                 alt={blog.title}
-                width="489"
-                height="368"
-                className="object-cover "
+                className="object-cover h-full w-full"
               />
             </div>
             <div className=" flex-col  flex-auto flex mt-8 gap-y-4">

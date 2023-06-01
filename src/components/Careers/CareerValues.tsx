@@ -27,7 +27,7 @@ const CareerValues = ({ data }: Props) => {
               alt={value.alt}
               width="315"
               height="315"
-              className="object-cover"
+              className="h-full w-full object-cover"
             />
             </div>
             <div className="max-w-[315px] flex-col flex mt-8 gap-y-3 text-center sm:text-start ">

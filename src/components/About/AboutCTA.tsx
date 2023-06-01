@@ -16,7 +16,7 @@ const AboutCTA = ({content }: Props) => {
     <section className=" py-20">
       <div className="flex flex-col justify-center items-center">
         <div className="my-8 md:my-16 pb-12 max-w-[255px] max-h-[71px] overflow-hidden">
-          <img src={data?.image} alt="logo" />
+          <img src={data?.image} alt="logo" className="h-full w-full object-cover" />
         </div>
         <div className="font-biro text-[32px] text-center max-w-[470px] w-11/12 space-y-12">
           <div>

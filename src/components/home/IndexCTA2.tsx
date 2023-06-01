@@ -29,7 +29,6 @@ return (
           <div className={` ${index % 2 === 1 ? "order-2" : ""} max-h-[585px] max-w-[468px] overflow-hidden`}>
             <img
               src={card.image}
-            
               alt="food-pic"
               className="h-full w-full object-cover"
             />

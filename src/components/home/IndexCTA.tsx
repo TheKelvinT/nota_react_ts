@@ -19,12 +19,13 @@ const IndexCTA = ({ content }: Props) => {
   
     <section className=" flex justify-center py-20 screen-limit">
       <div className=" w-4/5 md:w-2/5  flex flex-col justify-center items-center">
-        <div className="pb-6 max-w-[251px] max-h-[71px]">
+        <div className="pb-6 max-w-[251px] max-h-[71px] overflow-hidden">
           <img
             src={content?.homeSectionOne.Logo}
             width="251"
             height="71"
             alt="nota-logo"
+            className="h-full w-full object-cover"
           />
         </div>
         <div className="text-center space-y-4 text-main">

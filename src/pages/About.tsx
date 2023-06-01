@@ -45,7 +45,7 @@ const About = () => {
           src={aboutContent?.aboutHero?.image}
           alt="hero-banner"
           className="object-cover h-full w-full"
-          onLoad={onLoad}
+          
         />
       </div>
       <AboutCTA content={aboutContent}/>

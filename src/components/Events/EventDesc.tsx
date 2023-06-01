@@ -22,7 +22,7 @@ const EventDesc = ({ data }: Props) => {
             width="948"
             height="574"
             alt="menu-img"
-            className="min-h-full object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
         <div className="my-auto basis-1/3 md:pr-4 ">

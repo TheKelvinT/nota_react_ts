@@ -33,7 +33,7 @@ const IndexNavigation = ({ content }: Props) => {
               
                 src={nav.image}
                
-                className="object-cover "
+                className="h-full w-full object-cover"
               />
             </div>
             <div className=" md:w-11/12 flex-col flex justify-center items-center gap-y-8 mt-10 flex-1">

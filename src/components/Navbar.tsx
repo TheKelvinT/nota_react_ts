@@ -86,7 +86,7 @@ const Navbar = () => {
               </div>
 
               <div className="flex flex-shrink-0 items-center">
-                <a href="/">
+                <Link to="/">
                   <div className=" h-16 w-36 max-w-[144px] max-h-[64px] overflow-hidden ">
                     <img
                       src={NotaLogo}
@@ -94,7 +94,7 @@ const Navbar = () => {
                       className="object-cover"
                     />
                   </div>
-                </a>
+                </Link>
               </div>
 
               <div className="hidden md:block ">
@@ -142,23 +142,23 @@ const Navbar = () => {
               <XMarkIcon className="block h-6 w-6 " aria-hidden="true" />
             </button>
           </div>
-
-          <div className="py-10">
-            
-        <Link to="/"><img src={DarkLogo} alt="" /></Link>
+          <Link to="/">
+          <div className="py-10 max-h-[150px]  max-w-[252px]">
+              <img src={DarkLogo} alt="" className="h-full w-full object-cover " />
           </div>
+          </Link>
           <div className="flex flex-col text-lg decoration-none text-secondary items-center gap-7 ">
             {/* Left Navigation */}
             {leftNavigation.map((item) => (
-              <a href={item.href} key={item.name} className="text-secondary">
+              <Link to={item.href} key={item.name} className="text-secondary">
                 <div>{item.name}</div>
-              </a>
+              </Link>
             ))}
             {/* Right Navigation */}
             {rightNavigation.map((item) => (
-              <a href={item.href} key={item.name} className="text-secondary">
+              <Link to={item.href} key={item.name} className="text-secondary">
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </Drawer>

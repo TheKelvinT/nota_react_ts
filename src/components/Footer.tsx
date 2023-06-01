@@ -21,11 +21,11 @@ function Footer() {
 
           <p className="underline underline-offset-2">+6017 489 1189</p>
         </div>
-        <a href="/">
+        <Link to="/">
         <div className="max-w-[203px] max-h-[104px] overflow-hidden">
-            <img src={FooterLogo} alt="footer-logo" />
+            <img src={FooterLogo} alt="footer-logo" className="h-full w-full object-cover"/>
         </div>
-         </a>
+         </Link>
         <div className="flex items-center justify-center">
           <h4 className="font-biro text-4xl text-center">Home is a feeling.</h4>
         </div>
@@ -33,8 +33,8 @@ function Footer() {
 
       <div className="text-center font-inter text-[10px]">
         <p>
-          Made with love and a drop of unicorn blood |{" "}
-          <span className="underline underline-offset-2">Privacy</span> |{" "}
+          Made with love and a drop of unicorn blood |
+          <span className="underline underline-offset-2">Privacy</span> |
           <span className="underline underline-offset-2">Terms</span>
         </p>
       </div>

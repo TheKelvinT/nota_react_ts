@@ -107,7 +107,7 @@ input::-webkit-inner-spin-button {
 
 .ant-btn {
   background-color: #595d3c;
-  padding: 15px;
+  /* padding: 15px; */
   color: white;
 }
 

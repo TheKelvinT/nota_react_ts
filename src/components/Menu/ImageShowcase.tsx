@@ -9,7 +9,7 @@ function ImageShowcase({ content }: Props) {
     <section className="mx-auto">
       <div className="flex justify-center gap-x-1 sm:gap-x-2 ">
         {content?.images?.map((url, index:number) => (
-          <div key={index} className="h-[240px] sm:h-auto">
+          <div key={index} className="h-[240px] sm:h-auto overflow-hidden">
             <img
               src={url}
               alt="menu-img"

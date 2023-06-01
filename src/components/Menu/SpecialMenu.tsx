@@ -15,7 +15,7 @@ const SpecialMenu = ({ content }: Props) => {
           height="337"
           width="639"
           alt="menu-img"
-          className="h-full object-cover"
+          className="h-full w-full object-cover"
         />
       </div>
       <div className="flex justify-between md:gap-8 lg:gap-16 xl:gap-36 h-[400px]    ">

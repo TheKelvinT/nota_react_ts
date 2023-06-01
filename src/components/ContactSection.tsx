@@ -1,5 +1,5 @@
 "use client"
-import  { useState } from "react";
+import  { useState, useRef } from "react";
 import moment from "moment";
 import {  Modal, Col, Row,TimePicker,DatePicker, message } from 'antd';
 
@@ -8,20 +8,21 @@ import {  Modal, Col, Row,TimePicker,DatePicker, message } from 'antd';
 import CustomButton from "./Button";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 function ContactSection() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const timePickerRef = useRef<any>(null);
   const [hour, setHour] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
  const [formData, setFormData] = useState({
     name: "",
     contact: "",
     email: "",
     date: null,
-    time: null,
+    time: "",
     special: "",
   });
   
   let modalContent;
 
-if (hour >= 20) {
+if (hour === 20) {
   modalContent = <p>Kitchen&apos;s last call at 8pm for dinner service.</p>;
 } else if (hour >= 15 && hour <= 16) {
   modalContent = (
@@ -68,6 +69,11 @@ if (hour >= 20) {
   };
 
   const handleDateChange = (date:any) => {
+    const day = date?.$D;
+  const month = date?.$M;
+  const year = date?.$y;
+    const formattedDate = moment().day(day).month(month).year(year).format();
+    console.log(formattedDate)
     setFormData((prevState) => ({
       ...prevState,
       date,
@@ -76,9 +82,12 @@ if (hour >= 20) {
 
   const handleTimeChange = (time: any) => {
   const hour = time?.$H;
-  console.log(moment(time));
-  console.log(hour);
+  const minute = time?.$m;
   setHour(hour);
+  const formattedTime = moment().hour(hour).minute(minute).format("HH:mm");
+  console.log(formattedTime);
+    setFormData({...formData, time: formattedTime})
+    console.log(formData)
 
   if ((hour >= 15 && hour <= 16) || hour >= 20 || hour <= 9 || hour >= 21) {
     setModalOpen(true);
@@ -86,7 +95,7 @@ if (hour >= 20) {
 
   if (hour <= 9 || hour >= 21) {
     setModalOpen(true);
-    setFormData((prevState) => ({ ...prevState, time: null }));
+    setFormData((prevState) => ({ ...prevState, time: ""}));
   } else {
     setFormData((prevState) => ({ ...prevState, time }));
   }
@@ -95,7 +104,7 @@ if (hour >= 20) {
  const handleSubmit = (e: any) => {
   e.preventDefault();
   console.log("Form data:", formData);
-
+  
   const formValues = Object.values(formData);
 
   if (formValues.some((value) => value === null || value === undefined )) {
@@ -103,10 +112,55 @@ if (hour >= 20) {
     message.error("Booking form cannot contain empty fields.");
     
   } else {
-    message.success("You got yourself a table!");
+    message.success("Booking Successful!");
   }
 
   // Perform form submission logic here
+};
+
+const handleCancelModal = () =>{
+  if (hour === 20) {
+    setModalOpen(false)
+    setFormData({...formData, time:""})
+  } else if (hour >= 15 && hour <= 16) {
+    setModalOpen(false)
+    setFormData({...formData, time:""})
+  } else if (hour <= 9 || hour >= 21) {
+    setModalOpen(false)
+    setFormData({...formData, time:""})
+  }
+}
+const handleReset = () => {
+
+  if (timePickerRef.current) {
+    timePickerRef.current.setValue(null); // Reset the value to null
+  }
+
+};
+const handleOKModal = () =>{
+  if (hour === 20) {
+    setModalOpen(false)
+    
+  } else if (hour >= 15 && hour <= 16) {
+    setModalOpen(false)
+  
+  } else if (hour <= 9 || hour >= 21) {
+    setModalOpen(false)
+    setFormData({...formData, time:""})
+    handleReset()
+  }
+}
+
+
+
+const disabledMinutes = (selectedHour: number) => {
+  const disabledMinutesArray: number[] = [];
+
+  if (selectedHour === 20) {
+    disabledMinutesArray.push(30, 45);
+  }
+
+  return disabledMinutesArray;
 };
 
   return (
@@ -196,6 +250,7 @@ if (hour >= 20) {
                     </Col>
                 <Col span={18} sm={6} > 
                   <TimePicker
+                      ref={timePickerRef}
                       minuteStep={15}
                       secondStep={10}
                       format={format}
@@ -204,6 +259,7 @@ if (hour >= 20) {
                       changeOnBlur={true}
                       placeholder="00:00"
                       hideDisabledOptions={true}
+                      disabledMinutes={disabledMinutes}
                       name="time"
                       id="time"
                       className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  px-4 h-12 custom-picker "
@@ -273,8 +329,8 @@ if (hour >= 20) {
         title="Are you sure about your reservation?"
         centered
         open={modalOpen}
-        onOk={() => setModalOpen(false)}
-        onCancel={() => setModalOpen(false)}
+        onOk={handleOKModal}
+        onCancel={handleCancelModal}
       >
        {modalContent}
      

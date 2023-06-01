@@ -7,12 +7,16 @@ import { MenuContent, MenuList } from "@/types/Menu";
 import { PortableText } from "@portabletext/react";
 import { Link } from "react-router-dom";
 import { PortableTextComponent } from "../PortableTextComponent";
-type Props = { content: MenuList[] | MenuContent[] | null, image: MenuList[] | MenuContent | null, };
+type Props = { content: MenuList[] | null; image: MenuContent | null; };
 
 const MenuOption = ({ content, image }: Props) => {
   const data = content
     const data2 = image
  if (!data || !data2) {
+    // Handle the case when content is null
+    return null; // or display a loading state, error message, etc.
+  }
+  if (!content) {
     // Handle the case when content is null
     return null; // or display a loading state, error message, etc.
   }
@@ -40,9 +44,9 @@ const MenuOption = ({ content, image }: Props) => {
         </div>
         <div className="hidden md:block max-w-[365px] max-h-[565px] overflow-hidden">
           <img
-            src={image.image}
+            src={image?.image || ""}
             alt="menu-img"
-            className="object-cover h-full"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>

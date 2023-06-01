@@ -1,7 +1,7 @@
 
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Home.jsx";
 import Careers from "./pages/Careers";
 import Reservations from "./pages/Reservations";
@@ -14,6 +14,7 @@ import Footer from "./components/Footer.js";
 import { FloatButton } from 'antd';
 import WhatsappIcon from './assets/whatsapp-logo.svg'
 import useLoadingStore from "./store/loadingStore.js";
+import Admin from "./pages/Admin.js";
 
 function App() {
   const loading = useLoadingStore((state: any) => state.loading);
@@ -32,6 +33,7 @@ function App() {
           <Route path="/reservations" element={<Reservations />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/admin" element={<Admin/>} />
         </Routes>
         {loading? "" : <Footer/>}
       </BrowserRouter>
@@ -39,4 +41,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
