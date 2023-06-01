@@ -2,16 +2,18 @@ import React from "react";
 import { CareersModel } from "@/types/Careers";
 import { PortableText } from "@portabletext/react";
 import handleNullData from "@/utils/handleNullData";
+import { PortableTextComponent } from "../PortableTextComponent";
 type Props = { data: CareersModel | null };
 
 const CareerValues = ({ data }: Props) => {
   handleNullData(data)
+  
   return (
     <div id="values" className="bg-primary flex flex-col items-center py-16  mx-auto">
       <div className="text-center space-y-4 pb-10 text-main w-11/12 max-w-[665px] ">
         <h3 className="pb-4">{data?.valuesSection.valuesTitle}</h3>
         <div className="text-xs leading-5 text-sub">
-          <PortableText value={data?.valuesSection.description}/>
+          <PortableText value={data?.valuesSection?.description || []} components={PortableTextComponent}   onMissingComponent={false}/>
         </div>
        
       </div>

@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import { Link } from "react-router-dom";
 import { PortableText } from "@portabletext/react";
 import { AboutModel } from "@/types/About";
+import { PortableTextComponent } from "../PortableTextComponent";
 
 type Props = {
   content: AboutModel | null;
@@ -9,7 +10,7 @@ type Props = {
 
 const ToCareerPage = ({content}: Props) => {
     const data = content?.sectionThree
-    console.log(data)
+
  if (!data) {
     // Handle the case when content is null
     return null; // or display a loading state, error message, etc.
@@ -36,7 +37,7 @@ const ToCareerPage = ({content}: Props) => {
             <div className="flex flex-col items-center justify-center mt-16 sm:mt-0 space-y-2   text-main md:max-w-[400px] ">
               <h3 className="font-gothic text-[22px]">{data?.title}</h3>
               <div className="text-xs leading-5 text-sub">
-                <PortableText value={data?.description}/>
+                <PortableText value={data?.description} components={PortableTextComponent}   onMissingComponent={false}/>
               </div>
             </div>
             <div className="mt-5 lg:mt-10">

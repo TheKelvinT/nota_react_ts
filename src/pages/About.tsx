@@ -1,46 +1,40 @@
 import {useState, useEffect} from "react";
-
+import { fetchAbout } from "@/utils/request";
 import AboutDesc from "@/components/About/AboutDesc";
 import AboutCTA from "@/components/About/AboutCTA";
 import ToCareerPage from "@/components/About/ToCareerPage";
-import axios from "axios";
 import Loading from "@/components/Loading";
 import { AboutModel } from "@/types/About";
-
+import useLoadingStore from "@/store/loadingStore";
 
 const About = () => {
-    const [aboutContent, setAboutContent] = useState<AboutModel | null>(null);
-  const [isLoading, setIsLoading] = useState(true)
+  const [aboutContent, setAboutContent] = useState<AboutModel | null>(null);
+  const loading = useLoadingStore((state: any) => state.loading);
+  const setLoading = useLoadingStore((state: any) => state.setLoading);
 
     useEffect(() => {
     const fetchData = async () => {
       try {
-      
-        const contentResponse = await axios.get(
-          "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22aboutContent%22%5D%7B%0A%20%20aboutHero%7B%0A%20%20%20%20%22image%22%3Aimage.asset%20-%3E%20url%2C%0A%20%20%7D%2C%0A%20%20sectionOne%7B%0A%20%20%20%20%22image%22%3Aimage.asset%20-%3E%20url%2C%0A%20%20%20%20%20%20description%2C%0A%20%20%20%20%20%20title%2C%0A%20%20%20%20%20%20statement%2C%0A%20%20%20%20%20%20statementTldr%2C%0A%20%20%20%20%20%20%20callToAction%20-%3E%20%7B%0A%20%20%20%20%20%20cta%2C%0A%20%20%20%20%20%20buttonText%2C%0A%20%20%20%20%20%20routes%0A%20%20%20%20%7D%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20sectionTwo%7B%0A%20%20%20%20%20%20description%2C%0A%20%20%20%20%20%20%20%20title%2C%0A%20%20%20%20%20%20%22image%22%3Amidbanner.asset%20-%3E%20url%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20sectionThree%7B%0A%20%20%20%20%20%20%20%20%22image%22%3Aimage.asset%20-%3E%20url%2C%0A%20%20%20%20%20%20%20%20%20%20%20description%2C%0A%20%20%20%20%20%20title%2C%0A%20%20%20%20%20%20%20callToAction%20-%3E%20%7B%0A%20%20%20%20%20%20cta%2C%0A%20%20%20%20%20%20buttonText%2C%0A%20%20%20%20%20%20routes%0A%20%20%20%20%7D%2C%0A%20%20%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%20%20%20%20%0A%7D"
-        );
-        const data = contentResponse.data.result[0]
-     
+        setLoading(true)
+        const [data] = await Promise.all([
+          fetchAbout(),
+        ]);
     
-    
-
         setAboutContent(data);
-
-     
       } catch (error) {
         console.error("Error fetching data", error);
-      } finally {
-        setIsLoading(false)
+        setLoading(false)
+      } finally{             
+        setLoading(false)
       }
     };
-
     fetchData();
-    
   }, []);
+
 
   return (
    <div className="">
-         {isLoading ? (
+         {loading ? (
           
           <Loading/>
 
@@ -51,6 +45,7 @@ const About = () => {
           src={aboutContent?.aboutHero?.image}
           alt="hero-banner"
           className="object-cover h-full w-full"
+          onLoad={onLoad}
         />
       </div>
       <AboutCTA content={aboutContent}/>

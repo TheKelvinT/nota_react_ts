@@ -4,46 +4,39 @@ import ImageShowcase from "@/components/Menu/ImageShowcase";
 import MenuCTA from "@/components/Menu/MenuCTA";
 import MenuOption from "@/components/Menu/MenuOption";
 import SpecialMenu from "@/components/Menu/SpecialMenu";
-import axios from "axios";
+
 import{useState,useEffect} from "react";
 import { MenuContent,MenuList } from "@/types/Menu";
-
-type Props = {};
+import useLoadingStore from "@/store/loadingStore";
+import { fetchMenuContent, fetchMenuList, fetchSpecialMenu } from "@/utils/request";
 
 const Menu = () => {
 const [menuContent, setMenuContent] = useState<MenuContent | null>(null);
 const [menuList, setMenuList] = useState<MenuList[] | null>([])
 const [specialMenu, setSpecialMenu] = useState(null)
-const [isLoading, setIsLoading] = useState(true)
+const loading = useLoadingStore((state: any) => state.loading);
+const setLoading = useLoadingStore((state: any) => state.setLoading);
 
     useEffect(() => {
     const fetchData = async () => {
       try {
-      
-        const contentResponse = await axios.get(
-          "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22menuSectionOne%22%5D%20%7B%0A%20%20%22banner%22%3A%20banner.asset-%3Eurl%2C%0A%20%20%20%20title%2C%0A%20%20_id%2C%0A%20%20%22image%22%3A%20image.asset-%3Eurl%2C%0A%20%20description%2C%0A%20%20callToAction-%3E%7B%0A%20%20%20%20cta%2C%0A%20%20%20%20buttonText%2C%0A%20%20%20%20routes%0A%20%20%7D%2C%0A%20%20%22images%22%3A%20Images%5B%5D.asset-%3Eurl%0A%7D"
-        );
-
-         const menuListResponse = await axios.get(
-          "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22menus%22%5D%20%5B%5D%7B%0A%20%20%0A%20%20%20%20title%2C%0A%20%20%20%20time%2C%0A%20%20_id%2C%0A%0A%20%20description%2C%0A%20%20callToAction-%3E%7B%0A%20%20%20%20cta%2C%0A%20%20%20%20buttonText%2C%0A%20%20%20%20routes%0A%20%20%7D%2C%0A%0A%7D"
-        );
-
-         const specialMenuResponse = await axios.get(
-          "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22specialMenu%22%5D%20%7B%0A%20%20title%2C%0A%20%20%20%20intro%2C%0A%20%20%20%20time%2C%0A%20%20%20%20date%2C%0A%20%20_id%2C%0A%20%20description%2C%0A%20%20callToAction-%3E%7B%0A%20%20%20%20cta%2C%0A%20%20%20%20buttonText%2C%0A%20%20%20%20routes%0A%20%20%7D%2C%0A%20%20%22image%22%3A%20specialImage.asset-%3Eurl%0A%7D"
-        );
-        const data = contentResponse.data.result[0]
-        const data2 = menuListResponse.data.result
-        const data3 = specialMenuResponse.data.result[0]
+        setLoading(true)
+        const [data, data2, data3] = await Promise.all([
           
+          fetchMenuContent(),fetchMenuList(),fetchSpecialMenu()
+          
+        ]);
+
         setMenuList(data2)
         setSpecialMenu(data3)
         setMenuContent(data);
-          console.log(data2)
+   
       
       } catch (error) {
         console.error("Error fetching data", error);
+        setLoading(false)
       } finally {
-        setIsLoading(false)
+        setLoading(false)
       }
     };
 
@@ -53,7 +46,7 @@ const [isLoading, setIsLoading] = useState(true)
 
   return (
    <div className="">
-         {isLoading ? (
+         {loading ? (
           
           <Loading/>
 

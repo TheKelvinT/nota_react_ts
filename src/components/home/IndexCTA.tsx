@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { PortableText } from "@portabletext/react";
 import { HomeContent } from "@/types/Home";
+import { PortableTextComponent } from "../PortableTextComponent";
 
 type Props = { content: HomeContent | null };
 
@@ -29,7 +30,7 @@ const IndexCTA = ({ content }: Props) => {
         <div className="text-center space-y-4 text-main">
           <h3>{content?.homeSectionOne.title} </h3>
           <div className="text-xs leading-5">
-            <PortableText value={content?.homeSectionOne.description} />
+            <PortableText value={content?.homeSectionOne.description} components={PortableTextComponent}   onMissingComponent={false}/>
           </div>
         </div>
         <Link to={content?.homeSectionOne.callToAction?.routes} className="mt-10">

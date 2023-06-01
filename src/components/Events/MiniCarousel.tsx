@@ -26,7 +26,7 @@ SwiperCore.use([Autoplay, Pagination]);
 type Props = { data: EventModel | null };
 function MiniCarousel({ data }: Props) {
   handleNullData(data)
-  console.log(data)
+
   const swiperRef = useRef(null);
 
   return (
