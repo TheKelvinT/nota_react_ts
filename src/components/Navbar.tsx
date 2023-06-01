@@ -62,6 +62,9 @@ const Navbar = () => {
       ? "bg-secondary ease-out duration-300"
       : "bg-transparent ease-in duration-300";
 
+  const handleClick = () =>{
+    setOpen(false)
+  }
   return (
     <nav
       className={`relative z-50 text-white py-2  max-w-screen sticky top-0 overflow-hidden   ${bgColor}`}
@@ -150,63 +153,18 @@ const Navbar = () => {
           <div className="flex flex-col text-lg decoration-none text-secondary items-center gap-7 ">
             {/* Left Navigation */}
             {leftNavigation.map((item) => (
-              <Link to={item.href} key={item.name} className="text-secondary">
-                <div>{item.name}</div>
+              <Link to={item.href} key={item.name} onClick={handleClick} className="text-secondary">
+                <div >{item.name}</div>
               </Link>
             ))}
             {/* Right Navigation */}
             {rightNavigation.map((item) => (
-              <Link to={item.href} key={item.name} className="text-secondary">
+              <Link to={item.href} key={item.name} onClick={handleClick} className="text-secondary">
                 {item.name}
               </Link>
             ))}
           </div>
         </Drawer>
-        {/* {open && (
-        <div
-          style={{ position: "fixed" }}
-          className=" md:hidden absolute right-0 top-[70px] overflow-hidden"
-          ref={menuRef}
-        >
-          <div className="space-y-4 pr-6 pl-12 py-6 flex flex-col text-sm bg-white/15 backdrop-blur-md w-screen xs:w-[160px] h-full">
-            <div className="flex flex-col items-center xs:items-end gap-y-4">
-              {leftNavigation.map((item) => (
-                <motion.div
-                  className="hover:font-bold"
-                  key={item.name}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.5 }}
-                  variants={{
-                    hidden: { opacity: 0, y: -25 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                >
-                  <Link href={item.href}>{item.name}</Link>
-                </motion.div>
-              ))}
-            </div>
-            <div className="flex flex-col items-center xs:items-end gap-y-4">
-              {rightNavigation.map((item) => (
-                <motion.div
-                  key={item.name}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.5 }}
-                  variants={{
-                    hidden: { opacity: 0, y: -25 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                >
-                  <Link href={item.href}>{item.name}</Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )} */}
       </div>
     </nav>
   );
