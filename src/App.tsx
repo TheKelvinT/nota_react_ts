@@ -1,7 +1,7 @@
 
 import "./App.css";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home.jsx";
 import Careers from "./pages/Careers";
 import Reservations from "./pages/Reservations";

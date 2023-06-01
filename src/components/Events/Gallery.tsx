@@ -1,9 +1,6 @@
-import React from "react";
-
 import GalleryImg from "@/assets/galleryimg.png";
-type Props = {};
 
-const Gallery = (props: Props) => {
+const Gallery = () => {
   return (
     <section className="py-24">
       <div className="flex flex-col items-center">

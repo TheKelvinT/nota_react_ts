@@ -12,14 +12,14 @@ function classNames(...classes: any) {
 
 const Openings = ({ openings }: Props) => {
   handleNullData(openings)
-  const tabStyles = ({ selected }: any) =>
-    classNames(
-      "w-full rounded-lg py-2.5 px-4 whitespace-nowrap outline-none text-md  text-gray-50",
-      "",
-      selected
-        ? "bg-white/[0.22] font-bold"
-        : " hover:bg-white/[0.22] hover:text-gray-50"
-    );
+  // const tabStyles = ({ selected }: any) =>
+  //   classNames(
+  //     "w-full rounded-lg py-2.5 px-4 whitespace-nowrap outline-none text-md  text-gray-50",
+  //     "",
+  //     selected
+  //       ? "bg-white/[0.22] font-bold"
+  //       : " hover:bg-white/[0.22] hover:text-gray-50"
+  //   );
   return (
     <section
       id="opening"

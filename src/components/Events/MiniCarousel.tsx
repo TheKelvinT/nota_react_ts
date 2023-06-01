@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,11 +13,9 @@ import "swiper/css/pagination";
 import SwiperCore, {
   Navigation,
   Pagination,
-  Mousewheel,
-  Keyboard,
   Autoplay,
 } from "swiper";
-import { fromJSON } from "postcss";
+
 import handleNullData from "@/utils/handleNullData";
 import { EventModel } from "@/types/Event";
 
@@ -27,7 +25,7 @@ type Props = { data: EventModel | null };
 function MiniCarousel({ data }: Props) {
   handleNullData(data)
 
-  const swiperRef = useRef(null);
+  // const swiperRef = useRef(null);
 
   return (
     <>

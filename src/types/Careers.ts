@@ -1,4 +1,3 @@
-import { PortableText } from "@portabletext/react";
 import { PortableTextBlock } from "sanity";
 
 export type JobOpeningModel = {

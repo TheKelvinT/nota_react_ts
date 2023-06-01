@@ -7,9 +7,8 @@ import CareerCollageSix from "@/assets/career6.png";
 import CareerCollageSeven from "@/assets/career7.png";
 import CareerCollageEight from "@/assets/career8.png";
 import CareerCollageNine from "@/assets/career9.png";
-type Props = {};
 
-const CareerCollage = (props: Props) => {
+const CareerCollage = () => {
   return (
     <section className="mx-auto">
       <div className="flex justify-center gap-1.5 ">

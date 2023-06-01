@@ -132,9 +132,9 @@ const handleCancelModal = () =>{
 }
 const handleReset = () => {
 
-  if (timePickerRef.current) {
-    timePickerRef.current.setValue(null); // Reset the value to null
-  }
+      if (timePickerRef.current) {
+      timePickerRef.current.setValue(null); // Reset the value to null
+    }
 
 };
 const handleOKModal = () =>{
@@ -326,7 +326,7 @@ const disabledMinutes = (selectedHour: number) => {
     
        <Modal
         className="w-11/12"
-        title="Are you sure about your reservation?"
+        title={<div className=""><span className="h-full mr-4"><ExclamationCircleFilled className="text-[28px] text-yellow-500"/></span><span className="align-middle">Are you sure about your reservation?</span></div>}
         centered
         open={modalOpen}
         onOk={handleOKModal}
