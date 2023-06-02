@@ -1,25 +1,17 @@
-"use client"
 import  { useState, useRef } from "react";
-import moment from "moment";
-import {  Modal, Col, Row,TimePicker,DatePicker, message } from 'antd';
-
-
-
+import {  Modal,TimePicker,DatePicker, Form, Input, InputNumber, Row, Col} from 'antd';
 import CustomButton from "./Button";
 import { ExclamationCircleFilled } from "@ant-design/icons";
+import { Rule } from "antd/es/form";
+import emailjs from 'emailjs-com';
+import moment from 'moment'
+
 function ContactSection() {
   const timePickerRef = useRef<any>(null);
   const [hour, setHour] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
- const [formData, setFormData] = useState({
-    name: "",
-    contact: "",
-    email: "",
-    date: null,
-    time: "",
-    special: "",
-  });
-  
+  const [formErrors, setFormErrors] = useState<string[]>([]);
+
   let modalContent;
 
 if (hour === 20) {
@@ -45,123 +37,183 @@ if (hour === 20) {
   return {
     disabledHours: () => [0, 1, 2, 3, 4, 5,6,7,8,9,21,22,23], // Disable hours 0 to 5
     disabledMinutes: (selectedHour:any) => {
-      if (selectedHour === 6) {
-        return [0, 1, 2]; // Disable minutes 0 to 2 when hour is 6
+      if (selectedHour === 20) {
+        return [30,45]; // Disable minutes 0 to 2 when hour is 6
       }
       return []; // Disable no minutes for other hours
     },
-    disabledSeconds: (selectedHour: number, selectedMinute:number) => {
-      if (selectedHour === 6 && selectedMinute === 3) {
-        return [0, 1]; // Disable seconds 0 to 1 when hour is 6 and minute is 3
-      }
-      return []; // Disable no seconds for other hours and minutes
-    },
+   
   };
 };
   const format = "HH:mm";
 
-  const handleInputChange = (e:any) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleDateChange = (date:any) => {
-    const day = date?.$D;
-  const month = date?.$M;
-  const year = date?.$y;
-    const formattedDate = moment().day(day).month(month).year(year).format();
-    console.log(formattedDate)
-    setFormData((prevState) => ({
-      ...prevState,
-      date,
-    }));
-  };
-
   const handleTimeChange = (time: any) => {
   const hour = time?.$H;
-  const minute = time?.$m;
   setHour(hour);
-  const formattedTime = moment().hour(hour).minute(minute).format("HH:mm");
-  console.log(formattedTime);
-    setFormData({...formData, time: formattedTime})
-    console.log(formData)
 
   if ((hour >= 15 && hour <= 16) || hour >= 20 || hour <= 9 || hour >= 21) {
     setModalOpen(true);
   }
-
-  if (hour <= 9 || hour >= 21) {
-    setModalOpen(true);
-    setFormData((prevState) => ({ ...prevState, time: ""}));
-  } else {
-    setFormData((prevState) => ({ ...prevState, time }));
-  }
-};
-
- const handleSubmit = (e: any) => {
-  e.preventDefault();
-  console.log("Form data:", formData);
   
-  const formValues = Object.values(formData);
-
-  if (formValues.some((value) => value === null || value === undefined )) {
-
-    message.error("Booking form cannot contain empty fields.");
-    
-  } else {
-    message.success("Booking Successful!");
-  }
-
-  // Perform form submission logic here
 };
 
-const handleCancelModal = () =>{
-  if (hour === 20) {
-    setModalOpen(false)
-    setFormData({...formData, time:""})
-  } else if (hour >= 15 && hour <= 16) {
-    setModalOpen(false)
-    setFormData({...formData, time:""})
-  } else if (hour <= 9 || hour >= 21) {
-    setModalOpen(false)
-    setFormData({...formData, time:""})
-  }
-}
-const handleReset = () => {
 
-      if (timePickerRef.current) {
-      timePickerRef.current.setValue(null); // Reset the value to null
+//   e.preventDefault();
+//   console.log("Form data:", formData);
+  
+//   const formValues = Object.values(formData);
+
+//   if (formValues.some((value) => value === null || value === undefined )) {
+
+//     message.error("Booking form cannot contain empty fields.");
+    
+//   } else {
+//     message.success("Booking Successful!");
+//   }
+
+//   // Perform form submission logic here
+// };
+
+// const handleCancelModal = () =>{
+//   if (hour === 20) {
+//     setModalOpen(false)
+//     setFormData({...formData, time:""})
+//   } else if (hour >= 15 && hour <= 16) {
+//     setModalOpen(false)
+//     setFormData({...formData, time:""})
+//   } else if (hour <= 9 || hour >= 21) {
+//     setModalOpen(false)
+//     setFormData({...formData, time:""})
+//   }
+// }
+// const handleReset = () => {
+
+//       if (timePickerRef.current) {
+//       timePickerRef.current.setValue(null); // Reset the value to null
+//     }
+
+// };
+const handleClose = () =>{
+    setModalOpen(false)
+}
+
+const sendEmail = async (values:any) => {
+  try {
+    await emailjs.send(
+      'service_ft1p6fp',
+      'template_xd5re4r',
+      values,
+      'k-o6gKU7rmtoFJwGq',   
+    );
+    // console.log('Email sent successfully');
+    // Add any success message or redirect to a success page
+  } catch (error) {
+    // console.error('Error sending email:', error);
+    // Add an error message or handle the error as needed
+  }
+};
+
+const [form] = Form.useForm();
+const  onFinish = async (values: any) => {
+  const formattedDate = moment(values.date.$d).format('DD-MMMM-YYYY');
+
+  const formattedTime = moment(values.time.$d).format('h:mm a');
+
+  
+  const formattedValues = {
+    ...values,
+    date: formattedDate,
+    time: formattedTime,
+  };
+
+  const errors: string[] = [];
+if (!values.name) {
+  errors.push("name");
+}
+if (!values.contact) {
+  errors.push("contact");
+}
+if (!values.email) {
+  errors.push("email");
+}
+if (!values.date) {
+  errors.push("date");
+}
+if (!values.time) {
+  errors.push("time");
+}
+
+if (errors.length > 0) {
+  setFormErrors(errors);
+  return;
+}
+
+setFormErrors([]);
+  sendEmail(formattedValues);
+};
+
+// FORM VALIDATION
+
+
+  const rules = {
+    name:[
+      {
+      required: true,
+      message: 'Name cannot be empty.',
+    },
+ 
+  ],
+    contact: [
+    {
+      required: true,
+      message: 'Contact cannot be empty.',
+    },
+    {
+      pattern: /^[0-9-]+$/,
+  
+      message: 'Contact must contain only numbers.',
+    },
+    {
+      min: 8,
+      message: 'Contact must be at least 8 digits.',
+    },
+    {
+      max: 12,
+      message: 'Contact cannot exceed 12 digits.',
+    },
+  ],
+  email:[
+    {
+      type: 'email',
+      message: 'Please enter a valid email address.',
+    },
+    {
+      required: true,
+      message: 'Email address cannot be empty.',
+    },
+  ]as Rule[],
+  date:[
+    {
+      required: true,
+      message: 'Date cannot be empty.',
+    },
+  ],
+  pax:[
+    {
+      required: true,
+      message: 'Pax cannot be empty.',
     }
-
-};
-const handleOKModal = () =>{
-  if (hour === 20) {
-    setModalOpen(false)
-    
-  } else if (hour >= 15 && hour <= 16) {
-    setModalOpen(false)
+  ],
+  time: [
+    {
+      required: true,
+      message: 'Time cannot be empty.',
+    },
+   
+  ],
   
-  } else if (hour <= 9 || hour >= 21) {
-    setModalOpen(false)
-    setFormData({...formData, time:""})
-    handleReset()
-  }
+  
 }
-
-
-
-const disabledMinutes = (selectedHour: number) => {
-  const disabledMinutesArray: number[] = [];
-
-  if (selectedHour === 20) {
-    disabledMinutesArray.push(30, 45);
-  }
-
-  return disabledMinutesArray;
-};
 
   return (
     <div id="book" className="bg-primary   text-main">
@@ -170,127 +222,150 @@ const disabledMinutes = (selectedHour: number) => {
           <div className="mb-8">
             <h3 className="text-3xl">Chope A Table</h3>
           </div>
-          <div className="">
-            <form action="" method="post" onSubmit={handleSubmit}>
-              <Row className="flex items-center py-2 ">
-                <Col span={6} >
-                  <label htmlFor="name" className="font-gothic text-lg">
-                    Name
-                  </label>
-                </Col>
-                <Col span={18}>
-                <input
+        
+            <Form form={form} colon={false} onFinish={onFinish}>
+       
+        
+              <Form.Item name="name" label={<p className="font-gothic text-lg">Name</p>} rules={rules.name} labelCol={{span:6}}  labelAlign="left">
+           
+                <Input
                   type="text"
+                  size="large"
                   id="name"
-                  onChange={handleInputChange}
+            
                   name="name"
                   placeholder="name"
-                  required
-                  className="bg-primary border border-main/20 text-xs placeholder-place px-4 h-12 w-full "
+            
+                  className="bg-primary border border-main/20 text-xs placeholder-place h-12 font-inter w-full rounded-none"
                 />
-                </Col>
-              </Row>
-              <Row className="flex items-center py-2 ">
-                <Col span={6}>
-                  <label htmlFor="contact" className="font-gothic text-lg">
-                    Contact 
-                  </label>
-                </Col>
-                <Col span={18}>
-                <input
-                  type="number"
-                  id="contact"
-                  onChange={handleInputChange}
-                  name="contact"
-                  placeholder="contact no"
-                  required
-                  className="bg-primary border border-main/20 text-xs w-full placeholder-place px-4 h-12"
-                />
-                </Col>
-              </Row>
-              <Row className="flex items-center py-2">
-                <Col span={6} >
-                  <label htmlFor="email" className="font-gothic text-lg">
-                    Email
-                  </label>
-                </Col>
-                <Col span={18}>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  onChange={handleInputChange}
-                  placeholder="email"
-                  required
-                  className="bg-primary border border-main/20 text-xs w-full placeholder-place px-4 h-12"
-                />
-                </Col>
-              </Row>
-     
-              <Row className=" py-2 flex items-center" gutter={[0,16]}  >
-                <Col span={6} sm={6}>
-                  <label htmlFor="date" className="font-gothic  text-lg   ">
-                      Date
-                    </label>
-                    </Col>
-                <Col span={18} sm={6} className=""> 
+             
+                  </Form.Item>
+               
+                  
+              
+                  <Form.Item name="contact" label={<p className="font-gothic text-lg">Contact</p>}  rules={rules.contact} labelCol={{span:6}} labelAlign="left" >
+                    <Input
+                    type="text"
+                    id="contact"
+               
+                    name="contact"
+                    placeholder="contact no"
+             
+                    className="bg-primary border border-main/20 text-xs w-full placeholder-place font-inter rounded-none h-12"
+                  />  
+                  </Form.Item>
+
+                  <Form.Item name="email" label={<p className="font-gothic text-lg">Email</p>}  rules={rules.email} labelCol={{span:6}} labelAlign="left" >
+                    <Input
+                     type="email"
+                     id="email"
+                     name="email"
+                     placeholder="email"
+               
+                     className="bg-primary border border-main/20 text-xs w-full placeholder-place font-inter rounded-none h-12"
+                  />  
+                  </Form.Item>
+
+                {/* <Row gutter={[, 0]}>
+                  <Col span={12}>
+                  <Form.Item name="date" label={<p className="font-gothic text-lg">Date</p>}  rules={[{ required: true }]} labelCol={{span:12}} labelAlign="left" >
+                
                 <DatePicker
                       name="date"
                       id="date"
                       format="DD-MM-YYYY"
                       disabledDate={disabledDate}
-                      onChange={handleDateChange}
                       placeholder={"date"}
-                      className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full px-4 h-12 custom-picker"
-                    /></Col>
-                <Col span={6} sm={6} className="">
-                  <label htmlFor="time" className="font-gothic text-lg ssm:flex ssm:justify-center">
-                      Time
-                    </label>
-                    </Col>
-                <Col span={18} sm={6} > 
-                  <TimePicker
+                      className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full h-12 custom-picker"
+                    />
+                  </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                  <Form.Item name="time" label={<p className="font-gothic text-lg">Time</p>}  rules={[{ required: true }]} labelCol={{span:12}} labelAlign="" >
+                        <TimePicker
+                        ref={timePickerRef}
+                        minuteStep={15}
+                        secondStep={10}
+                        format={format}
+                        inputReadOnly={true}
+                        disabledTime={disabledTime}
+                        changeOnBlur={true}
+                        placeholder="00:00"
+                        hideDisabledOptions={true}
+                        disabledMinutes={disabledMinutes}
+                        name="time"
+                        id="time"
+                        className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  px-4 h-12 font-inter custom-picker "
+                      /> 
+                    </Form.Item>
+                  </Col>
+                </Row> */}
+                <Form.Item name="date" label={<p className="font-gothic text-lg">Date</p>}  rules={rules.date} labelCol={{span:6, sm:6}} labelAlign="left" >
+              
+                <DatePicker
+                      name="date"
+                      id="date"
+                      format="DD-MM-YYYY"
+                      disabledDate={disabledDate}
+                      placeholder={"date"}
+                      className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full h-12 custom-picker"
+                    />
+                  </Form.Item>
+                <Row>
+                <Col span={12} >
+                  <Form.Item name="time" label={<p className="font-gothic text-lg ">Time</p>}  rules={rules.time}   
+                   labelCol={{span:12 }} wrapperCol={{sm:12}} labelAlign="left" >
+                      <TimePicker
                       ref={timePickerRef}
                       minuteStep={15}
                       secondStep={10}
                       format={format}
-                       onChange={handleTimeChange}
+                      showNow={false}
+                 
+                      inputReadOnly={true}
                       disabledTime={disabledTime}
                       changeOnBlur={true}
+                      onChange={handleTimeChange}
                       placeholder="00:00"
                       hideDisabledOptions={true}
-                      disabledMinutes={disabledMinutes}
                       name="time"
                       id="time"
-                      className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  px-4 h-12 custom-picker "
-                    /></Col> 
-                </Row>      
-                    
+                      className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  h-12 font-inter custom-picker "
+                    /> 
+                  </Form.Item>
+                  </Col>
+                  <Col span={10} offset={2} >
+                  <Form.Item name="pax" label={<p className="font-gothic text-lg ">pax</p>}  rules={rules.pax}   
+                   labelCol={{span:12}} wrapperCol={{span:8, sm:12}} labelAlign="left" >
+                    <InputNumber  name="pax"
+                      id="pax" controls={true} min={1} max={70} placeholder="1" className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "/>
+                    </Form.Item>
+                  </Col>
+                  
+                </Row>
                  
-                   
-                   
-          
-              <Row className="pt-4 mb-8" gutter={[0,6]}>
-                <Col span={24}>
-                <label htmlFor="special" className="font-gothic text-lg mb-4">
-                  Special Requirements<span className="text-xs"> (if any)</span>
-                </label>
-                </Col>
-                <Col span={24}>
-                <textarea
+             
+                
+                <Form.Item name="special" label={<p className="font-gothic text-lg">Special Requirements<span className="text-xs"> (if any)</span></p>} labelCol={{span:24}} wrapperCol={{span:24}} labelAlign="left">
+               
+                 <Input.TextArea
                   id="special"
                   name="special"
-                  onChange={handleInputChange}
+                  autoSize={{minRows:2, maxRows:6}}
+                  className="bg-primary font-inter border placeholder-place border-main/20 text-xs w-full  py-2 rounded-none h-20 "
                   placeholder="additional information: (such as dietary requirements, celebration details, special care, etc)"
-                  className="bg-primary font-inter border placeholder-place border-main/20 text-xs w-full  py-2 px-4 h-16"
-                />
-                </Col>
-              </Row>
+
+                 /> 
+  
+                </Form.Item>
+
               <div className="flex justify-center md:block">
               <CustomButton title="SUBMIT NOW" />
+              {/* <Button type="primary" htmlType="submit">Submit</Button> */}
               </div>
-            </form>
-          </div>
+            </Form >
+
+       
         </div>
   
         <div className="flex flex-col sm:justify-between sm:flex-row  md:flex-col mt-7 py-4 w-4/5 md:w-auto ">
@@ -329,8 +404,8 @@ const disabledMinutes = (selectedHour: number) => {
         title={<div className=""><span className="h-full mr-4"><ExclamationCircleFilled className="text-[28px] text-yellow-500"/></span><span className="align-middle">Are you sure about your reservation?</span></div>}
         centered
         open={modalOpen}
-        onOk={handleOKModal}
-        onCancel={handleCancelModal}
+        onOk={handleClose}
+        onCancel={handleClose}
       >
        {modalContent}
      
@@ -342,5 +417,7 @@ const disabledMinutes = (selectedHour: number) => {
     </div>
   );
 }
+
+
 
 export default ContactSection;

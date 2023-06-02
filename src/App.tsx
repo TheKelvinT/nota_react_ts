@@ -23,7 +23,7 @@ function App() {
     <>
       <BrowserRouter>
      
-      <FloatButton icon={<div className="h-16 w-16 absolute top-1 left-1 opacity-60 hover:opacity-100 transition-all hover:scale-110"><img src={WhatsappIcon} className=""/></div>} tooltip={<div className="">Chat with us now!</div>} type="default" style={{ right: 25 }} href="" className="h-16 w-16 " />
+      <FloatButton icon={<div className="h-16 w-16 absolute top-1 left-1 opacity-60 hover:opacity-100 transition-all hover:scale-110"><img src={WhatsappIcon} className=""/></div>} tooltip={<div className="">Chat with us now!</div>} type="default" style={{ right: 25 }} href="https://wa.me/60174891189" target="_blank" className="h-16 w-16 " />
       <Navbar/>
       {/* {loading? "" : <Navbar />} */}
         <ScrollToTop>
