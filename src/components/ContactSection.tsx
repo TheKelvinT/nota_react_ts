@@ -1,17 +1,31 @@
 import  { useState, useRef } from "react";
-import {  Modal,TimePicker,DatePicker, Form, Input, InputNumber, Row, Col} from 'antd';
+import {  Modal,TimePicker,DatePicker, Form, Input, InputNumber, Row, Col, Alert} from 'antd';
 import CustomButton from "./Button";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { Rule } from "antd/es/form";
 import emailjs from 'emailjs-com';
 import moment from 'moment'
 
+type formValueModel = {
+  name?:string;
+  contact?: string;
+  email?: string;
+  special?: string;
+  date?: string;
+  pax?: number;
+  time?:string;
+} 
 function ContactSection() {
   const timePickerRef = useRef<any>(null);
   const [hour, setHour] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [formValues, setFormValues] = useState<formValueModel>({})
 
 
+  
   let modalContent;
 
 if (hour === 20) {
@@ -97,19 +111,23 @@ const handleClose = () =>{
     setModalOpen(false)
 }
 
-const sendEmail = async (values:any) => {
+const sendEmail = async (formattedValues:any) => {
   try {
+    setIsLoading(true)
     await emailjs.send(
       'service_ft1p6fp',
       'template_xd5re4r',
-      values,
+      formattedValues,
       'k-o6gKU7rmtoFJwGq',   
     );
-    // console.log('Email sent successfully');
-    // Add any success message or redirect to a success page
+    console.log('Email sent successfully');
+    setIsLoading(false)
+    setSuccess(true)
   } catch (error) {
     // console.error('Error sending email:', error);
     // Add an error message or handle the error as needed
+    setIsLoading(false)
+    setError(true)
   }
 };
 
@@ -125,30 +143,8 @@ const  onFinish = async (values: any) => {
     date: formattedDate,
     time: formattedTime,
   };
-
-  const errors: string[] = [];
-if (!values.name) {
-  errors.push("name");
-}
-if (!values.contact) {
-  errors.push("contact");
-}
-if (!values.email) {
-  errors.push("email");
-}
-if (!values.date) {
-  errors.push("date");
-}
-if (!values.time) {
-  errors.push("time");
-}
-
-if (errors.length > 0) {
-  setFormErrors(errors);
-  return;
-}
-
-setFormErrors([]);
+  setFormValues(formattedValues)
+  console.log(formValues)
   sendEmail(formattedValues);
 };
 
@@ -358,9 +354,22 @@ setFormErrors([]);
                  /> 
   
                 </Form.Item>
-
               <div className="flex justify-center md:block">
-              <CustomButton title="SUBMIT NOW" />
+             {success? ( <Alert
+              message="Booking Request Submitted! "
+              description={`Thank you ${formValues?.name}, you've successfully choped a table for ${formValues.pax} pax on ${formValues.time}, ${formValues.date}!  `}
+              type="success"
+              showIcon
+            />) : error ? (<Alert
+              message="Oops..."
+              description="Something went wrong. Please try again later."
+              type="error"
+              showIcon
+            />) :
+            <CustomButton title="SUBMIT NOW" loading={isLoading} />
+              }
+
+             
               {/* <Button type="primary" htmlType="submit">Submit</Button> */}
               </div>
             </Form >

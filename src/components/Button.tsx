@@ -1,3 +1,5 @@
+import { LoadingOutlined } from '@ant-design/icons';
+
 interface Props {
   title: string;
   onClick?: () => void;
@@ -8,12 +10,17 @@ interface Props {
 }
 
 function Button({ title, onClick, width, loading, padding, noIcon }: Props) {
+  const buttonStyle = {
+    width: width ? width : 'w-auto',
+    padding: padding,
+  };
+
   return (
     <button
-      className={`ease group relative z-10 box-border inline-flex ${
-        width ? width : "w-auto"
-      } ${padding} cursor-pointer items-center justify-center overflow-hidden border font-gothic text-[10px]  border-main bg-primary px-6 py-3 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
+      className={`ease group relative z-10 box-border inline-flex cursor-pointer items-center justify-center overflow-hidden border font-gothic text-[10px] border-main bg-primary px-6 py-3 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
+      style={buttonStyle}
       onClick={onClick}
+      disabled={loading}
     >
       <span className="relative z-20 flex items-center uppercase">
         {noIcon && (
@@ -27,12 +34,12 @@ function Button({ title, onClick, width, loading, padding, noIcon }: Props) {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-                  strokeWidth="2"
+              strokeWidth="2"
               d="M13 10V3L4 14h7v7l9-11h-7z"
             ></path>
           </svg>
         )}
-        {loading ? "Loading..." : title}
+        {loading ? "loading..." : title}
       </span>
     </button>
   );
