@@ -10,7 +10,7 @@ function ContactSection() {
   const timePickerRef = useRef<any>(null);
   const [hour, setHour] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [formErrors, setFormErrors] = useState<string[]>([]);
+
 
   let modalContent;
 
