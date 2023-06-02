@@ -1,4 +1,4 @@
-import { LoadingOutlined } from '@ant-design/icons';
+
 
 interface Props {
   title: string;
