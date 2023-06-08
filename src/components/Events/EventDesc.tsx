@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import handleNullData from "@/utils/handleNullData";
 import { PortableText } from "@portabletext/react";
 import { EventModel } from "@/types/Event";
-import { PortableTextComponent } from "../PortableTextComponent";
+import DescContainer from "../StyleComponents/DescContainer";
+import CustomH1 from "../StyleComponents/CustomH1";
 
 type Props = { data: EventModel |null };
 
@@ -26,11 +27,13 @@ const EventDesc = ({ data }: Props) => {
           />
         </div>
         <div className="my-auto basis-1/3 md:pr-4 ">
-          <h3 className="py-4">{data?.sectionTwo?.title}</h3>
+          <div className="py-4">
+          <CustomH1 >{data?.sectionTwo?.title}</CustomH1>
+          </div>
           <div className="flex flex-col md:max-w-[330px] gap-y-8 text-main">
-            <div className="text-xs">
-            <PortableText value={data?.sectionTwo?.Sectioncontent || [] } components={PortableTextComponent}   onMissingComponent={false}/>
-            </div>
+            <DescContainer>
+            <PortableText value={data?.sectionTwo?.Sectioncontent || [] }    onMissingComponent={false}/>
+            </DescContainer>
             <div>
               <Link to={data?.sectionTwo.callToAction?.routes || ""}>
                 <Button title={data?.sectionTwo.callToAction?.buttonText || ""} />

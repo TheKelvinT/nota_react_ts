@@ -2,6 +2,8 @@ import Button from "@/components/Button";
 import { Tab } from "@headlessui/react";
 import { JobOpeningModel } from "@/types/Careers";
 import handleNullData from "@/utils/handleNullData";
+import CustomH1 from "../StyleComponents/CustomH1";
+import DescContainer from "../StyleComponents/DescContainer";
 
 
 type Props = { openings: JobOpeningModel[] | null };
@@ -25,8 +27,8 @@ const Openings = ({ openings }: Props) => {
       id="opening"
       className="pb-24 flex-col justify-center items-center "
     >
-      <div className="flex justify-center">
-        <h3 className="py-12">Current Openings:</h3>
+      <div className="flex justify-center py-12">
+        <CustomH1 >Current Openings:</CustomH1>
       </div>
 
       <div className=" mx-auto w-11/12 lg:max-w-[1073px]">
@@ -39,9 +41,9 @@ const Openings = ({ openings }: Props) => {
                     key={opening._id}
                     className={({ selected }) =>
                       classNames(
-                        "py-4 md:py-5 px-2 md:px-3 w-36 font-gothic text-right text-xs border border-secondary border-opacity-20",
+                        "sm:mb-2 py-4 md:py-5 px-2 md:px-3 w-36 font-gothic tracking-widest text-center text-xs  ",
                         "  ",
-                        selected ? "bg-primary  focus:outline-none border border-secondary border-opacity-20 " : "   "
+                        selected ? "bg-primary  focus:outline-none   " : "  bg-light "
                       )
                     }
                   >
@@ -59,12 +61,12 @@ const Openings = ({ openings }: Props) => {
                   <div className="mx-auto w-11/12">
                     <div>
                       <div className="md:flex md:justify-between text-main pb-4 md:pb-7">
-                        <h3 className="text-xl ">{opening.position}</h3>
+                        <CustomH1>{opening.position}</CustomH1>
                         <p className="text-lg font-gothic mb-2">
                           {opening.lowSalaryRange} - {opening.highSalaryRange}
                         </p>
                       </div>
-                      <p className="text-xs">{opening.summary}</p>
+                      <DescContainer >{opening.summary}</DescContainer>
                       <div className="flex w-full py-8">
                         <h3 className="whitespace-nowrap text-base font-gothic  mr-9">
                           Job Description

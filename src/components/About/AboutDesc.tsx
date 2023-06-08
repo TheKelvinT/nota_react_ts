@@ -1,7 +1,7 @@
 
 import { AboutModel } from "@/types/About";
 import { PortableText } from "@portabletext/react";
-import { PortableTextComponent } from "../PortableTextComponent";
+import DescContainer from "../StyleComponents/DescContainer";
 
 type Props = {
   content: AboutModel | null;
@@ -25,9 +25,9 @@ const AboutDesc = ({content}: Props) => {
       </div>
       <div className="text-center space-y-3 py-16 md:py-24 text-main max-w-[665px] w-11/12">
         <h3 className="font-gothic text-xl">{data?.title}</h3>
-        <div className="text-xs leading-5 text-sub">
-          <PortableText value={data?.description} components={PortableTextComponent}   onMissingComponent={false}/>
-        </div>
+        <DescContainer>
+          <PortableText value={data?.description}    onMissingComponent={false}/>
+        </DescContainer>
       </div>
     </section>
   );

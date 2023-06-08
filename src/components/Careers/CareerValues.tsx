@@ -2,7 +2,9 @@ import React from "react";
 import { CareersModel } from "@/types/Careers";
 import { PortableText } from "@portabletext/react";
 import handleNullData from "@/utils/handleNullData";
-import { PortableTextComponent } from "../PortableTextComponent";
+import CustomH1 from "../StyleComponents/CustomH1";
+import DescContainer from "../StyleComponents/DescContainer";
+
 type Props = { data: CareersModel | null };
 
 const CareerValues = ({ data }: Props) => {
@@ -11,10 +13,13 @@ const CareerValues = ({ data }: Props) => {
   return (
     <div id="values" className="bg-primary flex flex-col items-center py-16  mx-auto">
       <div className="text-center space-y-4 pb-10 text-main w-11/12 max-w-[665px] ">
-        <h3 className="pb-4">{data?.valuesSection.valuesTitle}</h3>
-        <div className="text-xs leading-5 text-sub">
-          <PortableText value={data?.valuesSection?.description || []} components={PortableTextComponent}   onMissingComponent={false}/>
+        <div className="pb-4">
+        <CustomH1>{data?.valuesSection.valuesTitle}</CustomH1>
         </div>
+        
+        <DescContainer >
+          <PortableText value={data?.valuesSection?.description || []}    onMissingComponent={false}/>
+        </DescContainer>
        
       </div>
       <div className="flex justify-evenly flex-wrap gap-4 max-w-[1920px]  w-11/12">
@@ -32,7 +37,7 @@ const CareerValues = ({ data }: Props) => {
             </div>
             <div className="max-w-[315px] flex-col flex mt-8 gap-y-3 text-center sm:text-start ">
               <h5 className="font-gothic text-base text-main  ">{value.value}</h5>
-              <p className=" text-xs pb-4 text-dark ">{value.description}</p>
+              <DescContainer>{value.description}</DescContainer>
             </div>
           </div>
         ))}

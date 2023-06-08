@@ -5,7 +5,9 @@ import Button from "../Button";
 import { PortableText } from "@portabletext/react";
 import { HomeContent } from "@/types/Home";
 import handleNullData from "@/utils/handleNullData";
-import { PortableTextComponent } from "../PortableTextComponent";
+import CustomH1 from "../StyleComponents/CustomH1";
+import DescContainer from "../StyleComponents/DescContainer";
+
 
 type Props = {content:HomeContent | null | undefined};
 
@@ -39,10 +41,10 @@ return (
             } flex justify-center items-center    md:w-[320px]  `}
           >
             <div className="space-y-10 text-main text-start ">
-              <h3>{card.title}</h3>
-              <div className="text-xs leading-5">
-                <PortableText value={card.description} components={PortableTextComponent}   onMissingComponent={false}/>
-              </div>
+              <CustomH1>{card.title}</CustomH1>
+              <DescContainer >
+                <PortableText value={card.description}    onMissingComponent={false}/>
+              </DescContainer>
               <div className="mt-10">
                 <Link to={card.callToAction.routes}>
                   <Button title={card.callToAction.buttonText} />
@@ -76,10 +78,10 @@ return (
             } flex justify-center items-center basis-7/12 `}
           >
             <div className="space-y-6 text-main text-start ">
-              <h3>{card.title}</h3>
-              <div className="text-xs leading-5">
-                <PortableText value={card.description} components={PortableTextComponent}   onMissingComponent={false}/>
-              </div>
+              <CustomH1>{card.title}</CustomH1>
+              <DescContainer >
+                <PortableText value={card.description}   onMissingComponent={false}/>
+              </DescContainer>
               <div className="mt-10">
                 <Link to={card.callToAction.routes}>
                   <Button title={card.callToAction.buttonText} />
@@ -109,10 +111,10 @@ return (
             } flex justify-center items-center    md:w-[320px]  `}
           >
             <div className="space-y-6 text-main text-center ">
-              <h3>{card.title}</h3>
-              <div className="text-xs leading-5">
-                <PortableText value={card.description} components={PortableTextComponent}   onMissingComponent={false}/>
-              </div>
+              <CustomH1>{card.title}</CustomH1>
+              <DescContainer >
+                <PortableText value={card.description}    onMissingComponent={false}/>
+              </DescContainer>
               <div className="mt-10">
                 <Link to={card.callToAction.routes}>
                   <Button title={card.callToAction.buttonText} />

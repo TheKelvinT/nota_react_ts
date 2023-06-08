@@ -2,7 +2,8 @@ import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
 import { Link } from "react-router-dom";
 import { AboutModel } from "@/types/About";
-import { PortableTextComponent } from "../PortableTextComponent";
+import CustomH1 from "../StyleComponents/CustomH1";
+import DescContainer from "../StyleComponents/DescContainer";
 type Props = {
   content: AboutModel | null;
 };
@@ -25,10 +26,10 @@ const AboutCTA = ({content }: Props) => {
           <p className="text-end max-w-[550px]">{data?.statementTldr}</p>
         </div>
         <div className="text-center space-y-4 py-12 text-main max-w-[665px] w-11/12 ">
-          <h3 className="pb-4">{data?.title}</h3>
-          <div className="text-xs leading-5 text-sub">
-          <PortableText value={data?.description} components={PortableTextComponent}   onMissingComponent={false}/>
-          </div>
+          <CustomH1 >{data?.title}</CustomH1>
+          <DescContainer >
+          <PortableText value={data?.description}    onMissingComponent={false}/>
+          </DescContainer>
           
         </div>
         <div className="md:mt-10">

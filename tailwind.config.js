@@ -15,6 +15,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      listStyleType: {
+        
+        disc: 'disc',
+      },
       colors: {
         primary: "#F3F3EC",
         "primary-100": "#dbdbd4",

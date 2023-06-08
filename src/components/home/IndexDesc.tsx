@@ -1,6 +1,6 @@
 import { PortableText } from "@portabletext/react";
-import { PortableTextComponent } from "../PortableTextComponent";
 import { HomeContent } from "@/types/Home";
+import DescContainer from "../StyleComponents/DescContainer";
 type Props = { content: HomeContent | null };
 
 const IndexDesc = ({ content }: Props) => {
@@ -11,10 +11,10 @@ const IndexDesc = ({ content }: Props) => {
       <div className="hidden md:grid grid-col-2 md:grid-col-4 screen-limit ">
         <div className="flex md:flex-row align-center flex-col justify-center gap-x-4  py-9 px-9">
           <div className=" mr-10 w-full sm:w-[300px] space-y-6 flex flex-col justify-center text-main">
-            <h4 className="font-biro">{content?.homeSectionTwo.title}</h4>
-            <div className="text-xs leading-5">
-              <PortableText  value={content?.homeSectionTwo?.description || []} components={PortableTextComponent}   onMissingComponent={false}/>
-            </div>
+            <p className="font-biro text-3xl">{content?.homeSectionTwo.title}</p>
+            <DescContainer>
+              <PortableText  value={content?.homeSectionTwo?.description || []}    onMissingComponent={false}/>
+            </DescContainer>
           </div>
           <div className="max-h-[430px] max-w-[335px] overflow-hidden">
           <img
@@ -44,7 +44,7 @@ const IndexDesc = ({ content }: Props) => {
         </div>
       </div>
       {/* Mobile */}
-      <div className="md:hidden flex flex-col gap-10 items-center">
+      <div className="md:hidden flex flex-col gap-10 py-12 items-center">
         <div className=" flex justify-center w-11/12 gap-1.5">
           <div>
             <img
@@ -77,9 +77,9 @@ const IndexDesc = ({ content }: Props) => {
     
         <div className="  w-4/5 space-y-6 flex flex-col text-center justify-center text-main">
           <h4 className="font-biro " >{content?.homeSectionTwo.title}</h4>
-          <div className="text-xs leading-5">
-            <PortableText  value={content?.homeSectionTwo.description || []} components={PortableTextComponent}   onMissingComponent={false}/>
-          </div>
+          <DescContainer>
+            <PortableText  value={content?.homeSectionTwo.description || []}    onMissingComponent={false}/>
+          </DescContainer>
         </div>
       </div>
     </section>

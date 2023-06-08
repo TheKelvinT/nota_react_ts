@@ -5,6 +5,7 @@ import { ExclamationCircleFilled } from "@ant-design/icons";
 import { Rule } from "antd/es/form";
 import emailjs from 'emailjs-com';
 import moment from 'moment'
+import CustomH1 from "./StyleComponents/CustomH1";
 
 type formValueModel = {
   name?:string;
@@ -29,12 +30,15 @@ function ContactSection() {
   let modalContent;
 
 if (hour === 20) {
-  modalContent = <p>Kitchen&apos;s last call at 8pm for dinner service.</p>;
+  modalContent = <p>Kitchen&apos;s last call for dinner service at 8.30pm.</p>;
 } else if (hour >= 15 && hour <= 16) {
   modalContent = (
+    <>
     <p>
-      Kitchen&apos;s Last Call at 3:30pm for Lunch/Brunch Service and resumes for Dinner Service at 5pm.
+      Kitchen&apos;s last call for lunch service at 3:30pm.
     </p>
+    <p>We will resume dinner service at 5pm.</p>
+    </>
   );
 } else if (hour <= 9 || hour >= 21) {
   modalContent = <p>Out of operating hours range. Please try again.</p>;
@@ -216,7 +220,7 @@ const  onFinish = async (values: any) => {
       <div className="flex flex-col md:flex-row justify-center py-20  mx-auto mt-24 md:gap-x-16 lg:gap-x-28 xl:gap-x-56 w-11/12 lg:w-auto">
         <div className="lg:w-[500px] ">
           <div className="mb-8">
-            <h3 className="text-3xl">Chope A Table</h3>
+            <CustomH1>Chope A Table</CustomH1>
           </div>
         
             <Form form={form} colon={false} onFinish={onFinish}>
@@ -377,34 +381,35 @@ const  onFinish = async (values: any) => {
        
         </div>
   
-        <div className="flex flex-col sm:justify-between sm:flex-row  md:flex-col mt-7 py-4 w-4/5 md:w-auto ">
-          <div className="flex flex-col md:order-2 ">
-            <h3 className="text-2xl pb-4">Contact Us</h3>
-
-            <div className="flex flex-col space-y-1 pb-12">
-              <h5 className="text-2xl font-gothic">Mobile</h5>
-              <p className="text-sm">+60 17 489 1189</p>
-            </div>
-            <div className="flex flex-col space-y-1">
-              <h5 className="text-2xl font-gothic">Address</h5>
-              <p className="text-sm">No. 1-1 (First Floor),</p>
-              <p className="text-sm">Jalan Anggerik Vanilla BF 31/BF,</p>
-              <p className="text-sm">Kota Kemuning, 40460 Shah Alam,</p>
-              <p className="text-sm">Selangor.</p>
-            </div>
-          </div>
-          <div className="flex flex-col sm:pb-12 pt-12 sm:pt-0">
-            <div className="lg:order-1 pb-12">
-              <h3 className="text-2xl pb-4">Operating Hours </h3>
+        <div className="flex flex-col sm:justify-between sm:flex-row  md:flex-col mt-7 py-4 space-x-0 sm:space-x-8  md:space-x-0 w-4/5 md:w-auto ">
+        <div className="flex flex-col pb-12 pt-12 sm:pt-0">
+            <div className=" sm:order-0  pb-12">
+              <CustomH1>Operating Hours </CustomH1>
               <p className="text-lg font-marcellus">Mon - Sun | 10am - 9pm</p>
               <p className="text-lg font-marcellus">Closed on Wednesdays</p>
             </div>
-            <div className="lg:order-1">
-              <h3 className="text-2xl pb-4">Kitchen Last Call </h3>
+            <div className="">
+              <CustomH1>Kitchen Last Call </CustomH1>
               <p className="text-lg font-marcellus">Lunch - 330pm</p>
               <p className="text-lg font-marcellus">Dinner - 830pm</p>
             </div>
           </div>
+          <div className="flex flex-col md:order-2 ">
+            <CustomH1>Contact Us</CustomH1>
+
+            <div className="flex flex-col space-y-1 pb-12 font-gothic">
+              <h5 className="text-lg font-gothic">Mobile</h5>
+              <p className="text-[13px]">+60 17 489 1189</p>
+            </div>
+            <div className="flex flex-col space-y-1 font-gothic">
+              <h5 className="text-lg font-gothic">Address</h5>
+              <p className="text-[13px]">No. 1-1 (First Floor),</p>
+              <p className="text-[13px]">Jalan Anggerik Vanilla BF 31/BF,</p>
+              <p className="text-[13px]">Kota Kemuning, 40460 Shah Alam,</p>
+              <p className="text-[13px]">Selangor.</p>
+            </div>
+          </div>
+          
         </div>
       </div>
     

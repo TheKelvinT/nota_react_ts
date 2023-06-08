@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 import { PortableText } from "@portabletext/react";
 import { HomeContent } from "@/types/Home";
-import { PortableTextComponent } from "../PortableTextComponent";
+
+import CustomH1 from "../StyleComponents/CustomH1";
+import DescContainer from "../StyleComponents/DescContainer";
 
 type Props = { content: HomeContent | null };
 
@@ -18,7 +20,7 @@ const IndexCTA = ({ content }: Props) => {
   return (
   
     <section className=" flex justify-center py-20 screen-limit">
-      <div className=" w-4/5 md:w-2/5  flex flex-col justify-center items-center">
+      <div className=" w-4/5 md:max-w-[638px]  flex flex-col justify-center items-center">
         <div className="pb-6 max-w-[251px] max-h-[71px] overflow-hidden">
           <img
             src={content?.homeSectionOne.Logo}
@@ -29,10 +31,10 @@ const IndexCTA = ({ content }: Props) => {
           />
         </div>
         <div className="text-center space-y-4 text-main">
-          <h3>{content?.homeSectionOne.title} </h3>
-          <div className="text-xs leading-5">
-            <PortableText value={content?.homeSectionOne.description} components={PortableTextComponent}   onMissingComponent={false}/>
-          </div>
+          <CustomH1>{content?.homeSectionOne.title}</CustomH1>
+          <DescContainer>
+            <PortableText value={content?.homeSectionOne.description} onMissingComponent={false}/>
+          </DescContainer>
         </div>
         <Link to={content?.homeSectionOne.callToAction?.routes} className="mt-10">
           <Button title={content?.homeSectionOne.callToAction?.buttonText} />

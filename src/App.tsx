@@ -16,6 +16,7 @@ import WhatsappIcon from './assets/whatsapp-logo.svg'
 import useLoadingStore from "./store/loadingStore.js";
 import Admin from "./pages/Admin.js";
 import ScrollToTop from "./components/ScrollToTop.js";
+import SingleBlog from "./pages/SingleBlog.js";
 
 function App() {
   const loading = useLoadingStore((state: any) => state.loading);
@@ -36,6 +37,7 @@ function App() {
             <Route path="/careers" element={<Careers />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/admin" element={<Admin/>} />
+            <Route path="/blog/:slug" element={<SingleBlog/>} />
           </Routes>
         </ScrollToTop> 
         {loading? "" : <Footer/>}

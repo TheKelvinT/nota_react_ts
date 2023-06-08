@@ -1,12 +1,8 @@
-
 import Button from "@/components/Button";
-
 import { MenuContent, MenuList } from "@/types/Menu";
-
-
 import { PortableText } from "@portabletext/react";
-import { Link } from "react-router-dom";
-import { PortableTextComponent } from "../PortableTextComponent";
+import CustomH1 from "../StyleComponents/CustomH1";
+import DescContainer from "../StyleComponents/DescContainer";
 type Props = { content: MenuList[] | null; image: MenuContent | null; };
 
 const MenuOption = ({ content, image }: Props) => {
@@ -23,20 +19,20 @@ const MenuOption = ({ content, image }: Props) => {
   return (
     <section className="py-20 flex justify-center ">
       <div className=" flex justify-center w-11/12 md:gap-x-12 xl:gap-40">
-        <div className="max-w-[430px] space-y-28 py-4 md:basis-1/2">
+        <div className="max-w-[430px] space-y-20 py-4 md:basis-1/2">
           {content.map((menu: any) => (
             <div key={menu._id} className="space-y-8">
               <div className="flex flex-col items-center gap-y-1">
-                <h3 className="">{menu.title}</h3>
-                <div className="font-gothic text-xs">{menu.time}</div>
-              </div>
-              <div className="flex justify-center text-center text-xs">
-                <PortableText value={menu.description} components={PortableTextComponent}   onMissingComponent={false}/>
+                <CustomH1>{menu.title}</CustomH1>
+                <div className="font-gothic text-main text-xs">{menu.time}</div>
               </div>
               <div className="text-center">
-                <Link to={menu?.callToAction.routes}>
-                <Button title={menu.callToAction.buttonText} />
-                </Link>
+              <DescContainer >
+                <PortableText value={menu.description}    onMissingComponent={false}/>
+              </DescContainer>
+              </div>
+              <div className="text-center">
+                <Button title={menu.callToAction.buttonText} path={menu?.callToAction.routes} />
               </div>
             </div>
           ))}

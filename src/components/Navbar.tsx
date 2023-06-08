@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import useLoadingStore from "@/store/loadingStore";
 import NotaLogo from "@/assets/Nota-Logo.png";
 import DarkLogo from "@/assets/nota-logo-black.png"
-
+import DrawerDeco from '@/assets/bottles.png'
 
 const leftNavigation = [
   { name: "About", href: "/about" },
@@ -53,10 +53,10 @@ const Navbar = () => {
   }, []);
 
   const isDarkNav =
-    pathname === "/blog" ||
+    pathname.startsWith("/blog") ||
     pathname === "/reservations" ||
     pathname === "/admin" ||
-    pathname === "/careers";
+    pathname === "/careers" 
   const bgColor =
     scrollDown || isDarkNav || loading
       ? "bg-secondary ease-out duration-300"
@@ -133,11 +133,14 @@ const Navbar = () => {
         <Drawer
           closable={false}
           placement="right"
-          width={300}
+          onClose={handleClick}
+          width={280}
           open={open}
-          className="bg-primary"
+          className="bg-primary mx-auto relative max-h-screen"
         >
-          <div className="flex justify-end">
+          <div className="sidenav-container flex flex-col justify-between items-center">
+          <div>
+          <div className="flex justify-end px-1">
             <button
               className=" inline-flex items-center justify-center rounded-md  text-secondary"
               onClick={() => setOpen(!open)}
@@ -146,7 +149,7 @@ const Navbar = () => {
             </button>
           </div>
           <Link to="/">
-          <div className="py-10 max-h-[150px]  max-w-[252px]">
+          <div className="py-10 max-h-[150px]  max-w-[252px] mx-auto ">
               <img src={DarkLogo} alt="" className="h-full w-full object-cover " />
           </div>
           </Link>
@@ -163,7 +166,15 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+           
           </div>
+          </div>
+       
+          <div className="overflow-hidden h-auto w-[280px]">
+            <img src={DrawerDeco} alt="" className="object-cover h-full w-full" />
+            </div>
+            
+            </div>
         </Drawer>
       </div>
     </nav>

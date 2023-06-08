@@ -4,6 +4,8 @@ import Button from "../Button";
 import { Link } from "react-router-dom";
 import { HomeContent } from "@/types/Home";
 import handleNullData from "@/utils/handleNullData";
+import CustomH1 from "../StyleComponents/CustomH1";
+import DescContainer from "../StyleComponents/DescContainer";
 
 
 type Props = { content:HomeContent | null };
@@ -19,7 +21,7 @@ const IndexNavigation = ({ content }: Props) => {
   return (
     <section className=" screen-limit flex flex-col justify-center items-center md:w-11/12 screen-limit">
       <div className="flex justify-center py-20">
-        <h3 className="text-3xl text-main">Navigation</h3>
+        <CustomH1 >Navigation</CustomH1>
       </div>
       <div className=" md:w-auto   gap-x-4 gap-y-16  flex justify-center flex-wrap ">
         {data.map((nav: any, index: number) => (
@@ -37,10 +39,12 @@ const IndexNavigation = ({ content }: Props) => {
               />
             </div>
             <div className=" md:w-11/12 flex-col flex justify-center items-center gap-y-8 mt-10 flex-1">
-              <h3 className=" text-main">{nav.title}</h3>
-              <p className="text-center text-xs pb-4 flex-1 text-main">
+              <CustomH1 >{nav.title}</CustomH1>
+              <DescContainer>
+              <p className="text-center text-xs pb-4 flex-1">
                 {nav.description}
               </p>
+              </DescContainer>
               <Link to={nav.callToAction.routes}>
                 <Button title={nav.callToAction.buttonText} />
               </Link>

@@ -5,8 +5,8 @@ import { EventModel } from "@/types/Event";
 import handleNullData from "@/utils/handleNullData";
 import { PortableText } from "@portabletext/react";
 import { Link } from "react-router-dom";
-import { PortableTextComponent } from "../PortableTextComponent";
-
+import DescContainer from "../StyleComponents/DescContainer";
+import CustomH1 from "../StyleComponents/CustomH1";
 type Props = { data: EventModel | null };
 
 function EventSlider({ data }: Props) {
@@ -15,11 +15,13 @@ function EventSlider({ data }: Props) {
     <section className=" w-full flex justify-center  md:mb-28 max-w-[1920px] mx-auto ">
       <div className="flex flex-col md:flex-row justify-center  w-11/12 md:w-full">
         <div className="my-auto basis-1/2 md:px-6 lg:ml-10 lg:px-10 order-last md:order-first ">
-          <h3 className="py-4">{data?.sectionThree.title}</h3>
+          <div className="py-4">
+          <CustomH1 >{data?.sectionThree.title}</CustomH1>
+          </div>
           <div className="flex flex-col  md:max-w-[330px] gap-y-8 text-main">
-            <div className="text-xs">
-              <PortableText value={data?.sectionThree.Sectioncontent || []} components={PortableTextComponent}   onMissingComponent={false}/>
-            </div>
+            <DescContainer>
+              <PortableText value={data?.sectionThree.Sectioncontent || []}    onMissingComponent={false}/>
+            </DescContainer>
 
             <div>
               <Link to={data?.sectionThree.callToAction.routes || ""}>

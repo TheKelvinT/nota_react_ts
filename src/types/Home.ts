@@ -17,7 +17,7 @@ export type HomeContent = {
     };
      Logo: string; 
   };
-  homeSectionTwo: {
+homeSectionTwo: {
     description: PortableTextBlock[];
     title: string;
     Images: {

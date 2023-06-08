@@ -22,13 +22,7 @@ body {
   width: 100%;
 }
 
-h3 {
-  @apply font-marcellus text-2xl;
-}
 
-h4 {
-  @apply font-biro text-3xl;
-}
 
 @tailwind utilities;
 
@@ -37,20 +31,25 @@ body,
 #root,
 .app {
   font-family: "Inter", sans-serif;
-  @apply text-[#1e1e1e] tracking-normal;
+  @apply text-[#1e1e1e] tracking-wider;
 }
 
-h4 {
-  font-family: BiroScriptPlus, sans-serif;
+
+@layer base {
+  ul, ol {
+    list-style: revert;
+    margin-left: 1.25rem;
+    margin-top: 0.25rem; /* Adjust the value to suit your needs */
+  }
 }
 
 button {
   font-family: Gothic, sans-serif;
 }
 
-h6 {
+/* h6 {
   @apply font-inter font-bold text-sm leading-9;
-}
+} */
 
 .swiper {
   width: 100%;
@@ -169,6 +168,10 @@ input::placeholder {
 
 }
 
+.sidenav-container{
+  height: calc(100vh - 24px);
+}
+
 .ant-spin-dot-item {
   background-color: #30332A !important;
 }
@@ -179,7 +182,7 @@ input::placeholder {
 
 .screen-limit {
   max-width: 1920px;
-  margin: 0 auto;
+
 }
 
 .ant-float-btn-content{
@@ -220,6 +223,13 @@ background-color: transparent !important;
 li .ant-picker-ok{
   display: none;
 }
+
+.ant-drawer .ant-drawer-body{
+  padding: 24px 0 0 0;
+}
+
+
+
 /* .ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input, 
 .ant-form-item-has-error :not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper, 
 .ant-form-item-has-error :not(.ant-input-number-affix-wrapper-disabled):not(.ant-input-number-affix-wrapper-borderless).ant-input-number-affix-wrapper, 

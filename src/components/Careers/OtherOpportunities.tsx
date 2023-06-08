@@ -2,8 +2,7 @@
 import Button from "@/components/Button";
 import { CareersModel } from "@/types/Careers";
 import { PortableText } from "@portabletext/react";
-import { Link } from "react-router-dom";
-import { PortableTextComponent } from "../PortableTextComponent";
+import DescContainer from "../StyleComponents/DescContainer";
 
 type Props = { data: CareersModel | null };
 
@@ -13,27 +12,25 @@ const OtherOpportunities = ({ data }: Props) => {
     <section className=" flex flex-col items-center gap-y-8 max-w-[480px] mx-auto  py-32">
       <div className="flex flex-col text-sub space-y-8 w-11/12">
         <div className="space-y-3 text-center sm:text-start">
-          <h5 className="font-bold text-sm">{data?.lastSection.pageHeader}</h5>
-          <div className="text-[10px]">
-            <PortableText value={data?.lastSection.description || []} components={PortableTextComponent}   onMissingComponent={false}/>
-          </div>
+          <h5 className="font-gothic font-bold text-sm">{data?.lastSection.pageHeader}</h5>
+          <DescContainer >
+            <div className="text-[10px]">
+            <PortableText value={data?.lastSection.description || []}    onMissingComponent={false}/>
+            </div>
+          </DescContainer>
         </div>
-        <div className="mx-auto xs:mx-0">
-          <Link to={data?.lastSection?.callToAction1.routes || ""}>
+        <div className="mx-auto sm:mx-0">
             <Button
-              title={data?.lastSection?.callToAction1.buttonText || ""}
+              title={data?.lastSection?.callToAction1.buttonText || ""} path={data?.lastSection?.callToAction1.routes || ""}
               width="bg-white"
             />
-          </Link>
         </div>
 
-        <div className="mx-auto xs:mx-0">
-          <Link to={data?.lastSection.callToAction2.routes || ""}>
+        <div className="mx-auto sm:mx-0">
               <Button
-              title={data?.lastSection.callToAction2.buttonText || ""}
+              title={data?.lastSection.callToAction2.buttonText || ""} path={data?.lastSection.callToAction2.routes || ""}
               width="bg-white"
             />
-          </Link>
         </div>
       </div>
     </section>

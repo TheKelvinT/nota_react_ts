@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import { Link } from "react-router-dom";
 import { PortableText } from "@portabletext/react";
 import { AboutModel } from "@/types/About";
-import { PortableTextComponent } from "../PortableTextComponent";
+import DescContainer from "../StyleComponents/DescContainer";
 
 type Props = {
   content: AboutModel | null;
@@ -36,9 +36,9 @@ const ToCareerPage = ({content}: Props) => {
           <div className="flex flex-col items-center justify-center  text-center sm:basis-1/2">
             <div className="flex flex-col items-center justify-center mt-16 sm:mt-0 space-y-2   text-main md:max-w-[400px] ">
               <h3 className="font-gothic text-[22px]">{data?.title}</h3>
-              <div className="text-xs leading-5 text-sub">
-                <PortableText value={data?.description} components={PortableTextComponent}   onMissingComponent={false}/>
-              </div>
+              <DescContainer>
+                <PortableText value={data?.description}    onMissingComponent={false}/>
+              </DescContainer>
             </div>
             <div className="mt-5 lg:mt-10">
               <Link to={data?.callToAction?.routes}>

@@ -2,7 +2,7 @@
 import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
 import { Link } from "react-router-dom";
-import { PortableTextComponent } from "../PortableTextComponent";
+import DescContainer from "../StyleComponents/DescContainer";
 
 type Props = { content: any };
 
@@ -22,16 +22,16 @@ const SpecialMenu = ({ content }: Props) => {
         <div className="my-auto md:pl-8 md:basis-1/2 lg:basis-1/3 flex justify-center w-11/12 mx-auto ">
           <div className="flex flex-col items-center text-center max-w-[400px]  lg:ml-4 sm:w-auto md:py-4 sm:max-w-[330px] gap-y-5">
             <div className="text-main">
-              <h3 className="text-4xl ">{content?.intro}</h3>
+              <h3 className="text-4xl font-marcellus">{content?.intro}</h3>
               <h4 className="text-5xl font-biro">{content?.title}</h4>
             </div>
-            <div className="font-gothic text-xs">
+            <div className="font-gothic text-xs text-main">
               <p>{content?.date}</p>
               <p>{content?.time}</p>
             </div>
-            <div className="text-xs py-2">
-              <PortableText value={content?.description} components={PortableTextComponent}   onMissingComponent={false}/>
-            </div>
+            <DescContainer >
+              <PortableText value={content?.description}    onMissingComponent={false}/>
+            </DescContainer>
             <div>
               <Link to={content?.callToAction?.routes}>
                 <Button title={content?.callToAction?.buttonText} />

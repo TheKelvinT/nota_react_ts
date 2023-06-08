@@ -14,6 +14,7 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import CustomH1 from "../StyleComponents/CustomH1";
 
 type Props = { faq: FaqModel | null };
 
@@ -23,16 +24,17 @@ handleNullData(faq)
     <div className="mb-28 max-w-[1920px] mx-auto">
       <div>
         <div className="mx-auto w-11/12 md:w-4/5 lg:w-7/12 text-main leading-9 ">
-          <h3 className="text-center pb-12 pt-24 sm:py-24">
+          <div className="text-center pb-12 pt-24 sm:py-24">
+          <CustomH1 >
             Frequently Asked Questions [FAQ]
-          </h3>
-
+          </CustomH1>
+          </div>
           {faq?.map(
             (faqs:any) => (
               <div key={faqs._id} className="space-y-8 hidden md:block ">
-                <div>
-                  <h6 className="font-sm font-bold ">{faqs.question}</h6>
-                  <div className="text-sm leading-9">{faqs.answer}</div>
+                <div className="text-[13px]">
+                  <h6 className=" font-bold ">{faqs.question}</h6>
+                  <div className=" leading-9">{faqs.answer}</div>
                 </div>
               </div>
             )
@@ -49,17 +51,17 @@ handleNullData(faq)
                 (faq:any) => (
                   <AccordionItem
                     key={faq._id}
-                    className="border-b border-gray-200 py-[17px]"
+                    className="border-b border-gray-200 text-[13px] py-[17px]"
                   >
-                    <AccordionButton className="flex justify-between">
-                      <h6 className="text-left font-bold  font-inter leading-7  font-sm">
+                    <AccordionButton className="flex justify-between ">
+                      <h6 className="text-left font-bold  font-inter leading-7  ">
                         {faq.question}
                       </h6>
                       <AccordionIcon className="text-left" />
                     </AccordionButton>
 
                     <AccordionPanel
-                      className="text-left mt-2 text-sm leading-7"
+                      className="text-left mt-2 leading-7"
                       pb={4}
                     >
                       <p>{faq.answer}</p>
