@@ -5,6 +5,7 @@ import { CareersModel } from "@/types/Careers";
 import handleNullData from "@/utils/handleNullData";
 import { PortableText } from "@portabletext/react";
 import CustomH1 from "../StyleComponents/CustomH1";
+import DescContainer from "../StyleComponents/DescContainer";
 
 
 type Props = { data: CareersModel | null };
@@ -18,9 +19,9 @@ const CareerDesc = ({ data }: Props) => {
         <div className="pb-4">
         <CustomH1>{data?.sectionOne?.pageHeader}</CustomH1>
         </div>
-        <div>
+        <DescContainer>
           <PortableText value={data?.sectionOne?.description || []}    onMissingComponent={false}/>
-        </div>
+        </DescContainer>
       </div>
       <div className=" flex justify-center gap-x-6 w-11/12">
         <div>
