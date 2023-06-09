@@ -149,11 +149,11 @@ const Navbar = () => {
             </button>
           </div>
           <Link to="/">
-          <div className="py-10 max-h-[150px]  max-w-[252px] mx-auto ">
+          <div className="py-6 max-h-[150px]  max-w-[252px] mx-auto ">
               <img src={DarkLogo} alt="" className="h-full w-full object-cover " />
           </div>
           </Link>
-          <div className="flex flex-col text-lg decoration-none text-secondary items-center gap-7 ">
+          <div className="flex flex-col text-lg decoration-none text-secondary items-center gap-6 ">
             {/* Left Navigation */}
             {leftNavigation.map((item) => (
               <Link to={item.href} key={item.name} onClick={handleClick} className="text-secondary">

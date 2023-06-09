@@ -76,7 +76,7 @@ const IndexDesc = ({ content }: Props) => {
         </div>
     
         <div className="  w-4/5 space-y-6 flex flex-col text-center justify-center text-main">
-          <h4 className="font-biro " >{content?.homeSectionTwo.title}</h4>
+          <h4 className="font-biro text-3xl" >{content?.homeSectionTwo.title}</h4>
           <DescContainer>
             <PortableText  value={content?.homeSectionTwo.description || []}    onMissingComponent={false}/>
           </DescContainer>
