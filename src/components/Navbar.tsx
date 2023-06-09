@@ -138,8 +138,8 @@ const Navbar = () => {
           open={open}
           className="bg-primary mx-auto relative max-h-screen overflow-hidden"
         >
-          <div className="sidenav-container flex flex-col  items-center">
-          <div>
+          <div className="sidenav-container flex flex-col  items-center overflow-hidden">
+          <div> 
           <div className="flex justify-end px-1">
             <button
               className=" inline-flex items-center justify-center rounded-md  text-secondary"
