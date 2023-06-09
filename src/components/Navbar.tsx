@@ -136,7 +136,7 @@ const Navbar = () => {
           onClose={handleClick}
           width={280}
           open={open}
-          className="bg-primary mx-auto relative max-h-screen overflow-hidden"
+          className="bg-primary mx-auto relative max-h-screen overflow-hidden overscroll-none"
         >
           <div className="sidenav-container flex flex-col  items-center overflow-hidden">
           <div> 
