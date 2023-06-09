@@ -136,9 +136,9 @@ const Navbar = () => {
           onClose={handleClick}
           width={280}
           open={open}
-          className="bg-primary mx-auto relative max-h-screen"
+          className="bg-primary mx-auto relative max-h-screen overflow-hidden"
         >
-          <div className="sidenav-container flex flex-col justify-between items-center">
+          <div className="sidenav-container flex flex-col  items-center">
           <div>
           <div className="flex justify-end px-1">
             <button
@@ -149,11 +149,11 @@ const Navbar = () => {
             </button>
           </div>
           <Link to="/">
-          <div className="py-6 max-h-[150px]  max-w-[252px] mx-auto ">
+          <div className="pb-6 max-h-[150px]  max-w-[252px] mx-auto ">
               <img src={DarkLogo} alt="" className="h-full w-full object-cover " />
           </div>
           </Link>
-          <div className="flex flex-col text-lg decoration-none text-secondary items-center gap-6 ">
+          <div className="flex flex-col text-lg decoration-none text-secondary items-center gap-6 relative z-10">
             {/* Left Navigation */}
             {leftNavigation.map((item) => (
               <Link to={item.href} key={item.name} onClick={handleClick} className="text-secondary">
@@ -170,7 +170,7 @@ const Navbar = () => {
           </div>
           </div>
        
-          <div className="overflow-hidden h-auto w-[280px]">
+          <div className="overflow-hidden max-h-[280px] w-[280px] ">
             <img src={DrawerDeco} alt="" className="object-cover h-full w-full" />
             </div>
             

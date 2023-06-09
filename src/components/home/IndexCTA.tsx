@@ -19,9 +19,9 @@ const IndexCTA = ({ content }: Props) => {
 
   return (
   
-    <section className=" flex justify-center py-20 screen-limit">
-      <div className=" w-4/5 md:max-w-[638px]  flex flex-col justify-center items-center">
-        <div className="pb-6 pt-1 max-w-[251px] max-h-[71px] overflow-hidden">
+    <section className=" flex justify-center py-16 screen-limit">
+      <div className=" w-4/5 md:max-w-[638px]  flex flex-col justify-center items-center pt-3">
+        <div className="pb-6 max-w-[251px] max-h-[71px] overflow-hidden">
           <img
             src={content?.homeSectionOne.Logo}
             alt="nota-logo"
