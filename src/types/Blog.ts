@@ -54,6 +54,7 @@ export type BlogPostModel = {
 };
 
 export type SingleBlogModel = {
+  author?:string;
   title?: string;
   image?: string;
   content?: PortableTextContent[] | any[];

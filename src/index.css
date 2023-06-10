@@ -106,7 +106,6 @@ input::-webkit-inner-spin-button {
 
 .ant-btn {
   background-color: #595d3c;
-  /* padding: 15px; */
   color: white;
 }
 
@@ -121,14 +120,6 @@ input::placeholder {
   font-size: 0.8rem !important;
 }
 
-/* .ant-picker-ranges {
-  background-color: #595D3C;
-}
-
-.ant-picker-now-btn {
-  color: white;
-} */
-
 :where(.css-dev-only-do-not-override-ed5zg0).ant-btn.ant-btn-sm {
   background-color: #595d3c;
   font-size: 14px;
@@ -137,31 +128,6 @@ input::placeholder {
   border: none;
   color: #ffffff;
 }
-
-/* 
-:where(.css-dev-only-do-not-override-ed5zg0).ant-btn {
-  outline: none;
-  position: relative;
-  display: inline-block;
-  font-weight: 400;
-  white-space: nowrap;
-  text-align: center;
-  background-image: none;
-  background-color: #ffffff;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  user-select: none;
-  touch-action: manipulation;
-  line-height: 1.5714285714285714;
-  color: rgba(0, 0, 0, 0.88);
-}
-
-:where(.css-dev-only-do-not-override-ed5zg0) {
-  color: #fff;
-  background-color: #dbdbd4 !important;
-
-}  */
 
 .spinner-container {
   height: calc(100vh - 200px);
@@ -228,30 +194,6 @@ li .ant-picker-ok{
   padding: 24px 0 0 0;
 }
 
-.title-shadow{
-  mix-blend-mode: normal;
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-/* .ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input, 
-.ant-form-item-has-error :not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper, 
-.ant-form-item-has-error :not(.ant-input-number-affix-wrapper-disabled):not(.ant-input-number-affix-wrapper-borderless).ant-input-number-affix-wrapper, 
-.ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover, 
-.ant-form-item-has-error :not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover, 
-.ant-form-item-has-error :not(.ant-input-number-affix-wrapper-disabled):not(.ant-  input-number-affix-wrapper-borderless).ant-input-number-affix-wrapper:hover
-.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
-  border-color: rgb(89 93 60 / 0.2);
-}
-
-.ant-input:hover{
-  border-color: #595D3C;
-  
-}
-
-.ant-input-number:hover{
-  border-color: #595D3C;
-  
-} */
 
 
 

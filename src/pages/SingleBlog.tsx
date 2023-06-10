@@ -11,7 +11,7 @@ import FacebookIcon from '../assets/facebook.svg'
 import InstagramIcon from '../assets/instagram-icon.svg'
 import LinkedinIcon from '../assets/linkedin-icon.svg'
 import urlBuilder from '@sanity/image-url'
-import './styles/SingleBlogStyles.css'
+import './styles/SingleBlogStyles.scss'
 
 const SingleBlog = () => {
     const loading = useLoadingStore((state: any) => state.loading);
@@ -23,7 +23,7 @@ const SingleBlog = () => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const response = await axios.get(`https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5Bslug.current%20%3D%3D%20%22${slug}%22%5D%7B%0A%20%20%20%20%20%20%20%20%20%20%20_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20_createdAt%2C%0A%20%20%20%20%20%20%20%20%20%20%20summary%2C%0A%20%20%20%20%20%20%20%20%20%20%20title%2C%0A%20%20%20%20%20%20%20%20%22slug%22%3Aslug.current%2C%0A%20%20%20%20%20%20%20%20%22image%22%3A%20image.asset%20-%3E%20url%2C%0A%20%20%20%20%20%20%20%20content%0A%20%20%20%20%20%20%20%7D`);
+        const response = await axios.get(`https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5Bslug.current%20%3D%3D%20%22${slug}%22%5D%7B%0A%20%20%20%20%20%20%20%20%20%20%20_id%2C%0A%20%20%20%20%20%20%20%20_createdAt%2C%0A%20%20%20%20%20%20%20%20summary%2C%0A%20%20%20%20%20%20%20%20title%2C%0A%20%20%20%20%20%20%20%20author%2C%0A%20%20%20%20%20%20%20%20%22slug%22%3Aslug.current%2C%0A%20%20%20%20%20%20%20%20%22image%22%3A%20image.asset%20-%3E%20url%2C%0A%20%20%20%20%20%20%20%20content%0A%20%20%20%20%20%20%20%7D`);
         const data = response.data.result[0];
         console.log(data)
         setPostData(data);
@@ -64,8 +64,6 @@ const SingleBlog = () => {
     }
   }
   
- 
-
   return (
     <div>
          {loading ? (
@@ -73,8 +71,8 @@ const SingleBlog = () => {
           <Loading/>
 
       ) : (
-        <div className="relative">
-  <div className="max-w-[1920px] max-h-[900px] overflow-hidden z-0">
+        <div className="relative single-blog">
+  <div className="max-w-[1920px] max-h-[560px] overflow-hidden z-0">
     <img
       src={postData?.image}
       alt="Blog-hero"
@@ -84,8 +82,8 @@ const SingleBlog = () => {
 
   <div className=" w-11/12 md:w-4/5 xl:w-3/5 -mt-24 md:-mt-64 mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative z-10">
     <div className="p-6 md:pb-12 pt-16 md:pt-32 sm:px-12 lg:px-24">
-      <h1 className="text-[40px] max-w-[650px] mx-auto font-marcellus pb-14 text-center text-main title-shadow">{postData?.title}</h1>
-      <p className=" text-center text-main  text-[15px] italic ">Written by {formattedDate}</p>
+      <div className="text-[50px] max-w-[650px] mx-auto font-marcellus pb-14 text-center break-words text-main title-shadow">{postData?.title}</div>
+      <p className=" text-center text-main  text-[15px] italic ">Written by {postData?.author}</p>
       <p className=" text-center text-main  italic text-[15px] mb-4">{formattedDate}</p>
       <div className='my-8 flex justify-center items-center gap-12'>
         <Link to="https://www.facebook.com/nota.kl/" ><img src={FacebookIcon} alt="" /></Link>
@@ -103,9 +101,6 @@ const SingleBlog = () => {
     </div>
   </div>
 </div>
-
-     
-      
       )}
   </div>
   )
