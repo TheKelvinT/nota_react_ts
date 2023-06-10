@@ -80,7 +80,7 @@ const SingleBlog = () => {
     />
   </div>
 
-  <div className=" w-11/12 md:w-4/5 xl:w-3/5 -mt-24 md:-mt-64 mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative z-10">
+  <div className=" w-11/12 md:w-4/5 xl:w-3/5 -mt-24 mb-12 md:-mt-64 mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative z-10">
     <div className="p-6 md:pb-12 pt-16 md:pt-32 sm:px-12 lg:px-24">
       <div className="text-[50px] max-w-[650px] mx-auto font-marcellus pb-14 text-center break-words text-main title-shadow">{postData?.title}</div>
       <p className=" text-center text-main  text-[15px] italic ">Written by {postData?.author}</p>

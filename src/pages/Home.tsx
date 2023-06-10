@@ -62,7 +62,6 @@ const HomePage = () => {
        <IndexNavigation content={homeContent} />
        <ContactSection/>
         </>
-      
       )}
     </div>
       

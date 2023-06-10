@@ -33,8 +33,8 @@ function Footer() {
 
       <div className="text-center font-inter text-[10px]">
         <p>
-          Made with love and a drop of unicorn blood |
-          <span className="underline underline-offset-2">Privacy</span> |
+          Made with love and a drop of unicorn blood |&nbsp;
+          <span className="underline underline-offset-2">Privacy</span> |&nbsp;
           <span className="underline underline-offset-2">Terms</span>
         </p>
       </div>

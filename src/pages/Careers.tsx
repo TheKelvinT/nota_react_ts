@@ -47,7 +47,7 @@ const Careers = () => {
           <Loading/>
 
       ) : (
-<div>
+<div className="scroll-smooth">
       <CareerDesc data={careersContent} />
       <CareerCollage />
       <CareerCTA data={careersContent} />

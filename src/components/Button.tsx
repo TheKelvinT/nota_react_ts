@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 interface Props {
   title: string;
@@ -18,7 +18,7 @@ function Button({ title, onClick, width, loading, padding, path,noIcon }: Props)
   };
   if (path && path.startsWith('#')) {
     return(
-      <a href={path} >
+      <AnchorLink href={path} >
       <button
       className={`ease group relative z-10 box-border inline-flex cursor-pointer items-center justify-center overflow-hidden border font-gothic text-[10px] border-main bg-primary px-6 py-3 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
       style={buttonStyle}
@@ -45,7 +45,7 @@ function Button({ title, onClick, width, loading, padding, path,noIcon }: Props)
         {loading ? "loading..." : title}
       </span>
     </button>
-    </a>
+    </AnchorLink>
     )
   } else if (path) {
     return(
