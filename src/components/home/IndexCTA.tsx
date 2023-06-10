@@ -1,6 +1,4 @@
 import Button from "@/components/Button";
-import { Link } from "react-router-dom";
-
 import { PortableText } from "@portabletext/react";
 import { HomeContent } from "@/types/Home";
 
@@ -34,9 +32,9 @@ const IndexCTA = ({ content }: Props) => {
             <PortableText value={content?.homeSectionOne.description} onMissingComponent={false}/>
           </DescContainer>
         </div>
-        <Link to={content?.homeSectionOne.callToAction?.routes} className="mt-10">
-          <Button title={content?.homeSectionOne.callToAction?.buttonText} />
-        </Link>
+        <div  className="mt-10">
+          <Button path={content?.homeSectionOne.callToAction?.routes} title={content?.homeSectionOne.callToAction?.buttonText} />
+        </div>
       </div>
     </section>
   );

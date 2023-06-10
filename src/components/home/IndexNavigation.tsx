@@ -1,7 +1,4 @@
-
-
 import Button from "../Button";
-import { Link } from "react-router-dom";
 import { HomeContent } from "@/types/Home";
 import handleNullData from "@/utils/handleNullData";
 import CustomH1 from "../StyleComponents/CustomH1";
@@ -45,9 +42,7 @@ const IndexNavigation = ({ content }: Props) => {
                 {nav.description}
               </p>
               </DescContainer>
-              <Link to={nav.callToAction.routes}>
-                <Button title={nav.callToAction.buttonText} />
-              </Link>
+                <Button title={nav.callToAction.buttonText} path={nav.callToAction.routes}/>
             </div>
           </div>
         ))}

@@ -4,7 +4,6 @@ import MiniCarousel from "@/components/Events/MiniCarousel.tsx";
 import { EventModel } from "@/types/Event";
 import handleNullData from "@/utils/handleNullData";
 import { PortableText } from "@portabletext/react";
-import { Link } from "react-router-dom";
 import DescContainer from "../StyleComponents/DescContainer";
 import CustomH1 from "../StyleComponents/CustomH1";
 type Props = { data: EventModel | null };
@@ -22,11 +21,8 @@ function EventSlider({ data }: Props) {
             <DescContainer>
               <PortableText value={data?.sectionThree.Sectioncontent || []}    onMissingComponent={false}/>
             </DescContainer>
-
             <div>
-              <Link to={data?.sectionThree.callToAction.routes || ""}>
-                <Button title={data?.sectionThree.callToAction.buttonText || ""} />
-              </Link>
+                <Button title={data?.sectionThree.callToAction.buttonText || ""} path={data?.sectionThree.callToAction.routes || ""}/>
             </div>
           </div>
         </div>

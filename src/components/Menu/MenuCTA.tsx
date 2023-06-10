@@ -1,8 +1,6 @@
 
 import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
-
-import { Link } from "react-router-dom";
 import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
 
@@ -20,9 +18,7 @@ const MenuCTA = ({ content }: Props) => {
         </DescContainer>
       </div>
       <div className=" flex justify-center gap-x-6">
-        <Link to={content?.callToAction?.routes}>
-          <Button title={content?.callToAction?.buttonText} width="w-48" />
-        </Link>
+          <Button title={content?.callToAction?.buttonText} width="w-48" path={content?.callToAction?.routes}/>
       </div>
     </section>
   );

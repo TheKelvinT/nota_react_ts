@@ -1,5 +1,4 @@
 import Button from "@/components/Button";
-import { Link } from "react-router-dom";
 import { PortableText } from "@portabletext/react";
 import { AboutModel } from "@/types/About";
 import DescContainer from "../StyleComponents/DescContainer";
@@ -41,9 +40,7 @@ const ToCareerPage = ({content}: Props) => {
               </DescContainer>
             </div>
             <div className="mt-5 lg:mt-10">
-              <Link to={data?.callToAction?.routes}>
-                <Button title={data?.callToAction?.buttonText} />
-              </Link>
+                <Button title={data?.callToAction?.buttonText} path={data?.callToAction?.routes}/>
             </div>
           </div>
         </div>

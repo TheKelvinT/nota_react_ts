@@ -1,8 +1,5 @@
 
 import Button from "@/components/Button";
-
-
-import { Link } from "react-router-dom";
 import handleNullData from "@/utils/handleNullData";
 import { PortableText } from "@portabletext/react";
 import { EventModel } from "@/types/Event";
@@ -35,9 +32,7 @@ const EventDesc = ({ data }: Props) => {
             <PortableText value={data?.sectionTwo?.Sectioncontent || [] }    onMissingComponent={false}/>
             </DescContainer>
             <div>
-              <Link to={data?.sectionTwo.callToAction?.routes || ""}>
-                <Button title={data?.sectionTwo.callToAction?.buttonText || ""} />
-              </Link>
+                <Button title={data?.sectionTwo.callToAction?.buttonText || ""} path={data?.sectionTwo.callToAction?.routes || ""}/>
             </div>
           </div>
         </div>

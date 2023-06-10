@@ -1,7 +1,6 @@
 
 import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
-import { Link } from "react-router-dom";
 import DescContainer from "../StyleComponents/DescContainer";
 
 type Props = { content: any };
@@ -33,9 +32,7 @@ const SpecialMenu = ({ content }: Props) => {
               <PortableText value={content?.description}    onMissingComponent={false}/>
             </DescContainer>
             <div>
-              <Link to={content?.callToAction?.routes}>
-                <Button title={content?.callToAction?.buttonText} />
-              </Link>
+                <Button title={content?.callToAction?.buttonText} path={content?.callToAction?.routes}/>
             </div>
           </div>
         </div>

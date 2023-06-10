@@ -1,0 +1,12 @@
+blockquote{
+    font-family: "Gothic";
+    font-size: 30px;
+    color: #595D3C;
+    text-align: center;
+    margin: 4rem 0 !important;
+    line-height: normal;
+}
+
+figure img {
+    margin: 4rem 0;
+}

@@ -1,11 +1,6 @@
-
-
 import Button from "@/components/Button";
 import { FaqModel } from "@/types/Reservations";
 import handleNullData from "@/utils/handleNullData";
-
-
-
 import {
   Accordion,
   AccordionItem,
@@ -13,7 +8,6 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import CustomH1 from "../StyleComponents/CustomH1";
 
 type Props = { faq: FaqModel | null };
@@ -40,9 +34,9 @@ handleNullData(faq)
             )
           )}
         </div>
-        <Link to="#book" className="md:flex justify-center pt-24 hidden ">
-          <Button title="BOOK A TABLE" />
-        </Link>
+        <div className="md:flex justify-center pt-24 hidden ">
+          <Button title="BOOK A TABLE" path="#book"/>
+        </div>
 
         <div className="mx-auto w-11/12 md:w-4/5 lg:w-7/12 block md:hidden">
           <div className="accordion-wrapper ">
@@ -71,9 +65,9 @@ handleNullData(faq)
               )}
             </Accordion>
           </div>
-          <Link to="#book" className="flex justify-center pt-12">
-            <Button title="BOOK A TABLE" />
-          </Link>
+          <div className="flex justify-center pt-12">
+            <Button title="BOOK A TABLE" path="#book" />
+          </div>
         </div>
       </div>
     </div>

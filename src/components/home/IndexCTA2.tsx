@@ -1,6 +1,3 @@
-
-
-import { Link } from "react-router-dom";
 import Button from "../Button";
 import { PortableText } from "@portabletext/react";
 import { HomeContent } from "@/types/Home";
@@ -46,9 +43,7 @@ return (
                 <PortableText value={card.description}    onMissingComponent={false}/>
               </DescContainer>
               <div className="mt-10">
-                <Link to={card.callToAction.routes}>
-                  <Button title={card.callToAction.buttonText} />
-                </Link>
+                  <Button title={card.callToAction.buttonText} path={card.callToAction.routes}/>
               </div>
             </div>
           </div>
@@ -83,9 +78,7 @@ return (
                 <PortableText value={card.description}   onMissingComponent={false}/>
               </DescContainer>
               <div className="mt-10">
-                <Link to={card.callToAction.routes}>
-                  <Button title={card.callToAction.buttonText} />
-                </Link>
+                  <Button title={card.callToAction.buttonText} path={card.callToAction.routes}/>
               </div>
             </div>
           </div>
@@ -116,9 +109,7 @@ return (
                 <PortableText value={card.description}    onMissingComponent={false}/>
               </DescContainer>
               <div className="mt-10">
-                <Link to={card.callToAction.routes}>
-                  <Button title={card.callToAction.buttonText} />
-                </Link>
+                  <Button title={card.callToAction.buttonText} path={card.callToAction.routes}/>
               </div>
             </div>
           </div>

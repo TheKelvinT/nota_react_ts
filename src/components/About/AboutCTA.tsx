@@ -1,6 +1,5 @@
 import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
-import { Link } from "react-router-dom";
 import { AboutModel } from "@/types/About";
 import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
@@ -33,9 +32,9 @@ const AboutCTA = ({content }: Props) => {
           
         </div>
         <div className="md:mt-10">
-          <Link to={data?.callToAction?.routes}>
-            <Button title={data?.callToAction?.buttonText} />
-          </Link>
+         
+            <Button title={data?.callToAction?.buttonText} path={data?.callToAction?.routes} />
+     
         </div>
       </div>
     </section>

@@ -1,10 +1,17 @@
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { PortableText } from '@portabletext/react';
 import { SingleBlogModel } from '@/types/Blog';
 import useLoadingStore from "@/store/loadingStore";
 import Loading from '@/components/Loading';
+import DescContainer from '@/components/StyleComponents/DescContainer';
+import {MailOutlined} from '@ant-design/icons'
+import FacebookIcon from '../assets/facebook.svg'
+import InstagramIcon from '../assets/instagram-icon.svg'
+import LinkedinIcon from '../assets/linkedin-icon.svg'
+import urlBuilder from '@sanity/image-url'
+import './styles/SingleBlogStyles.css'
 
 const SingleBlog = () => {
     const loading = useLoadingStore((state: any) => state.loading);
@@ -38,6 +45,25 @@ const SingleBlog = () => {
     year: 'numeric',
   });
 
+  const urlFor = (source: any) => urlBuilder({projectId: '9cqbua0r', dataset: 'production'}).image(source)
+
+  const serializer = {
+    types: {
+      image: (props: { value: { asset?: any; alt?: string }; }) => {
+        if (!props.value || !props.value.asset) {
+          return null; // Return null or a placeholder image if the source is undefined or doesn't have the expected properties
+        }
+  
+        const { asset, alt } = props.value;
+        return (
+          <figure>
+            <img src={urlFor(asset)?.width(1200).url()} alt={alt} />
+          </figure>
+        );
+      }
+    }
+  }
+  
  
 
   return (
@@ -47,18 +73,39 @@ const SingleBlog = () => {
           <Loading/>
 
       ) : (
-    <div className="container mx-auto px-4 py-8">
-    <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-      <img src={postData?.image} alt="Blog Image" className="w-full" />
-      <div className="p-6">
-        <h1 className="text-3xl font-bold mb-2">{postData?.title}</h1>
-        <p className="text-gray-500 mb-4">{formattedDate}</p>
-        <div className="prose">
-        <PortableText value={postData?.content}     onMissingComponent={false}/>
-        </div>
+        <div className="relative">
+  <div className="max-w-[1920px] max-h-[900px] overflow-hidden z-0">
+    <img
+      src={postData?.image}
+      alt="Blog-hero"
+      className="object-cover w-full h-auto -z-30"
+    />
+  </div>
+
+  <div className=" w-11/12 md:w-4/5 xl:w-3/5 -mt-24 md:-mt-64 mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative z-10">
+    <div className="p-6 md:pb-12 pt-16 md:pt-32 sm:px-12 lg:px-24">
+      <h1 className="text-[40px] max-w-[650px] mx-auto font-marcellus pb-14 text-center text-main title-shadow">{postData?.title}</h1>
+      <p className=" text-center text-main  text-[15px] italic ">Written by {formattedDate}</p>
+      <p className=" text-center text-main  italic text-[15px] mb-4">{formattedDate}</p>
+      <div className='my-8 flex justify-center items-center gap-12'>
+        <Link to="https://www.facebook.com/nota.kl/" ><img src={FacebookIcon} alt="" /></Link>
+        <Link to="https://www.linkedin.com/company/notacafe/" ><img src={LinkedinIcon} alt="" /></Link>
+        <Link to="https://www.instagram.com/nota.kl/?hl=en" ><img src={InstagramIcon}/></Link>
+        <Link to="#"><MailOutlined style={{fontSize:'30px', color:"#595D3C"}}/></Link>
       </div>
+      <DescContainer>
+        <PortableText
+          value={postData?.content}
+          onMissingComponent={false}
+          components={serializer}
+        />
+      </DescContainer>
     </div>
   </div>
+</div>
+
+     
+      
       )}
   </div>
   )
