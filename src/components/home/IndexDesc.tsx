@@ -7,7 +7,7 @@ type Props = { content: HomeContent | null };
 const IndexDesc = ({ content }: Props) => {
 
   return (
-    <section className="bg-primary max-w-screen flex justify-center py-12 md:py-0 ">
+    <section className="bg-primary  mx-auto max-w-screen flex justify-center py-12 md:py-0 ">
       {/* Desktop */}
       <div className="hidden md:grid grid-col-2 md:grid-col-4 screen-limit ">
         <div className="flex md:flex-row align-center flex-col justify-center gap-x-4  py-9 px-9">

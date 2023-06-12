@@ -19,7 +19,7 @@ const IndexCTA2 = ({content}: Props) => {
   const data = content.cards;
 
 return (
-    <section className=" flex flex-col items-center gap-32 mt-20 md:mt-48 screen-limit ">
+    <section className=" flex flex-col mx-auto items-center gap-32 mt-20 md:mt-48 screen-limit ">
       {/* Desktop */}
       {data.map((card, index: number) => (
         <div

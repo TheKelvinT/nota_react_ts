@@ -53,7 +53,7 @@ const HomePage = () => {
         <IndexCTA content={homeContent}/>
         <IndexDesc content={homeContent}/>
         <IndexCTA2 content={homeContent}/>
-        <section className=" md:h-auto md:mt-48 mt-24 max-w-screen max-h-[500px]  overflow-hidden">
+        <section className=" md:h-auto  md:mt-48 mt-24 max-w-screen max-h-[500px]  overflow-hidden">
         {/* <img
           src={homeContent?.homeMidBanner?.bannerURL}
           alt="banner"

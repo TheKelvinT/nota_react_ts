@@ -41,7 +41,7 @@ function MainCarousel({ images }: Props) {
   // }as any;
 
   return (
-        <div className="flex justify-center screen-limit bg-main">
+        <div className="flex  mx-auto justify-center screen-limit bg-main">
       <Swiper
         ref={swiperRef}
         cssMode={true}
