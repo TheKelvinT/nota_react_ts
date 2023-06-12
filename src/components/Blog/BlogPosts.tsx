@@ -4,6 +4,7 @@ import { BlogPostModel } from "@/types/Blog";
 import handleNullData from "@/utils/handleNullData";
 import { PortableText } from "@portabletext/react";
 import { Link } from "react-router-dom";
+import CustomImage from "../CustomImage";
 
 type Props = { data: BlogPostModel[] };
 
@@ -21,12 +22,11 @@ export default function BlogPosts({ data }: Props) {
             className="flex flex-col flex-auto max-w-[489px] "
           >
         
-            <div className="max-w-[489px] max-h-[366px] overflow-hidden ">
+            <div className="max-w-[489px] h-[366px] overflow-hidden bg-main">
               <Link to={`/blog/${blog.slug}`}>
-              <img
-                src={blog.image}
+              <CustomImage
+                Imgsrc={blog.image}
                 alt={blog.title}
-                className="object-cover h-full w-full"
               />
               </Link>
             </div>

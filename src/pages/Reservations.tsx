@@ -8,6 +8,7 @@ import ContactSection from "@/components/ContactSection";
 import { FaqModel, ReservationsModel } from "@/types/Reservations";
 import { fetchFaqs, fetchReservations } from "@/utils/request";
 import useLoadingStore from "@/store/loadingStore";
+import CustomImage from "@/components/CustomImage";
 
 const Reservations = () => {
     const [faq, setFaq] = useState<FaqModel>([])
@@ -45,13 +46,11 @@ const Reservations = () => {
 
       ) : (
         <>
-      <div className="relative  overflow-hidden mx-auto max-w-[1920px]">
-        <img
-          src={reservationsContent?.banner}
-          height="1000"
-          width="1000"
+      <div className="relative  overflow-hidden mx-auto max-w-[1920px] h-[40vh] lg:h-[60vh] bg-main">
+        <CustomImage
+          Imgsrc={reservationsContent?.banner}
+
           alt="reservation-hero"
-          className="object-cover w-full h-auto "
         />
       </div>
       <ReservationDesc data={reservationsContent} />

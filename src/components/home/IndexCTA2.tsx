@@ -4,6 +4,7 @@ import { HomeContent } from "@/types/Home";
 import handleNullData from "@/utils/handleNullData";
 import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
+import CustomImage from "../CustomImage";
 
 
 type Props = {content:HomeContent | null | undefined};
@@ -26,11 +27,12 @@ return (
           className="hidden md:flex justify-center md:h-[585px]  lg:gap-32  w-11/12 lg:w-4/5  gap-10  "
         >
           <div className={` ${index % 2 === 1 ? "order-2" : ""} max-h-[585px] max-w-[468px] overflow-hidden`}>
-            <img
-              src={card.image}
+            <div className="h-[585px] w-[468px] bg-main">           
+            <CustomImage
+              Imgsrc={card.image}
               alt="food-pic"
-              className="h-full w-full object-cover"
             />
+            </div>
           </div>
           <div
             className={` ${
@@ -59,12 +61,11 @@ return (
           <div
             className={` ${
               index % 2 === 1 ? "order-2" : ""
-            } w-full max-h-[350px] basis-5/12 overflow-hidden `}
+            } w-full h-[350px] basis-5/12 overflow-hidden bg-main `}
           >
-            <img
-              src={card.image}
-              alt="food-pic"
-              className="h-full w-full object-cover"
+            <CustomImage
+              Imgsrc={card.image}
+              alt="food-pic"            
             />
           </div>
           <div
@@ -91,11 +92,10 @@ return (
           key={index}
           className="flex sm:hidden flex-col justify-center gap-4 w-11/12 "
         >
-          <div className=" max-h-[320px] w-full overflow-hidden">
-            <img
-              src={card.image}
+          <div className=" h-[320px] w-full overflow-hidden bg-main">
+            <CustomImage
+              Imgsrc={card.image}
               alt="food-pic"
-              className="h-full w-full object-cover"
             />
           </div>
           <div

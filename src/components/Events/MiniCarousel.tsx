@@ -47,8 +47,6 @@ function MiniCarousel({ data }: Props) {
             <SwiperSlide key={index}>
               <img
                 src={image?.image}
-                height="825"
-                width="2000"
                 alt="slider-img"
                 className="object-cover h-full w-full"
               />

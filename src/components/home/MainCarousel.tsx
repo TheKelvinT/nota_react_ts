@@ -19,6 +19,7 @@ import SwiperCore, {
 } from "swiper";
 import { CarouselImage } from "@/types/Home";
 import handleNullData from "@/utils/handleNullData";
+import CustomImage from "../CustomImage";
 
 
 
@@ -40,7 +41,7 @@ function MainCarousel({ images }: Props) {
   // }as any;
 
   return (
-        <div className="flex justify-center screen-limit">
+        <div className="flex justify-center screen-limit bg-main">
       <Swiper
         ref={swiperRef}
         cssMode={true}
@@ -54,19 +55,22 @@ function MainCarousel({ images }: Props) {
         mousewheel={true}
         keyboard={true}
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-        className="mySwiper max-w-[1920px] max-h-screen  -mt-[80px]"
+        className="mySwiper w-[1920px] h-screen bg-main -mt-[80px] "
       >
         {images &&
           images &&
           images.map(
             (image: { imageURL: string | undefined }, index: number) => (
-              <SwiperSlide key={index} className="h-full">
-                <img
+              <SwiperSlide key={index} className="  ">
+                <div className="bg-main w-[1920px] h-screen overflow-hidden">
+                {/* <img
                
                   src={image.imageURL}
                   alt={`hero${index + 1}`}
                   className="h-full w-full object-cover"
-                />
+                /> */}
+                <CustomImage alt={`hero${index + 1}`} Imgsrc={image.imageURL}/>
+                </div>
               </SwiperSlide>
             )
           )}

@@ -6,6 +6,7 @@ import ToCareerPage from "@/components/About/ToCareerPage";
 import Loading from "@/components/Loading";
 import { AboutModel } from "@/types/About";
 import useLoadingStore from "@/store/loadingStore";
+import CustomImage from "@/components/CustomImage";
 
 const About = () => {
   const [aboutContent, setAboutContent] = useState<AboutModel | null>(null);
@@ -40,11 +41,11 @@ const About = () => {
 
       ) : (
         <div>
-      <div className="-mt-[80px] w-full max-w-[1920px] max-h-[600px] lg:h-auto mx-auto  overflow-hidden">
-        <img
-          src={aboutContent?.aboutHero?.image}
+      <div className="-mt-[80px] h-[40vh] w-full max-w-[1920px] max-h-[600px] lg:h-[60vh]  overflow-hidden bg-main">
+        <CustomImage
+          Imgsrc={aboutContent?.aboutHero?.image}
           alt="hero-banner"
-          className="object-cover h-full w-full"
+        
           
         />
       </div>

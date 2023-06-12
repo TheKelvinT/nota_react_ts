@@ -3,6 +3,7 @@ import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
 import { BlogHeroModel } from "@/types/Blog";
 import handleNullData from "@/utils/handleNullData";
+import CustomImage from "../CustomImage";
 type Props = { data: BlogHeroModel | null };
 
 export default function BlogHero({ data }: Props) {
@@ -21,12 +22,10 @@ export default function BlogHero({ data }: Props) {
   return (
     <section>
       <div className="relative min-w-screen max-h-screen mx-auto max-w-[1920px] overflow-hidden ">
-        <div className="max-w-[1920px]  overflow-hidden">
-        <img
-          src={data?.image}
+        <div className="max-w-[1920px] h-[100vh] bg-main overflow-hidden">
+        <CustomImage
+          Imgsrc={data?.image}
           alt="Blog-hero"
-     
-          className="object-cover w-full  h-auto "
         />
         </div>
         

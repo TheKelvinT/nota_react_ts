@@ -2,19 +2,17 @@
 import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
 import DescContainer from "../StyleComponents/DescContainer";
+import CustomImage from "../CustomImage";
 
 type Props = { content: any };
 
 const SpecialMenu = ({ content }: Props) => {
   return (
     <section className="bg-primary mx-auto  lg:flex lg:justify-center  ">
-      <div className="sm:hidden max-w-[639px] max-h-[337px] overflow-hidden">
-        <img
-          src={content?.image}
-          height="337"
-          width="639"
+      <div className="sm:hidden max-w-[639px] h-[337px] bg-main overflow-hidden">
+        <CustomImage
+          Imgsrc={content?.image}
           alt="menu-img"
-          className="h-full w-full object-cover"
         />
       </div>
       <div className="flex justify-between md:gap-8 lg:gap-16 xl:gap-36 h-[400px]    ">
@@ -36,13 +34,10 @@ const SpecialMenu = ({ content }: Props) => {
             </div>
           </div>
         </div>
-        <div className="hidden sm:block basis-1/2 md:basis-2/3  max-h-[400px] overflow-hidden">
-          <img
-            src={content?.image}
-            width="847"
-            height="447"
+        <div className="hidden sm:block basis-1/2 md:basis-2/3  max-h-[400px] min-w-[50vw] w-full bg-main overflow-hidden">
+          <CustomImage
+            Imgsrc={content?.image}
             alt="menu-img"
-            className="h-full object-cover"
           />
         </div>
       </div>

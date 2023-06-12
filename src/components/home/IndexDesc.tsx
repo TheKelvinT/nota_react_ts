@@ -1,6 +1,7 @@
 import { PortableText } from "@portabletext/react";
 import { HomeContent } from "@/types/Home";
 import DescContainer from "../StyleComponents/DescContainer";
+import CustomImage from "../CustomImage";
 type Props = { content: HomeContent | null };
 
 const IndexDesc = ({ content }: Props) => {
@@ -16,61 +17,45 @@ const IndexDesc = ({ content }: Props) => {
               <PortableText  value={content?.homeSectionTwo?.description || []}    onMissingComponent={false}/>
             </DescContainer>
           </div>
-          <div className="max-h-[430px] max-w-[335px] overflow-hidden">
-          <img
-            src={content?.homeSectionTwo.Images[0].imageURL}
-   
-     
+          <div className="h-[430px] w-[335px] overflow-hidden bg-main">
+          <CustomImage
+            Imgsrc={content?.homeSectionTwo.Images[0].imageURL}
             alt="food-pic "
-            className="object-cover h-full w-full"
           />
           </div>
-           <div className="max-h-[430px] max-w-[335px] overflow-hidden">
-          <img
-            src={content?.homeSectionTwo.Images[1].imageURL}
+           <div className="h-[430px] w-[335px] overflow-hidden hidden bg-main lg:block">
+          <CustomImage
+            Imgsrc={content?.homeSectionTwo.Images[1].imageURL}
             alt="food-pic"
-            className="hidden lg:block object-cover  h-full w-full"
           />
           </div>
-          <div className="max-h-[430px] max-w-[335px] overflow-hidden">
-          <img
-            src={content?.homeSectionTwo.Images[2].imageURL}
-   
-     
+          <div className="h-[430px] w-[335px] overflow-hidden bg-main hidden xl:block">
+          <CustomImage
+            Imgsrc={content?.homeSectionTwo.Images[2].imageURL}
             alt="food-pic"
-            className="hidden xl:block object-cover  h-full w-full"
           />
           </div>
         </div>
       </div>
       {/* Mobile */}
       <div className="md:hidden flex flex-col gap-10 py-12 items-center">
-        <div className=" flex justify-center w-11/12 gap-1.5">
+        <div className=" flex justify-center  w-11/12 gap-1.5">
           <div>
-            <img
-              src={content?.homeSectionTwo.Images[0].imageURL}
+            <CustomImage
+              Imgsrc={content?.homeSectionTwo.Images[0].imageURL}
               alt="food-pic"
-     
-       
-              className="object-cover h-full"
             />
           </div>
           <div className="hidden sm:block">
-            <img
-              src={content?.homeSectionTwo.Images[1].imageURL}
+            <CustomImage
+              Imgsrc={content?.homeSectionTwo.Images[1].imageURL}
               alt="food-pic"
-     
-       
-              className="object-cover h-full"
             />
           </div>
           <div>
-            <img
-              src={content?.homeSectionTwo.Images[2].imageURL}
+            <CustomImage
+              Imgsrc={content?.homeSectionTwo.Images[2].imageURL}
               alt="food-pic"
-     
-       
-              className="object-cover h-full"
             />
           </div>
         </div>

@@ -4,6 +4,7 @@ import { PortableText } from "@portabletext/react";
 import handleNullData from "@/utils/handleNullData";
 import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
+import CustomImage from "../CustomImage";
 
 type Props = { data: CareersModel | null };
 
@@ -26,13 +27,10 @@ const CareerValues = ({ data }: Props) => {
         {data?.valuesSection.values.map((value:any, idx: React.Key | null | undefined) => (
           // eslint-disable-next-line react/jsx-key
           <div key={idx} className="flex flex-col  ">
-          <div className="max-w-[315px] max-h-[315px] overflow-hidden ">
-            <img
-              src={value.image}
+          <div className="max-w-[314px] h-[314px] overflow-hidden bg-main">
+            <CustomImage
+              Imgsrc={value.image}
               alt={value.alt}
-              width="315"
-              height="315"
-              className="h-full w-full object-cover"
             />
             </div>
             <div className="max-w-[315px] flex-col flex mt-8 gap-y-3 text-center sm:text-start ">

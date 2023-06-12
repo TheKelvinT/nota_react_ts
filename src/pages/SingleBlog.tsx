@@ -12,6 +12,7 @@ import InstagramIcon from '../assets/instagram-icon.svg'
 import LinkedinIcon from '../assets/linkedin-icon.svg'
 import urlBuilder from '@sanity/image-url'
 import './styles/SingleBlogStyles.scss'
+import CustomImage from "@/components/CustomImage";
 
 const SingleBlog = () => {
     const loading = useLoadingStore((state: any) => state.loading);
@@ -72,16 +73,15 @@ const SingleBlog = () => {
 
       ) : (
         <div className="relative single-blog">
-  <div className="max-w-[1920px] max-h-[560px] overflow-hidden z-0">
-    <img
-      src={postData?.image}
+  <div className=" mx-auto max-w-[1920px] h-[60vh] overflow-hidden z-0">
+    <CustomImage
+      Imgsrc={postData?.image}
       alt="Blog-hero"
-      className="object-cover w-full h-auto -z-30"
     />
   </div>
 
-  <div className=" w-11/12 md:w-4/5 xl:w-3/5 -mt-24 mb-12 md:-mt-64 mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative z-10">
-    <div className="p-6 md:pb-12 pt-16 md:pt-32 sm:px-12 lg:px-24">
+  <div className=" w-11/12 md:w-4/5 xl:w-3/5 -mt-24 mb-12 md:-mt-64 mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative z-10 max-w-[1200px]">
+    <div className="p-6 md:pb-12 pt-16 md:pt-32 sm:px-12 lg:px-24 ">
       <div className="text-[50px] max-w-[650px] mx-auto font-marcellus pb-14 text-center break-words text-main title-shadow">{postData?.title}</div>
       <p className=" text-center text-main  text-[15px] italic ">Written by {postData?.author}</p>
       <p className=" text-center text-main  italic text-[15px] mb-4">{formattedDate}</p>

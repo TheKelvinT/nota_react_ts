@@ -9,6 +9,7 @@ import{useState,useEffect} from "react";
 import { MenuContent,MenuList } from "@/types/Menu";
 import useLoadingStore from "@/store/loadingStore";
 import { fetchMenuContent, fetchMenuList, fetchSpecialMenu } from "@/utils/request";
+import CustomImage from "@/components/CustomImage";
 
 const Menu = () => {
 const [menuContent, setMenuContent] = useState<MenuContent | null>(null);
@@ -52,11 +53,10 @@ const setLoading = useLoadingStore((state: any) => state.setLoading);
 
       ) : (
           <div className="">
-      <div className="-mt-[80px] max-w-[1920px] mx-auto  h-[315px] lg:h-auto ">
-        <img
-          src={menuContent?.banner}
+      <div className="-mt-[80px] max-w-[1920px] mx-auto  h-[40vh] w-full bg-main lg:h-[60vh] ">
+        <CustomImage
+          Imgsrc={menuContent?.banner}
           alt="hero-banner"
-          className="object-cover w-full h-full"
         />
       </div>
       <MenuCTA content={menuContent} />

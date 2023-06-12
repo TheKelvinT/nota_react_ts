@@ -9,6 +9,7 @@ import ContactSection from "@/components/ContactSection";
 import Loading from "@/components/Loading";
 import { CarouselImage, HomeContent } from "@/types/Home";
 import useLoadingStore from "@/store/loadingStore";
+import CustomImage from "@/components/CustomImage.tsx";
 
 
 const HomePage = () => {
@@ -52,12 +53,15 @@ const HomePage = () => {
         <IndexCTA content={homeContent}/>
         <IndexDesc content={homeContent}/>
         <IndexCTA2 content={homeContent}/>
-        <section className=" md:h-auto md:mt-48 mt-24 max-w-screen max-h-[500px] overflow-hidden">
-        <img
+        <section className=" md:h-auto md:mt-48 mt-24 max-w-screen max-h-[500px]  overflow-hidden">
+        {/* <img
           src={homeContent?.homeMidBanner?.bannerURL}
           alt="banner"
           className="object-cover w-full h-full"
-        />
+        /> */}
+       
+        <CustomImage alt="banner" Imgsrc={homeContent?.homeMidBanner?.bannerURL}/>
+
       </section>
        <IndexNavigation content={homeContent} />
        <ContactSection/>

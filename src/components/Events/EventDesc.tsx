@@ -5,6 +5,7 @@ import { PortableText } from "@portabletext/react";
 import { EventModel } from "@/types/Event";
 import DescContainer from "../StyleComponents/DescContainer";
 import CustomH1 from "../StyleComponents/CustomH1";
+import CustomImage from "../CustomImage";
 
 type Props = { data: EventModel |null };
 
@@ -14,13 +15,10 @@ const EventDesc = ({ data }: Props) => {
   return (
     <section className=" w-full flex justify-center mb-28  max-w-[1920px] mx-auto ">
       <div className="flex flex-col md:flex-row justify-center gap-x-10 lg:gap-x-20 w-11/12 md:w-full">
-        <div className="basis-2/3 max-w-[948px] max-h-[574px]  overflow-hidden">
-          <img
-            src={data?.sectionTwo.image}
-            width="948"
-            height="574"
+        <div className="basis-2/3 max-w-[948px]  sm:h-[574px] bg-main max-h-[574px] overflow-hidden">
+          <CustomImage
+            Imgsrc={data?.sectionTwo.image}
             alt="menu-img"
-            className="h-full w-full object-cover"
           />
         </div>
         <div className="my-auto basis-1/3 md:pr-4 ">

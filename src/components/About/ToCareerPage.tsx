@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
 import { AboutModel } from "@/types/About";
 import DescContainer from "../StyleComponents/DescContainer";
+import CustomImage from "../CustomImage";
 
 type Props = {
   content: AboutModel | null;
@@ -17,19 +18,19 @@ const ToCareerPage = ({content}: Props) => {
   return (
     <section className="bg-primary flex justify-center  py-16 ">
       <div className="flex flex-col sm:flex-row justify-center w-11/12">
-        <div className="sm:hidden max-h-[300px] max-w-[585px] overflow-hidden">
-          <img
-            src={data?.image}
+        <div className="sm:hidden h-[300px] max-w-[585px] bg-main overflow-hidden">
+          <CustomImage
+            Imgsrc={data?.image}
             alt="team-discussion-img"
-            className="object-cover h-full w-full"
+          
           />
         </div>
         <div className="flex items-center justify-center gap-x-8 md:gap-x-16 lg:gap-x-28   ">
-          <div className="hidden sm:block max-h-[325px]  md:w-[485px] max-w-[485px] overflow-hidden basis-1/2">
-            <img
-              src={data?.image}
+          <div className="hidden sm:block h-full md:w-[485px] max-w-[485px] overflow-hidden basis-1/2 bg-main">
+            <CustomImage
+              Imgsrc={data?.image}
               alt="team-discussion-img"
-              className="object-cover h-full w-full"
+              
             />
           </div>
           <div className="flex flex-col items-center justify-center  text-center sm:basis-1/2">

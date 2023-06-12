@@ -3,6 +3,8 @@ import { MenuContent, MenuList } from "@/types/Menu";
 import { PortableText } from "@portabletext/react";
 import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
+import CustomImage from "../CustomImage";
+
 type Props = { content: MenuList[] | null; image: MenuContent | null; };
 
 const MenuOption = ({ content, image }: Props) => {
@@ -38,11 +40,10 @@ const MenuOption = ({ content, image }: Props) => {
           ))}
        
         </div>
-        <div className="hidden md:block max-w-[365px] max-h-[565px] overflow-hidden">
-          <img
-            src={image?.image || ""}
+        <div className="hidden md:block w-[365px] h-[565px] overflow-hidden bg-main">
+          <CustomImage
+            Imgsrc={image?.image || ""}
             alt="menu-img"
-            className="h-full w-full object-cover"
           />
         </div>
       </div>
