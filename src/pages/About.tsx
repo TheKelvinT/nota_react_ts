@@ -41,7 +41,7 @@ const About = () => {
 
       ) : (
         <div>
-      <div className="-mt-[80px] h-[40vh] w-full max-w-[1920px] max-h-[600px] lg:h-[60vh]  overflow-hidden bg-main">
+      <div className="-mt-[80px] mx-auto h-[40vh] w-full max-w-[1920px] max-h-[600px] lg:h-[60vh]  overflow-hidden bg-main">
         <CustomImage
           Imgsrc={aboutContent?.aboutHero?.image}
           alt="hero-banner"
