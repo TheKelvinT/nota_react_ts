@@ -194,47 +194,44 @@ const SingleBlog = () => {
             </div>
           ))} */}
 
-<div className="flex flex-col mx-auto gap-y-12 items-center justify-center w-11/12 md:w-4/5 xl:w-3/5 my-16 max-w-[1200px] ">
-        <div className='font-marcellus text-[40px]'>More Articles Like This</div>
-        {shuffledBlogs.slice(0, 2).map((blog, index: number) => (
-          // eslint-disable-next-line react/jsx-key
-          <div
-            key={blog._id}
-            className={`w-full flex gap-x-16 ${index === 1 ? 'flex-row-reverse' : ''}`}
-          >
+    <div className="flex flex-col mx-auto gap-y-12 items-center justify-center w-11/12 md:w-4/5 xl:w-3/5 my-16 max-w-[1200px] ">
+      <div className='font-marcellus text-[40px]'>
+        More Articles Like This
+      </div>
+      {shuffledBlogs.slice(0, 2).map((blog, index: number) => (
+      <div
+        key={blog._id}
+        className={`w-full flex gap-x-16 ${index === 1 ? 'flex-row-reverse' : ''}`}>
         <a href={`/blog/${blog.slug}`}>
-            <div className="lg:w-[650px] lg:h-[366px] overflow-hidden bg-main">
-              
-              <CustomImage
+          <div className="lg:w-[650px] lg:h-[366px] overflow-hidden bg-main"> 
+          <CustomImage
                 Imgsrc={blog.image}
                 alt={blog.title}
-              />
-             
+          />   
+          </div>
+        </a>
+        <div className={` flex-col flex justify-center gap-y-4 w-96  ${index === 1 ? 'items-end' : 'items-start'}`}>
+          <a href={`/blog/${blog.slug}`}>
+            <div className="text-main text-[17px] underline underline-offset-2">
+              {blog.title}
             </div>
-            </a>
-            <div className={` flex-col flex justify-center gap-y-4 w-96  ${index === 1 ? 'items-end' : 'items-start'}`}>
-              <a href={`/blog/${blog.slug}`}>
-              <div className="text-main text-[17px] underline underline-offset-2">
-                {blog.title}
-              </div>
-              </a>
+          </a>
             
 
-              <div className="py-4">        
-              {/* <Button title="READ MORE" width="w-44" path={`/blog/${blog.slug}`} /> */}
-              {/* <Link to={`/blog/${blog.slug}`}>
+          <div className="py-4">        
+          {/* <Button title="READ MORE" width="w-44" path={`/blog/${blog.slug}`} /> */}
+          {/* <Link to={`/blog/${blog.slug}`}>
           <Button title="READ MORE" width="w-44" />
-        </Link> */}
+          </Link> */}
           <a href={`/blog/${blog.slug}`}>
           <Button title="READ MORE" width="w-44" />
-        </a>
-              </div>
-            </div>
+          </a>
           </div>
-        ))}
+        </div>
       </div>
+        ))}
+    </div>
   </div>
-  
 </div>
       )}
   </div>
