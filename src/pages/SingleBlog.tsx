@@ -210,7 +210,7 @@ const SingleBlog = () => {
           />   
           </div>
         </a>
-        <div className={` basis-1/3 flex-col flex justify-center  mt-4 md:mt-0 gap-y-4 w-96  ${index === 1 ? 'md:items-end' : 'items-start'}`}>
+        <div className={` basis-1/3 flex-col flex justify-center  mt-4 md:mt-0 gap-y-4 md:w-96  ${index === 1 ? 'md:items-end' : 'items-start'}`}>
           <a href={`/blog/${blog.slug}`}>
             <div className="text-main text-[17px] underline underline-offset-2">
               {blog.title}
