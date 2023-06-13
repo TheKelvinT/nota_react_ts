@@ -147,7 +147,7 @@ const SingleBlog = () => {
     />
   </div>
 <div className='flex flex-col'>
-  <div className=" w-11/12 md:w-4/5 xl:w-3/5 -mt-40 mb-12 md:-mt-64 mx-auto bg-white border border-main rounded-t-lg overflow-hidden relative z-10 max-w-[1200px]">
+  <div className=" w-11/12 lg:w-4/5  -mt-40 mb-12 md:-mt-64 mx-auto bg-white border border-main rounded-t-lg overflow-hidden relative z-10 max-w-[1200px]">
     <div className="p-6 pb-28 md:pb-48 pt-16 md:pt-32 sm:px-12 lg:px-24 ">
       <div className="text-[50px] max-w-[650px] mx-auto font-marcellus pb-14 text-center break-words text-main title-shadow">{postData?.title}</div>
       <p className=" text-center text-main  text-[15px] italic ">Written by {postData?.author}</p>
@@ -194,30 +194,29 @@ const SingleBlog = () => {
             </div>
           ))} */}
 
-    <div className="flex flex-col mx-auto gap-y-12 items-center justify-center w-11/12 md:w-4/5 xl:w-3/5 my-16 max-w-[1200px] ">
+    <div className="flex flex-col mx-auto gap-y-12 items-center justify-center w-11/12 lg:w-4/5  my-16 max-w-[1200px] ">
       <div className='font-marcellus text-[40px]'>
         More Articles Like This
       </div>
       {shuffledBlogs.slice(0, 2).map((blog, index: number) => (
       <div
         key={blog._id}
-        className={`w-full flex gap-x-16 ${index === 1 ? 'flex-row-reverse' : ''}`}>
+        className={`w-full  md:flex xl:gap-x-16 gap-x-8 ${index === 1 ? 'sm:flex-row-reverse' : ''}`}>
         <a href={`/blog/${blog.slug}`}>
-          <div className="lg:w-[650px] lg:h-[366px] overflow-hidden bg-main"> 
+          <div className="basis-2/3 md:w-[480px] lg:w-[580px] h-[366px] overflow-hidden bg-main"> 
           <CustomImage
                 Imgsrc={blog.image}
                 alt={blog.title}
           />   
           </div>
         </a>
-        <div className={` flex-col flex justify-center gap-y-4 w-96  ${index === 1 ? 'items-end' : 'items-start'}`}>
+        <div className={` basis-1/3 flex-col flex justify-center  mt-4 md:mt-0 gap-y-4 w-96  ${index === 1 ? 'md:items-end' : 'items-start'}`}>
           <a href={`/blog/${blog.slug}`}>
             <div className="text-main text-[17px] underline underline-offset-2">
               {blog.title}
             </div>
           </a>
             
-
           <div className="py-4">        
           {/* <Button title="READ MORE" width="w-44" path={`/blog/${blog.slug}`} /> */}
           {/* <Link to={`/blog/${blog.slug}`}>
