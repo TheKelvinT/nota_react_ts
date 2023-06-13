@@ -92,4 +92,9 @@ export const fetchContent = async () => {
     );
     return response.data.result[0]
   };
- 
+
+  export const fetchSingleBlog = async(slug: string) =>{
+    const response = await axios.get(`https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5Bslug.current%20%3D%3D%20%22${slug}%22%5D%7B%0A%20%20%20%20%20%20%20%20%20%20%20_id%2C%0A%20%20%20%20%20%20%20%20_createdAt%2C%0A%20%20%20%20%20%20%20%20summary%2C%0A%20%20%20%20%20%20%20%20title%2C%0A%20%20%20%20%20%20%20%20author%2C%0A%20%20%20%20%20%20%20%20%22slug%22%3Aslug.current%2C%0A%20%20%20%20%20%20%20%20%22image%22%3A%20image.asset%20-%3E%20url%2C%0A%20%20%20%20%20%20%20%20content%0A%20%20%20%20%20%20%20%7D`);
+
+    return response.data.result[0];
+  }
