@@ -14,15 +14,15 @@ export default function BlogPosts({ data }: Props) {
 
   return (
     <section className=" flex justify-center px-4 pb-60">
-      <div className="  gap-x-8 grid grid-cols-1 gap-y-16 md:grid-cols-2 col-span-1">
+      <div className=" gap-x-4 lg:gap-x-8 grid grid-cols-1 gap-y-16 md:grid-cols-2 col-span-1 ">
         {data.map((blog) => (
           // eslint-disable-next-line react/jsx-key
           <div
             key={blog._id}
-            className="flex flex-col flex-auto max-w-[489px] "
+            className="flex flex-col flex-auto lg:max-w-[580px] md:max-w-[480px]"
           >
         
-            <div className="max-w-[489px] h-[366px] overflow-hidden bg-main">
+            <div className=" lg:max-w-[580px] h-[366px] overflow-hidden bg-main">
               <Link to={`/blog/${blog.slug}`}>
               <CustomImage
                 Imgsrc={blog.image}

@@ -219,12 +219,12 @@ const SingleBlog = () => {
             
           <div className="py-4">        
           {/* <Button title="READ MORE" width="w-44" path={`/blog/${blog.slug}`} /> */}
-          {/* <Link to={`/blog/${blog.slug}`}>
+          <Link to={`/blog/${blog.slug}`}>
           <Button title="READ MORE" width="w-44" />
-          </Link> */}
-          <a href={`/blog/${blog.slug}`}>
+          </Link>
+          {/* <a href={`/blog/${blog.slug}`}>
           <Button title="READ MORE" width="w-44" />
-          </a>
+          </a> */}
           </div>
         </div>
       </div>
