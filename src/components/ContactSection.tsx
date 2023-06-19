@@ -179,7 +179,7 @@ const  onFinish = async (values: any) => {
     },
     {
       max: 12,
-      message: 'Contact cannot exceed 12 digits.',
+      message: 'Contact cannot exceed 15 digits.',
     },
   ],
   email:[

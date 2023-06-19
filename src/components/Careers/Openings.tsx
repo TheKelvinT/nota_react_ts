@@ -4,6 +4,8 @@ import { JobOpeningModel } from "@/types/Careers";
 import handleNullData from "@/utils/handleNullData";
 import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
+import JobApplication from "./JobApplication";
+import { useState } from "react";
 
 
 type Props = { openings: JobOpeningModel[] | null };
@@ -13,7 +15,13 @@ function classNames(...classes: any) {
 }
 
 const Openings = ({ openings }: Props) => {
+  const [showForm, setShowForm] = useState(false)
   handleNullData(openings)
+
+  const handleTabChange = () => {
+    setShowForm(false);
+  };
+  
   // const tabStyles = ({ selected }: any) =>
   //   classNames(
   //     "w-full rounded-lg py-2.5 px-4 whitespace-nowrap outline-none text-md  text-gray-50",
@@ -32,7 +40,7 @@ const Openings = ({ openings }: Props) => {
       </div>
 
       <div className=" mx-auto w-11/12 lg:max-w-[1073px]">
-        <Tab.Group>
+        <Tab.Group onChange={handleTabChange}>
           <div className="sm:flex sm:flex-row  ">
             <Tab.List>
               <div className="flex sm:flex-col gap text-xs sm:overflow-visible overflow-x-scroll">
@@ -99,12 +107,19 @@ const Openings = ({ openings }: Props) => {
                           If you’re interested, send us your cv via email at
                           notaconcepts@gmail.com or Whatsapp at +60 12 6700 211.
                         </p>
-                        <div className="flex justify-center py-12">
-                          <Button title="APPLY NOW" width="w-48" />
-                        </div>
+                        
+                        {showForm? (
+                     <div className="mt-12 ">
+                     <JobApplication opening={opening}/>
+                   </div>
+                  ): (<div className="flex justify-center py-12"><Button title="APPLY NOW" onClick={()=> setShowForm(true)} width="w-48" /></div>) }  
+                        
                       </div>
                     </div>
                   </div>
+
+                             
+                 
                 </Tab.Panel>
               ))}
             </Tab.Panels>

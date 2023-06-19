@@ -12,7 +12,6 @@ interface Props {
 }
 
 function Button({ title, onClick, width, loading, padding, path,noIcon }: Props) {
-  console.log(path)
   const buttonStyle = {
     width: width ? width : 'w-auto',
     padding: padding,

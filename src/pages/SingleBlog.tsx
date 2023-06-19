@@ -37,8 +37,6 @@ const SingleBlog = () => {
         ]);
  
         setBlogs(blogs)
-        console.log(data)
-        console.log(blogs)
         setPostData(data);
     } catch (error) {
         console.error("Error fetching carousel images:", error);
@@ -49,24 +47,11 @@ const SingleBlog = () => {
     };
 
     fetchData(slug);
-  }, []);
+  }, [slug]);
  
   //Logic for recommend blogs
 
   //Filtered blog 
-  // const filteredBlogs= blogs?.filter((blog) => blog.slug !== slug);
-  
-  // const shuffleArray = (array: any[]) => {
-  //   const newArray = [...array];
-  //   for (let i = newArray.length - 1; i > 0; i--) {
-  //     const j = Math.floor(Math.random() * (i + 1));
-  //     [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-  //   }
-  //   return newArray;
-  // };
-
-  // //shuffle blogs 
-  // const shuffledBlogs = filteredBlogs ? shuffleArray(filteredBlogs) : [];
 
   useEffect(() => {
     if (blogs) {
@@ -183,17 +168,6 @@ const SingleBlog = () => {
   </div>
   </div>
   <div>
-  {/* {shuffledBlogs.slice(0, 2).map((blog) => (
-            <div key={blog._id}>
-
-              <h2>{blog.title}</h2>
-              <p>{blog.slug}</p>
-         
-              <Button title='Read More'  width="w-44" path={`/blog/${blog.slug}`} />
-        
-            </div>
-          ))} */}
-
     <div className="flex flex-col mx-auto gap-y-12 items-center justify-center w-11/12 lg:w-4/5  my-16 max-w-[1200px] ">
       <div className='font-marcellus text-[40px]'>
         More Articles Like This
@@ -218,13 +192,7 @@ const SingleBlog = () => {
           </a>
             
           <div className="py-4">        
-          {/* <Button title="READ MORE" width="w-44" path={`/blog/${blog.slug}`} /> */}
-          <Link to={`/blog/${blog.slug}`}>
-          <Button title="READ MORE" width="w-44" />
-          </Link>
-          {/* <a href={`/blog/${blog.slug}`}>
-          <Button title="READ MORE" width="w-44" />
-          </a> */}
+          <Button title="READ MORE" width="w-44" path={`/blog/${blog.slug}`} />
           </div>
         </div>
       </div>
