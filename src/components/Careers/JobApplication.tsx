@@ -12,18 +12,18 @@ type Props = {
     opening: JobOpeningModel;
   };
 
-type formValueModel = {
-    firstname?:string;
-    lastname?: string;
-    contact?: string;
-    email?: string;
-    dob?: string;
-    nationality?: string;
-    availability?: number;
-  } 
+// type formValueModel = {
+//     firstname?:string;
+//     lastname?: string;
+//     contact?: string;
+//     email?: string;
+//     dob?: string;
+//     nationality?: string;
+//     availability?: number;
+//   } 
 
 const JobApplication = ({ opening }: Props) => {
-    const [formValues, setFormValues] = useState<formValueModel>({})
+  
     const [isLoading, setIsLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
@@ -84,7 +84,7 @@ const JobApplication = ({ opening }: Props) => {
    
         };
         console.log(formattedValues)
-        setFormValues(formattedValues)
+       
         sendEmail(formattedValues);
    
       };
