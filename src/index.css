@@ -164,7 +164,9 @@ input::-webkit-inner-spin-button {
   background-color: #f5f5ef !important;
 }
 
-
+:where(.css-w8mnev).ant-btn {
+  border-radius: 0 !important;
+}
 
 :where(.css-dev-only-do-not-override-w8mnev).ant-btn-primary{
   color: #595d3c;
