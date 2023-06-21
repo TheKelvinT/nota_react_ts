@@ -104,9 +104,93 @@ input::-webkit-inner-spin-button {
   --swiper-navigation-size: 30px;
 }
 
-.ant-btn {
-  background-color: #595d3c;
-  color: white;
+.ant-btn:hover {
+  color: #595d3c !important;
+  border-color: #595d3c !important;
+  background-color: rgb(219 219 212 / 0.8);
+}
+
+.ant-btn-primary{
+  color: #595d3c !important;
+  background-color: #F3F3EC !important;
+  border-color:#595d3c !important;
+  border-radius: 0 !important;
+}
+.ant-btn:active {
+  color: #595d3c !important;
+  border-color: #595d3c !important;
+  background-color: rgb(219 219 212 / 0.8);
+}
+
+.ant-btn:focus-visible {
+  outline: 4px solid #595d3c55 !important;
+  outline-offset: 1px !important;
+  transition: outline-offset 0s,outline 0s;
+}
+
+.ant-picker-ok .ant-btn {
+  color: #595d3c;
+  background-color: #F3F3EC;
+  border-color:#595d3c;
+  border-radius: 0 !important;
+  font-family: "Gothic";
+  font-size: 10px;
+
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-btn-default {
+  color: #595d3c;
+  background-color: #F3F3EC;
+  border-color:#595d3c;
+  border-radius: 0 !important;
+  font-family: "Gothic";
+  font-size: 10px;
+  text-transform: uppercase;
+
+}
+
+/* .ant-modal.footer .ant-btn-default {
+  color: #595d3c;
+  background-color: white;
+  border-color:#595d3c;
+  border-radius: 0 !important;
+  font-family: "Gothic";
+  font-size: 10px;
+  padding: 20px 24px;
+
+} */
+
+.ant-modal .ant-modal-content{
+  background-color: #f5f5ef !important;
+}
+
+
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-btn-primary{
+  color: #595d3c;
+  background-color: #F3F3EC;
+  border-color:#595d3c;
+  border-radius: 0 !important;
+  font-family: "Gothic";
+  font-size: 10px;
+  text-transform: uppercase;
+}
+/* .ant-modal.footer .ant-btn-primary {
+  color: #595d3c;
+  background-color: #F3F3EC;
+  border-color:#595d3c;
+  border-radius: 0 !important;
+  font-family: "Gothic";
+  font-size: 10px;
+  padding: 20px 24px;
+
+} */
+
+
+.ant-picker-ok .ant-btn:hover {
+  background-color: rgb(219 219 212 / 0.8);
+
+
 }
 
 .custom-picker {

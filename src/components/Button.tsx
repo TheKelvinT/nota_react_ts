@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-
+import { Button } from "antd";
 interface Props {
   title: string;
   onClick?: () => void;
@@ -9,9 +9,10 @@ interface Props {
   padding?: string;
   noIcon?: boolean;
   path?: string;
+  htmlType?: | "reset" | "submit" | undefined
 }
 
-function Button({ title, onClick, width, loading, padding, path,noIcon }: Props) {
+function LocalButton({ htmlType, title, onClick, width, loading, padding, path,noIcon }: Props) {
   const buttonStyle = {
     width: width ? width : 'w-auto',
     padding: padding,
@@ -19,8 +20,9 @@ function Button({ title, onClick, width, loading, padding, path,noIcon }: Props)
   if (path && path.startsWith('#')) {
     return(
       <AnchorLink href={path} >
-      <button
-      className={`ease group relative z-10 box-border inline-flex cursor-pointer items-center justify-center overflow-hidden border font-gothic text-[10px] border-main bg-primary px-6 py-3 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
+      <Button
+      className={`ease group relative z-10 active:border-main active:text-main  box-border inline-flex cursor-pointer items-center justify-center overflow-hidden border rounded-none font-gothic text-[10px] border-main bg-primary px-6 py-5 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
+      htmlType={htmlType}
       style={buttonStyle}
       onClick={onClick}
       disabled={loading}
@@ -44,14 +46,15 @@ function Button({ title, onClick, width, loading, padding, path,noIcon }: Props)
         )}
         {loading ? "loading..." : title}
       </span>
-    </button>
+    </Button>
     </AnchorLink>
     )
   } else if (path) {
     return(
     <Link to={path}>
-    <button
-    className={`ease group relative z-10 box-border inline-flex cursor-pointer items-center justify-center overflow-hidden border font-gothic text-[10px] border-main bg-primary px-6 py-3 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
+    <Button
+    className={`ease group relative rounded-none z-10 box-border inline-flex cursor-pointer items-center justify-center active:border-main active:text-main overflow-hidden border font-gothic text-[10px] border-main bg-primary px-6 py-5 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
+    htmlType={htmlType}
     style={buttonStyle}
     onClick={onClick}
     disabled={loading}
@@ -75,13 +78,15 @@ function Button({ title, onClick, width, loading, padding, path,noIcon }: Props)
       )}
       {loading ? "loading..." : title}
     </span>
-  </button>
+  </Button>
   </Link>
   )
   } else {
     return(
-      <button
-      className={`ease group relative z-10 box-border inline-flex cursor-pointer items-center justify-center overflow-hidden border font-gothic text-[10px] border-main bg-primary px-6 py-3 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
+      <Button
+      className={`ease group relative rounded-none z-10 box-border inline-flex cursor-pointer items-center justify-center overflow-hidden border active:border-main active:text-main  font-gothic text-[10px] border-main bg-primary px-6 py-5 text-main hover:bg-primary-100/80 transition-all duration-300 focus:outline-none`}
+      htmlType={htmlType}
+
       style={buttonStyle}
       onClick={onClick}
       disabled={loading}
@@ -105,10 +110,10 @@ function Button({ title, onClick, width, loading, padding, path,noIcon }: Props)
         )}
         {loading ? "loading..." : title}
       </span>
-    </button>
+    </Button>
     )
   }
  
 }
 
-export default Button;
+export default LocalButton;

@@ -20,6 +20,8 @@ function ContactSection() {
   const timePickerRef = useRef<any>(null);
   const [hour, setHour] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [largeModalOpen, setLargeModalOpen] = useState(false)
+  const [doneRead, setDoneRead] = useState(false)
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -76,41 +78,7 @@ if (hour === 20) {
 };
 
 
-//   e.preventDefault();
-//   console.log("Form data:", formData);
-  
-//   const formValues = Object.values(formData);
 
-//   if (formValues.some((value) => value === null || value === undefined )) {
-
-//     message.error("Booking form cannot contain empty fields.");
-    
-//   } else {
-//     message.success("Booking Successful!");
-//   }
-
-//   // Perform form submission logic here
-// };
-
-// const handleCancelModal = () =>{
-//   if (hour === 20) {
-//     setModalOpen(false)
-//     setFormData({...formData, time:""})
-//   } else if (hour >= 15 && hour <= 16) {
-//     setModalOpen(false)
-//     setFormData({...formData, time:""})
-//   } else if (hour <= 9 || hour >= 21) {
-//     setModalOpen(false)
-//     setFormData({...formData, time:""})
-//   }
-// }
-// const handleReset = () => {
-
-//       if (timePickerRef.current) {
-//       timePickerRef.current.setValue(null); // Reset the value to null
-//     }
-
-// };
 const handleClose = () =>{
     setModalOpen(false)
 }
@@ -148,9 +116,20 @@ const  onFinish = async (values: any) => {
     time: formattedTime,
   };
   setFormValues(formattedValues)
-  console.log(formValues)
   sendEmail(formattedValues);
 };
+
+const handleOpenLargeModal = () => {
+  setLargeModalOpen(true)
+}
+
+const handleCloseLargeModal = () => {
+  setLargeModalOpen(false)
+}
+const handleLargeModalOK = () => {
+  setLargeModalOpen(false)
+  setDoneRead(true)
+}
 
 // FORM VALIDATION
 
@@ -266,40 +245,7 @@ const  onFinish = async (values: any) => {
                   />  
                   </Form.Item>
 
-                {/* <Row gutter={[, 0]}>
-                  <Col span={12}>
-                  <Form.Item name="date" label={<p className="font-gothic text-lg">Date</p>}  rules={[{ required: true }]} labelCol={{span:12}} labelAlign="left" >
-                
-                <DatePicker
-                      name="date"
-                      id="date"
-                      format="DD-MM-YYYY"
-                      disabledDate={disabledDate}
-                      placeholder={"date"}
-                      className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full h-12 custom-picker"
-                    />
-                  </Form.Item>
-                  </Col>
-                  <Col span={12}>
-                  <Form.Item name="time" label={<p className="font-gothic text-lg">Time</p>}  rules={[{ required: true }]} labelCol={{span:12}} labelAlign="" >
-                        <TimePicker
-                        ref={timePickerRef}
-                        minuteStep={15}
-                        secondStep={10}
-                        format={format}
-                        inputReadOnly={true}
-                        disabledTime={disabledTime}
-                        changeOnBlur={true}
-                        placeholder="00:00"
-                        hideDisabledOptions={true}
-                        disabledMinutes={disabledMinutes}
-                        name="time"
-                        id="time"
-                        className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  px-4 h-12 font-inter custom-picker "
-                      /> 
-                    </Form.Item>
-                  </Col>
-                </Row> */}
+   
                 <Form.Item name="date" label={<p className="font-gothic text-lg">Date</p>}  rules={rules.date} labelCol={{span:6, sm:6}} labelAlign="left" >
               
                 <DatePicker
@@ -338,7 +284,7 @@ const  onFinish = async (values: any) => {
                   <Form.Item name="pax" label={<p className="font-gothic text-lg ">pax</p>}  rules={rules.pax}   
                    labelCol={{span:12}} wrapperCol={{span:8, sm:12}} labelAlign="left" >
                     <InputNumber  name="pax"
-                      id="pax" controls={true} min={1} max={70} placeholder="1" className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "/>
+                      id="pax" controls={true} min={1} max={15} placeholder="1" className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "/>
                     </Form.Item>
                   </Col>
                   
@@ -358,26 +304,30 @@ const  onFinish = async (values: any) => {
                  /> 
   
                 </Form.Item>
+            {doneRead? (
               <div className="flex justify-center md:block">
-             {success? ( <Alert
-              message="Booking Request Submitted! "
-              description={`Thank you ${formValues?.name}, you've successfully choped a table for ${formValues.pax} pax on ${formValues.time}, ${formValues.date}!  `}
-              type="success"
-              showIcon
-            />) : error ? (<Alert
-              message="Oops..."
-              description="Something went wrong. Please try again later."
-              type="error"
-              showIcon
-            />) :
-            <CustomButton title="SUBMIT NOW" loading={isLoading} />
-              }
-
+              {success? ( <Alert
+               message="Booking Request Submitted! "
+               description={`Thank you ${formValues?.name}, you've successfully choped a table for ${formValues.pax} pax on ${formValues.time}, ${formValues.date}!  `}
+               type="success"
+               showIcon
+             />) : error ? (<Alert
+               message="Oops..."
+               description="Something went wrong. Please try again later."
+               type="error"
+               showIcon
+             />) :
              
-              </div>
+             <CustomButton title="SUBMIT NOW" htmlType="submit" loading={isLoading} />
+               }
+               </div>
+            ) : (
+              <CustomButton title="Submit now" onClick={handleOpenLargeModal}/>
+            )}
+             
+              
             </Form >
 
-       
         </div>
   
         <div className="flex flex-col sm:justify-between sm:flex-row  md:flex-col mt-7 py-4 space-x-0 sm:space-x-8  md:space-x-0 w-4/5 md:w-auto ">
@@ -414,13 +364,50 @@ const  onFinish = async (values: any) => {
     
        <Modal
         className="w-11/12"
-        title={<div className=""><span className="h-full mr-4"><ExclamationCircleFilled className="text-[28px] text-yellow-500"/></span><span className="align-middle">Are you sure about your reservation?</span></div>}
+        title={<div className="bg-[#f5f5ef]"><span className="h-full mr-4"><ExclamationCircleFilled className="text-[28px] text-yellow-500"/></span><span className="align-middle">Are you sure about your reservation?</span></div>}
         centered
         open={modalOpen}
         onOk={handleClose}
         onCancel={handleClose}
       >
        {modalContent}
+     
+      </Modal>
+
+      <Modal
+        className="w-11/12 "
+        title={<div className="text-[30px] bg-[#f5f5ef] py-8  text-main font-marcellus">Before You Reserve .</div>}
+        centered
+        open={largeModalOpen}
+        width={1000}
+        onOk={handleLargeModalOK}
+        onCancel={handleCloseLargeModal}
+       
+      >
+      <div className="font-inter text-xs sm:text-[17px] leading-5 text-main">
+      <h6>[Reservations]</h6>
+        <ul>
+          <li>Kindly note that reservations will only be confirmed via WhatsApp, this is not a confirmation for your reservation.
+            
+          </li>
+        </ul>
+      <br/>
+      <h6> [LARGE PARTY BOOKING]</h6>
+        <ul>
+          <li>Each booking can accommodate a maximum of 15 pax, with limited tables.
+          </li>
+          <li>For booking above 15 pax, please WhatsApp us @ +60 17 489 1189.
+          </li>
+          <li>A minimum spending of RM70/ pax (adults) for a party of 10 pax and above.
+          </li>
+        </ul>
+        <p>We reserve the right to cancel any large party bookings that do not meet the minimum spend requirements.</p>
+      <br/>
+      <h6>[NORMAL OPENING HOURS]</h6>
+      <p>Thursdays - Tuesdays: 10:00am - 9:00pm </p>
+      <p>(Kitchen last call @3:30pm for lunch, @8:30pm for dinner)</p>
+      </div>
+       
      
       </Modal>
       
