@@ -24,9 +24,7 @@ const EventCTA = ({ data }: Props) => {
     setLargeModalOpen(false)
   }
 
-  const handleOK =() =>{
 
-  }
   return (
     <section className="w-screen flex flex-col justify-center items-center py-20 ">
       <div className="text-center  flex flex-col items-center space-y-4 pb-8 text-main max-w-[665px] w-4/5">
