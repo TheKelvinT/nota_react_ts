@@ -4,9 +4,9 @@ import EventDesc from "@/components/Events/EventDesc";
 import EventSlider from "@/components/Events/EventSlider";
 import Gallery from "@/components/Events/Gallery";
 import {useState,useEffect} from 'react'
-import { EventModel } from "@/types/Event";
+import { EventModel, ModalModel } from "@/types/Event";
 import Loading from "@/components/Loading";
-import { fetchEvents } from "@/utils/request";
+import { fetchEvents,fetchEventAlert } from "@/utils/request";
 import useLoadingStore from "@/store/loadingStore";
 import CustomImage from '@/components/CustomImage'
 
@@ -14,16 +14,18 @@ const Events = () => {
   const [eventContent, setEventContent] = useState< EventModel | null>(null);
   const loading = useLoadingStore((state: any) => state.loading);
   const setLoading = useLoadingStore((state: any) => state.setLoading);
-
+  const [modalData, setModalData] = useState<ModalModel|null> (null)
     useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const [data] = await Promise.all([
+        const [data, modalData] = await Promise.all([
           fetchEvents(),
+          fetchEventAlert()
         ]);
 
         setEventContent(data);
+        setModalData(modalData)
  
       } catch (error) {
         console.error("Error fetching data", error);
@@ -59,7 +61,7 @@ const Events = () => {
        
       </div>
 
-      <EventCTA data={eventContent} />
+      <EventCTA data={eventContent} modal={modalData} />
       <EventDesc data={eventContent} />
       <EventSlider data={eventContent} />
       <Gallery />

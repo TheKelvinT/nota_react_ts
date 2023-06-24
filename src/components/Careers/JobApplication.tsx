@@ -32,7 +32,6 @@ const JobApplication = ({ opening }: Props) => {
     const { Option } = Select;
   
     const normFile = (e: any) => {
-        console.log('Upload event:', e);
         if (Array.isArray(e)) {
           return e;
         }
@@ -70,7 +69,7 @@ const JobApplication = ({ opening }: Props) => {
       };
       
       const  onFinish = async (values: any) => {
-        console.log('Form values:', values);
+
         const formattedDOB = moment(values?.dob?.$d).format('DD-MMMM-YYYY');
         const formattedAvailability = moment(values?.availability?.$d).format('DD-MMMM-YYYY');
         
@@ -83,7 +82,7 @@ const JobApplication = ({ opening }: Props) => {
       
    
         };
-        console.log(formattedValues)
+  
        
         sendEmail(formattedValues);
    

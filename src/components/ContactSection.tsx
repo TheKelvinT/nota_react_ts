@@ -1,4 +1,4 @@
-import  { useState, useRef } from "react";
+import  { useState,useEffect, useRef } from "react";
 import {  Modal,TimePicker,DatePicker, Form, Input, InputNumber, Row, Col, Alert} from 'antd';
 import CustomButton from "./Button";
 import { ExclamationCircleFilled } from "@ant-design/icons";
@@ -6,6 +6,10 @@ import { Rule } from "antd/es/form";
 import emailjs from 'emailjs-com';
 import moment from 'moment'
 import CustomH1 from "./StyleComponents/CustomH1";
+import LocalButton from "./Button";
+import reservationStore from '@/store/reservationStore.ts';
+import { fetchReservationAlert } from "@/utils/request";
+import { PortableText } from "@portabletext/react";
 
 type formValueModel = {
   name?:string;
@@ -26,6 +30,13 @@ function ContactSection() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [formValues, setFormValues] = useState<formValueModel>({})
+
+  const data = reservationStore((state: any) => state.reservationAlert);
+
+  useEffect(() => {
+    fetchReservationAlert();
+  }, []);
+
 
 
   
@@ -376,39 +387,24 @@ const handleLargeModalOK = () => {
 
       <Modal
         className="w-11/12 "
-        title={<div className="text-[30px] bg-[#f5f5ef] py-8  text-main font-marcellus">Before You Reserve .</div>}
+        title={<div className="px-12 text-[30px] bg-[#f5f5ef] py-8  text-main font-marcellus">{data?.title}</div>}
         centered
         open={largeModalOpen}
         width={1000}
-        onOk={handleLargeModalOK}
+        footer={[
+          <div className="pb-12  flex justify-center">
+            <LocalButton title="CANCEL" onClick={handleLargeModalOK} />
+          <LocalButton title="OK" onClick={handleCloseLargeModal} />
+      
+          </div>
+        ]}
+     
         onCancel={handleCloseLargeModal}
        
       >
-      <div className="font-inter text-xs sm:text-[17px] leading-5 text-main">
-      <h6>[Reservations]</h6>
-        <ul>
-          <li>Kindly note that reservations will only be confirmed via WhatsApp, this is not a confirmation for your reservation.
-            
-          </li>
-        </ul>
-      <br/>
-      <h6> [LARGE PARTY BOOKING]</h6>
-        <ul>
-          <li>Each booking can accommodate a maximum of 15 pax, with limited tables.
-          </li>
-          <li>For booking above 15 pax, please WhatsApp us @ +60 17 489 1189.
-          </li>
-          <li>A minimum spending of RM70/ pax (adults) for a party of 10 pax and above.
-          </li>
-        </ul>
-        <p>We reserve the right to cancel any large party bookings that do not meet the minimum spend requirements.</p>
-      <br/>
-      <h6>[NORMAL OPENING HOURS]</h6>
-      <p>Thursdays - Tuesdays: 10:00am - 9:00pm </p>
-      <p>(Kitchen last call @3:30pm for lunch, @8:30pm for dinner)</p>
+      <div className="px-12 pb-8 font-inter text-xs sm:text-[17px] leading-5 text-main">
+      <PortableText value={data?.body || []} onMissingComponent={false} />
       </div>
-       
-     
       </Modal>
       
      

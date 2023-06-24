@@ -1,3 +1,5 @@
+import { PortableTextBlock } from "sanity";
+
 export type EventModel = {
   banner: {
     image: string;
@@ -56,3 +58,8 @@ export type EventModel = {
     }[];
   };
 };
+
+export type ModalModel = {
+  title: string, 
+  body: PortableTextBlock[]
+}
