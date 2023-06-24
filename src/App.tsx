@@ -1,6 +1,7 @@
 
 import "./App.css";
-
+import {useState,useEffect} from 'react'
+import { fetchFooter } from "@/utils/request";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home.jsx";
 import Careers from "./pages/Careers";
@@ -17,9 +18,35 @@ import useLoadingStore from "./store/loadingStore.js";
 import Admin from "./pages/Admin.js";
 import ScrollToTop from "./components/ScrollToTop.js";
 import SingleBlog from "./pages/SingleBlog.js";
+import { FooterData } from "./types/Footer.js";
 
 function App() {
   const loading = useLoadingStore((state: any) => state.loading);
+  const [footer, setFooter] = useState<FooterData| null>(null);
+  const setLoading = useLoadingStore((state: any) => state.setLoading);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const [data] = await Promise.all([
+          fetchFooter(),
+        ]);
+      
+        setFooter(data);
+        
+ 
+      } catch (error) {
+        console.error("Error fetching data", error);
+        setLoading(false)
+      } finally {
+        setLoading(false)
+      }
+    };
+
+    fetchData();
+    
+  }, []);
   return (
     <>
       <BrowserRouter>
@@ -40,7 +67,7 @@ function App() {
             <Route path="/blog/:slug" element={<SingleBlog/>} />
           </Routes>
         </ScrollToTop> 
-        {loading? "" : <Footer/>}
+        {loading? "" : <Footer data={footer}/>}
 
       </BrowserRouter>
     </>

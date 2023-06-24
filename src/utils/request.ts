@@ -1,4 +1,5 @@
 import axios from "axios";
+import reservationStore from '@/store/reservationStore.ts';
 
 export const fetchCarousel = async () => {
     const response = await axios.get(
@@ -98,3 +99,33 @@ export const fetchContent = async () => {
 
     return response.data.result[0];
   }
+
+  export const fetchFooter = async() =>{
+    const response = await axios.get(`https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22footer%22%5D%20%7B%0A%20%20%20left%2C%0A%20%20%20%20mid%7B%0A%20%20%20%20%20%22image%22%3A%20asset-%3Eurl%2C%0A%20%20%20%20%7D%2C%0A%20%20right%2C%0A%20%20footerNote%20%0A%7D`);
+
+    return response.data.result[0];
+  }
+
+
+  export const fetchEventAlert = async() =>{
+    const response = await axios.get(`https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22eventAlert%22%5D%20%7B%0A%20%20title%2C%0A%20%20%20%20body%0A%7D`);
+
+    return response.data.result[0];
+  }
+
+  export const fetchReservationAlert = async () => {
+    try {
+      const response = await axios.get(
+        'https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22reservationAlert%22%5D%20%7B%0A%20%20title%2C%0A%20%20%20%20body%0A%7D'
+      );
+      const reservationAlert = response.data.result[0];
+
+      reservationStore.setState((state) => ({
+        ...state,
+        reservationAlert,
+      }));
+      return reservationAlert;
+    } catch (error) {
+      console.error('Error fetching reservation alert', error);
+    }
+  };
