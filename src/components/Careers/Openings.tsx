@@ -83,7 +83,7 @@ const Openings = ({ openings }: Props) => {
                       </div>
                       <div className="flex justify-center md:mb-12">
                         <ul className="text-main text-xs list-disc space-y-4 w-11/12 md:w-4/5 leading-5  ">
-                          {opening.jobDescription.map((desc, idx) => (
+                          {opening.jobDescription && opening.jobDescription.map((desc, idx) => (
                             <li key={idx}>{desc}</li>
                           ))}
                         </ul>
@@ -96,7 +96,7 @@ const Openings = ({ openings }: Props) => {
                       </div>
                       <div className="flex justify-center mb-12">
                         <ul className="text-main text-xs list-disc space-y-4  w-11/12 md:w-4/5 leading-5  ">
-                          {opening.jobReq.map((req, idx) => (
+                          {opening.jobReq && opening.jobReq.map((req, idx) => (
                             <li key={idx}>{req}</li>
                           ))}
                         </ul>
