@@ -1,6 +1,8 @@
 import { PortableTextBlock } from "sanity";
 
 export type JobOpeningModel = {
+  upToSalary: string
+  salaryToggle: boolean;
   _rev: string;
   jobDescription: string[];
   position: string;

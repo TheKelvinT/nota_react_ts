@@ -27,8 +27,8 @@ handleNullData(faq)
             (faqs:any) => (
               <div key={faqs._id} className="space-y-8 hidden md:block ">
                 <div className="text-[13px]">
-                  <h6 className=" font-bold ">{faqs.question}</h6>
-                  <div className=" leading-9">{faqs.answer}</div>
+                  <h6 className=" font-bold ">{faqs.question && faqs.question}</h6>
+                  <div className=" leading-9">{faqs.answer && faqs.answer}</div>
                 </div>
               </div>
             )
@@ -49,7 +49,7 @@ handleNullData(faq)
                   >
                     <AccordionButton className="flex justify-between ">
                       <h6 className="text-left font-bold  font-inter leading-7  ">
-                        {faq.question}
+                        {faq.question && faq.question}
                       </h6>
                       <AccordionIcon className="text-left" />
                     </AccordionButton>
@@ -58,7 +58,7 @@ handleNullData(faq)
                       className="text-left mt-2 leading-7"
                       pb={4}
                     >
-                      <p>{faq.answer}</p>
+                      <p>{faq.answer && faq.answer}</p>
                     </AccordionPanel>
                   </AccordionItem>
                 )

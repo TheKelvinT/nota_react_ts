@@ -21,15 +21,8 @@ const Openings = ({ openings }: Props) => {
   const handleTabChange = () => {
     setShowForm(false);
   };
-  
-  // const tabStyles = ({ selected }: any) =>
-  //   classNames(
-  //     "w-full rounded-lg py-2.5 px-4 whitespace-nowrap outline-none text-md  text-gray-50",
-  //     "",
-  //     selected
-  //       ? "bg-white/[0.22] font-bold"
-  //       : " hover:bg-white/[0.22] hover:text-gray-50"
-  //   );
+
+  console.log(openings)
   return (
     <section
       id="opening"
@@ -70,9 +63,12 @@ const Openings = ({ openings }: Props) => {
                     <div>
                       <div className="md:flex md:justify-between text-main pb-4 md:pb-7">
                         <CustomH1>{opening.position}</CustomH1>
-                        <p className="text-lg font-gothic mb-2">
-                          {opening.lowSalaryRange} - {opening.highSalaryRange}
-                        </p>
+                        {opening.salaryToggle && opening.lowSalaryRange && opening.lowSalaryRange && (<p className="text-lg font-gothic mb-2">
+                        RM {opening.lowSalaryRange} - RM {opening.highSalaryRange}
+                        </p>)} 
+                        {!opening.salaryToggle && opening.upToSalary && (<p className="text-lg font-gothic mb-2">Up to RM {opening.upToSalary}</p>)}
+
+                        
                       </div>
                       <DescContainer >{opening.summary}</DescContainer>
                       <div className="flex w-full py-8">

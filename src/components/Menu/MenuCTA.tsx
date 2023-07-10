@@ -18,7 +18,7 @@ const MenuCTA = ({ content }: Props) => {
         </DescContainer>
       </div>
       <div className=" flex justify-center gap-x-6">
-          <Button title={content?.callToAction?.buttonText} width="w-48" path={content?.callToAction?.routes}/>
+          <Button title={content?.callToAction?.buttonText} width="w-48" path={content?.callToAction?.routes} />
       </div>
     </section>
   );
