@@ -66,7 +66,7 @@ const Openings = ({ openings }: Props) => {
                         {opening.salaryToggle && opening.lowSalaryRange && opening.lowSalaryRange && (<p className="text-lg font-gothic mb-2">
                         RM {opening.lowSalaryRange} - RM {opening.highSalaryRange}
                         </p>)} 
-                        {!opening.salaryToggle && opening.upToSalary && (<p className="text-lg font-gothic mb-2">Up to RM {opening.upToSalary}</p>)}
+                        {!opening.salaryToggle && opening.upToSalary && (<p className="text-lg font-gothic mb-2">{opening.upToSalary}</p>)}
 
                         
                       </div>
