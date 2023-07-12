@@ -393,9 +393,9 @@ const handleLargeModalOK = () => {
         width={1000}
         footer={[
           <div className="pb-12  flex justify-center">
-            <LocalButton title="CANCEL" onClick={handleLargeModalOK} />
-          <LocalButton title="OK" onClick={handleCloseLargeModal} />
-      
+            <LocalButton title="CANCEL" onClick={handleCloseLargeModal} />
+          <LocalButton title="OK" onClick={handleLargeModalOK} />
+          
           </div>
         ]}
      
