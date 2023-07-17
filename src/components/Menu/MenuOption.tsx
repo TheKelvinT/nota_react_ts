@@ -19,7 +19,7 @@ const MenuOption = ({ content, image }: Props) => {
     return null; // or display a loading state, error message, etc.
   }
   return (
-    <section className="py-20 flex justify-center ">
+    <section id="menu" className="py-20 flex justify-center ">
       <div className=" flex justify-center w-11/12 md:gap-x-12 xl:gap-40">
         <div className="max-w-[430px] space-y-20 py-4 md:basis-1/2">
           {content.map((menu: any) => (
