@@ -18,10 +18,10 @@ const IndexNavigation = ({ content }: Props) => {
 
   return (
     <section className=" screen-limit flex flex-col justify-center items-center md:w-11/12 mx-auto screen-limit">
-      <div className="flex justify-center py-20">
+      {/* <div className="flex justify-center py-20">
         <CustomH1 >Navigation</CustomH1>
-      </div>
-      <div className=" md:w-auto  gap-x-4 gap-y-16  flex justify-center flex-wrap ">
+      </div> */}
+      <div className=" md:w-auto py-20 gap-x-4 gap-y-16  flex justify-center flex-wrap ">
         {data.map((nav: any, index: number) => (
           // eslint-disable-next-line react/jsx-key
           <div

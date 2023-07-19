@@ -53,7 +53,7 @@ const Careers = () => {
       <CareerCTA data={careersContent} />
       <Openings openings={openings} />
       <CareerValues data={careersContent} />
-      <OtherOpportunities data={careersContent} />
+      {/* <OtherOpportunities data={careersContent} /> */}
     </div>
       
       )}
