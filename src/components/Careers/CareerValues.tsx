@@ -28,10 +28,11 @@ const CareerValues = ({ data }: Props) => {
         {data?.valuesSection.values.map((value:any, idx: React.Key | null | undefined) => (
           // eslint-disable-next-line react/jsx-key
           <div key={idx} className="flex flex-col items-center max-w-[314px]  ">
-          <div className=" h-[314px] overflow-hidden bg-main">
+          <div className=" h-[314px] drop-shadow-xl overflow-hidden bg-main">
             <CustomImage
               Imgsrc={value.image}
               alt={value.alt}
+              
             />
             </div>
             <div className=" flex-col flex mt-8 gap-y-3 text-center sm:text-start ">

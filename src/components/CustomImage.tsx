@@ -19,7 +19,7 @@ const CustomImage = ({ Imgsrc, alt }: Props) => {
         <img className="w-full h-full object-cover" src={Dummy} alt="Placeholder" />
       </div> */}
       <div className={`w-full h-full object-cover ${loading ? 'hidden' : 'block'}`} >
-        <img className="w-full h-full object-cover" src={Imgsrc} onLoad={handleImageLoad} alt={alt} />
+        <img className="w-full h-full object-cover " src={Imgsrc} onLoad={handleImageLoad} alt={alt} />
       </div>
     </>
   );
