@@ -64,7 +64,7 @@ const Events = () => {
       <EventCTA data={eventContent} modal={modalData} />
       <EventDesc data={eventContent} />
       <EventSlider data={eventContent} />
-      <Gallery />
+      {/* <Gallery /> */}
       </>
       )
 }

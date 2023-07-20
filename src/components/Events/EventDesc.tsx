@@ -15,7 +15,7 @@ const EventDesc = ({ data }: Props) => {
   return (
     <section className=" w-full flex justify-center mb-28  max-w-[1920px] mx-auto ">
       <div className="flex flex-col md:flex-row justify-center gap-x-10 lg:gap-x-20 w-11/12 md:w-full">
-        <div className="basis-2/3 max-w-[948px]  sm:h-[574px] bg-main max-h-[574px] overflow-hidden">
+        <div className="basis-2/3 max-w-[948px]  sm:h-full bg-main  overflow-hidden">
           <CustomImage
             Imgsrc={data?.sectionTwo.image}
             alt="menu-img"

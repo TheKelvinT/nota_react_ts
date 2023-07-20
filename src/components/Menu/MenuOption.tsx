@@ -40,10 +40,10 @@ const MenuOption = ({ content, image }: Props) => {
           ))}
        
         </div>
-        <div className="hidden md:block w-[365px] h-[565px] overflow-hidden bg-main">
+        <div className="hidden md:block w-[435px] h-full overflow-hidden bg-main">
           <CustomImage
             Imgsrc={image?.image || ""}
-            alt="menu-img"
+            alt="menu-img" 
           />
         </div>
       </div>
