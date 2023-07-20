@@ -2,7 +2,7 @@
 import EventCTA from "@/components/Events/EventCTA";
 import EventDesc from "@/components/Events/EventDesc";
 import EventSlider from "@/components/Events/EventSlider";
-import Gallery from "@/components/Events/Gallery";
+// import Gallery from "@/components/Events/Gallery";
 import {useState,useEffect} from 'react'
 import { EventModel, ModalModel } from "@/types/Event";
 import Loading from "@/components/Loading";
