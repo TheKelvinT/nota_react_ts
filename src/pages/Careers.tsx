@@ -2,7 +2,7 @@ import  { useState, useEffect } from "react";
 import CareerCollage from "@/components/Careers/CareerCollage";
 import CareerCTA from "@/components/Careers/CareerCTA";
 import CareerValues from "@/components/Careers/CareerValues";
-import OtherOpportunities from "@/components/Careers/OtherOpportunities";
+// import OtherOpportunities from "@/components/Careers/OtherOpportunities";
 import CareerDesc from "@/components/Careers/CareerDesc";
 import Openings from "@/components/Careers/Openings";
 import Loading from "@/components/Loading";
