@@ -102,7 +102,7 @@ const Openings = ({ openings }: Props) => {
                       <div className="text-main text-xs">
                         <p className="">
                         Send us your CV via email at&nbsp; 
-                         <Link className="underline underline-offset-2" to={`mailto:hello@notakl.com`} target="_blank">careers@notakl.com</Link>  or WhatsApp at +60 12 6700 211.
+                         <Link className="underline underline-offset-2" to={`mailto:hello@notakl.com`} target="_blank">careers@notakl.com</Link>  or WhatsApp at <Link className="underline underline-offset-2" to={`https://wa.me/60174891189`} target="_blank">+60 12 6700 211</Link>.
                         </p>
                         {showForm? (
                      <div className="mt-12 ">
