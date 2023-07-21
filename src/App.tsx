@@ -2,7 +2,7 @@
 import "./App.css";
 import {useState,useEffect} from 'react'
 import { fetchFooter } from "@/utils/request";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Home.jsx";
 import Careers from "./pages/Careers";
 import Reservations from "./pages/Reservations";
@@ -19,6 +19,7 @@ import Admin from "./pages/Admin.js";
 import ScrollToTop from "./components/ScrollToTop.js";
 import SingleBlog from "./pages/SingleBlog.js";
 import { FooterData } from "./types/Footer.js";
+import NotFound from "./pages/NotFound.js";
 
 function App() {
   const loading = useLoadingStore((state: any) => state.loading);
@@ -65,6 +66,8 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/admin" element={<Admin/>} />
             <Route path="/blog/:slug" element={<SingleBlog/>} />
+            <Route path="/404" element={<NotFound/>} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
         </ScrollToTop> 
         {loading? "" : <Footer data={footer}/>}

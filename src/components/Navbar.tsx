@@ -56,7 +56,8 @@ const Navbar = () => {
     pathname.startsWith("/blog") ||
     pathname === "/reservations" ||
     pathname === "/admin" ||
-    pathname === "/careers" 
+    pathname === "/careers" ||
+    pathname === "/404"
   const bgColor =
     scrollDown || isDarkNav || loading
       ? "bg-secondary ease-out duration-300"
