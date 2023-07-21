@@ -141,7 +141,7 @@ const SingleBlog = () => {
         <Link to="https://www.facebook.com/nota.kl/" target="_blank"><img src={FacebookIcon} alt="" /></Link>
         <Link to="https://www.linkedin.com/company/notacafe/" target="_blank" ><img src={LinkedinIcon} alt="" /></Link>
         <Link to="https://www.instagram.com/nota.kl/?hl=en" target="_blank" ><img src={InstagramIcon}/></Link>
-        <Link to="#" target="_blank"><MailOutlined style={{fontSize:'30px', color:"#595D3C"}}/></Link>
+        <Link to={`mailto:hello@notakl.com`} target="_blank"><MailOutlined style={{fontSize:'30px', color:"#595D3C"}}/></Link>
       </div>
       <DescContainer>
         <PortableText
@@ -169,7 +169,7 @@ const SingleBlog = () => {
   </div>
   <div>
     <div className="flex flex-col mx-auto gap-y-12 items-center justify-center w-11/12 lg:w-4/5  my-16 max-w-[1200px] ">
-      <div className='font-marcellus text-[40px]'>
+      <div className='font-marcellus text-[28px]'>
         More Articles Like This
       </div>
       {shuffledBlogs.slice(0, 2).map((blog, index: number) => (

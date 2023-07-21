@@ -295,7 +295,7 @@ const handleLargeModalOK = () => {
                   <Form.Item name="pax" label={<p className="font-gothic text-lg ">pax</p>}  rules={rules.pax}   
                    labelCol={{span:12}} wrapperCol={{span:8, sm:12}} labelAlign="left" >
                     <InputNumber  name="pax"
-                      id="pax" controls={true} min={1} max={15} placeholder="1" className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "/>
+                      id="pax" controls={true} min={1} max={20} placeholder="1" className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "/>
                     </Form.Item>
                   </Col>
                   

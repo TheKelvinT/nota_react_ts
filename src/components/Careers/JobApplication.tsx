@@ -53,7 +53,7 @@ const JobApplication = ({ opening }: Props) => {
           setIsLoading(true)
           await emailjs.send(
             'service_ft1p6fp',
-            'template_g9f5bsg',
+            'template_1rmbeqt',
             formattedValues,
             'k-o6gKU7rmtoFJwGq',   
           );
@@ -69,7 +69,7 @@ const JobApplication = ({ opening }: Props) => {
       };
       
       const  onFinish = async (values: any) => {
-
+        console.log('hello')
         const formattedDOB = moment(values?.dob?.$d).format('DD-MMMM-YYYY');
         const formattedAvailability = moment(values?.availability?.$d).format('DD-MMMM-YYYY');
         
@@ -133,7 +133,7 @@ const JobApplication = ({ opening }: Props) => {
             date:[
                 {
                 required: true,
-                message: 'Date of Birrth cannot be empty.',
+                message: 'Date of Birth cannot be empty.',
                 },
             ],
         nationality:[
@@ -158,7 +158,7 @@ const JobApplication = ({ opening }: Props) => {
               if (fileList && fileList.length > 0) {
                 const file = fileList[0];
                 const allowedExtensions = ['.pdf'];
-                const maxSize = 1 * 1024 * 1024; // 20MB
+                const maxSize = 20 * 1024 * 1024; // 20MB
       
                 // Check file extension
                 const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
@@ -260,7 +260,7 @@ const JobApplication = ({ opening }: Props) => {
               type="error"
               showIcon
             />) :
-            <Button title="SUBMIT APPLICATION" width="180px" loading={isLoading} />
+            <Button htmlType="submit"  title="SUBMIT APPLICATION" width="180px" loading={isLoading}/>
               }
 
              

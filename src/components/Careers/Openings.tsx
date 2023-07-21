@@ -6,6 +6,7 @@ import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
 import JobApplication from "./JobApplication";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 type Props = { openings: JobOpeningModel[] | null };
@@ -37,7 +38,7 @@ const Openings = ({ openings }: Props) => {
           <div className="sm:flex sm:flex-row  ">
             <Tab.List>
               <div className="flex sm:flex-col gap text-xs sm:overflow-visible overflow-x-scroll">
-                {openings?.map((opening) => (
+                {openings && openings?.map((opening) => (
                   <Tab
                     key={opening._id}
                     className={({ selected }) =>
@@ -54,7 +55,7 @@ const Openings = ({ openings }: Props) => {
               </div>
             </Tab.List>
             <Tab.Panels className="">
-              {openings?.map((opening) => (
+              {openings && openings?.map((opening) => (
                 <Tab.Panel
                   key={opening._id}
                   className={classNames(" py-12 md:px-12 bg-primary ")}
@@ -100,10 +101,9 @@ const Openings = ({ openings }: Props) => {
 
                       <div className="text-main text-xs">
                         <p className="">
-                          If you’re interested, send us your cv via email at
-                          notaconcepts@gmail.com or Whatsapp at +60 12 6700 211.
+                        Send us your CV via email at&nbsp; 
+                         <Link className="underline underline-offset-2" to={`mailto:hello@notakl.com`} target="_blank">careers@notakl.com</Link>  or WhatsApp at +60 12 6700 211.
                         </p>
-                        
                         {showForm? (
                      <div className="mt-12 ">
                      <JobApplication opening={opening}/>
