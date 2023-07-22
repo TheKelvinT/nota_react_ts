@@ -11,7 +11,7 @@ const NotFound = () => {
         
         <p className="text-xl  text-secondary font-marcellus">Sorry, we couldn’t find this page.</p>
         <p className="text-xl mb-12 text-secondary font-marcellus">But don’t worry, you can find plenty of other things on our homepage.</p>
-        <LocalButton title="Return to Homepage" path='/home' />
+        <LocalButton title="Return to Homepage" path='/' />
     </div>
    
 </div>
