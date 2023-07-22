@@ -169,9 +169,12 @@ const SingleBlog = () => {
   </div>
   <div>
     <div className="flex flex-col mx-auto gap-y-12 items-center justify-center w-11/12 lg:w-4/5  my-16 max-w-[1200px] ">
-      <div className='font-marcellus text-[28px]'>
-        More Articles Like This
-      </div>
+    {shuffledBlogs.length === 0 ? ('') : (
+       <div className='font-marcellus text-[28px]'>
+       More Articles Like This
+     </div>
+    )}
+     
       {shuffledBlogs.slice(0, 2).map((blog, index: number) => (
       <div
         key={blog._id}
