@@ -21,7 +21,7 @@ const SingleBlog = () => {
     const setLoading = useLoadingStore((state: any) => state.setLoading);
     const [postData, setPostData] = useState<SingleBlogModel | null>(null);
     const [blogs, setBlogs] = useState<BlogPostModel[] | null>(null);
-    const [visible, setVisible] = useState(false)
+    const [, setVisible] = useState(false)
     const [shuffledBlogs, setShuffledBlogs] = useState<BlogPostModel[]>([]);
 
 
@@ -133,7 +133,7 @@ const SingleBlog = () => {
 <div className='flex flex-col'>
   <div className=" w-11/12 lg:w-3/5  -mt-40 mb-12 md:-mt-64 mx-auto bg-white border border-main rounded-t-lg overflow-hidden relative z-10 max-w-[1200px]">
     <div className="p-6 pb-28 md:pb-48 pt-16 md:pt-32 sm:px-12 lg:px-24 ">
-      <div className="text-[50px] max-w-[650px] mx-auto font-marcellus pb-14 text-center break-words text-main">{postData?.title}</div>
+      <div className="text-[50px] max-w-[650px] mx-auto font-marcellus pb-14 text-center break-words text-main ">{postData?.title}</div>
       <p className=" text-center text-main  text-[15px] italic ">Written by {postData?.author}</p>
       <p className=" text-center text-main  italic text-[15px] mb-4">{formattedDate}</p>
       <div className='my-8 flex justify-center items-center gap-12'>
