@@ -116,7 +116,6 @@ const SingleBlog = () => {
       }
     }
   }
-  
   return (
     <div>
          {loading ? (
@@ -132,9 +131,9 @@ const SingleBlog = () => {
     />
   </div>
 <div className='flex flex-col'>
-  <div className=" w-11/12 lg:w-4/5  -mt-40 mb-12 md:-mt-64 mx-auto bg-white border border-main rounded-t-lg overflow-hidden relative z-10 max-w-[1200px]">
+  <div className=" w-11/12 lg:w-3/5  -mt-40 mb-12 md:-mt-64 mx-auto bg-white border border-main rounded-t-lg overflow-hidden relative z-10 max-w-[1200px]">
     <div className="p-6 pb-28 md:pb-48 pt-16 md:pt-32 sm:px-12 lg:px-24 ">
-      <div className="text-[50px] max-w-[650px] mx-auto font-marcellus pb-14 text-center break-words text-main title-shadow">{postData?.title}</div>
+      <div className="text-[50px] max-w-[650px] mx-auto font-marcellus pb-14 text-center break-words text-main">{postData?.title}</div>
       <p className=" text-center text-main  text-[15px] italic ">Written by {postData?.author}</p>
       <p className=" text-center text-main  italic text-[15px] mb-4">{formattedDate}</p>
       <div className='my-8 flex justify-center items-center gap-12'>
@@ -160,7 +159,7 @@ const SingleBlog = () => {
        
         <Link to={FacebookShareUrl} target="_blank"><img src={FacebookIcon} alt="" /></Link>
         <Link to={LinkedShareUrl}  target="_blank"><img src={LinkedinIcon} alt="" /></Link>
-        <Popover   content="Link copied!" visible={visible} trigger="click"> 
+        <Popover   content="Link copied!" open={true} trigger="click"> 
           <ShareAltOutlined style={{fontSize:'28px', color:"#595D3C"}} onClick={handleCopyLink}/>
           </Popover>
         <Link to={WhatsappShareUrl} target="_blank"><WhatsAppOutlined style={{fontSize:'28px', color:"#595D3C"}}/></Link>
