@@ -42,8 +42,8 @@ function ContactSection() {
   
   let modalContent;
 
-if (hour === 20) {
-  modalContent = <p>Kitchen&apos;s last call for dinner service at 8.30pm.</p>;
+if (hour === 21) {
+  modalContent = <p>Kitchen&apos;s last call for dinner service at 9.30pm.</p>;
 } else if (hour >= 15 && hour <= 16) {
   modalContent = (
     <>
@@ -66,9 +66,9 @@ if (hour === 20) {
   // Implement your logic to disable specific hours, minutes, and seconds
   // Return an object with the disabledHours, disabledMinutes, and disabledSeconds functions
   return {
-    disabledHours: () => [0, 1, 2, 3, 4, 5,6,7,8,9,21,22,23], // Disable hours 0 to 5
+    disabledHours: () => [0, 1, 2, 3, 4, 5,6,7,8,9,22,23], // Disable hours 0 to 5
     disabledMinutes: (selectedHour:any) => {
-      if (selectedHour === 20) {
+      if (selectedHour === 21) {
         return [30,45]; // Disable minutes 0 to 2 when hour is 6
       }
       return []; // Disable no minutes for other hours
@@ -82,7 +82,7 @@ if (hour === 20) {
   const hour = time?.$H;
   setHour(hour);
 
-  if ((hour >= 15 && hour <= 16) || hour >= 20 || hour <= 9 || hour >= 21) {
+  if ((hour >= 15 && hour <= 16) || hour >= 21 || hour <= 9 || hour >= 21) {
     setModalOpen(true);
   }
   
@@ -345,13 +345,13 @@ const handleLargeModalOK = () => {
         <div className="flex flex-col pb-12 pt-12 sm:pt-0">
             <div className=" sm:order-0  pb-12">
               <CustomH1>Operating Hours </CustomH1>
-              <p className="text-lg font-marcellus">Mon - Sun | 10am - 9pm</p>
+              <p className="text-lg font-marcellus">Mon - Sun | 10am - 10pm</p>
               <p className="text-lg font-marcellus">Closed on Wednesdays</p>
             </div>
             <div className="">
               <CustomH1>Kitchen Last Call </CustomH1>
               <p className="text-lg font-marcellus">Lunch - 330pm</p>
-              <p className="text-lg font-marcellus">Dinner - 830pm</p>
+              <p className="text-lg font-marcellus">Dinner - 930pm</p>
             </div>
           </div>
           <div className="flex flex-col md:order-2 ">

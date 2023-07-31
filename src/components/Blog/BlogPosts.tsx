@@ -32,7 +32,7 @@ export default function BlogPosts({ data }: Props) {
             </div>
             <div className=" flex-col  flex-auto flex mt-8 gap-y-4">
               <Link to={`/blog/${blog.slug}`}>
-              <h3 className="text-main text-[17px] underline underline-offset-2">
+              <h3 className="font-marcellus text-[17px] text-main">
                 {blog.title}
               </h3>
               </Link>

@@ -26,9 +26,9 @@ handleNullData(faq)
           {faq?.map(
             (faqs:any) => (
               <div key={faqs._id} className="space-y-8 hidden md:block ">
-                <div className="text-[13px]">
+                <div className="text-[13px] mt-6">
                   <h6 className=" font-bold ">{faqs.question && faqs.question}</h6>
-                  <div className=" leading-9">{faqs.answer && faqs.answer}</div>
+                  <div className=" leading-7">{faqs.answer && faqs.answer}</div>
                 </div>
               </div>
             )
