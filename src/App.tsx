@@ -20,6 +20,7 @@ import ScrollToTop from "./components/ScrollToTop.js";
 import SingleBlog from "./pages/SingleBlog.js";
 import { FooterData } from "./types/Footer.js";
 import NotFound from "./pages/NotFound.js";
+import TagManager from 'react-gtm-module'
 
 function App() {
   const loading = useLoadingStore((state: any) => state.loading);
@@ -48,6 +49,12 @@ function App() {
     fetchData();
     
   }, []);
+
+  useEffect(() => {
+    const tagManagerArgs = {gtmId: 'GTM-PQX3C7HL'};
+    TagManager.initialize(tagManagerArgs)
+  }, []);
+
   return (
     <>
       <BrowserRouter>
