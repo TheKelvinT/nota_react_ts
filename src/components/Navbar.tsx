@@ -6,7 +6,7 @@ import useLoadingStore from "@/store/loadingStore";
 import NotaLogo from "@/assets/Nota-Logo.png";
 import DarkLogo from "@/assets/nota-logo-black.png"
 import DrawerDeco from '@/assets/bottles.png'
-
+import CustomButton from './Button'
 const leftNavigation = [
   { name: "About", href: "/about" },
   { name: "Menu", href: "/menu" },
@@ -70,11 +70,14 @@ const Navbar = () => {
     <nav
       className={`relative z-50 text-white py-2  max-w-screen sticky top-0 overflow-hidden   ${bgColor}`}
     >
+       <div className="absolute right-0 mt-2.5 mr-16">
+              <CustomButton title="BOOK A TABLE" path="/reservations"/>
+            </div>
       <div className="bg-transparent">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-2 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
-            <div className="flex flex-1 items-center justify-start md:justify-center ">
-              <div className="hidden md:block">
+            <div className="flex flex-1 items-center justify-start lg:justify-center ">
+              <div className="hidden lg:block">
                 <div className="flex gap-x-5">
                   {leftNavigation.map((item) => (
                     <Link
@@ -101,7 +104,7 @@ const Navbar = () => {
                 </Link>
               </div>
 
-              <div className="hidden md:block ">
+              <div className="hidden lg:block ">
                 <div className="flex gap-x-5">
                   {rightNavigation.map((item) => (
                     <Link
@@ -115,8 +118,10 @@ const Navbar = () => {
                   ))}
                 </div>
               </div>
+              
             </div>
-            <div className={`flex items-center md:hidden ${bgColor}`}>
+           
+            <div className={`flex items-center lg:hidden ${bgColor}`}>
               {/* Mobile menu button*/}
               <button
                 className="inline-flex items-center justify-center rounded-md p-2 text-white   "

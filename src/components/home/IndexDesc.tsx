@@ -17,19 +17,19 @@ const IndexDesc = ({ content }: Props) => {
               <PortableText  value={content?.homeSectionTwo?.description || []}    onMissingComponent={false}/>
             </DescContainer>
           </div>
-          <div className="h-[430px] w-[335px] overflow-hidden bg-main">
+          <div className="max-h-[430px] max-w-[335px] overflow-hidden bg-main">
           <CustomImage
             Imgsrc={content?.homeSectionTwo.Images[0].imageURL}
             alt="food-pic "
           />
           </div>
-           <div className="h-[430px] w-[335px] overflow-hidden hidden bg-main lg:block">
+           <div className="max-h-[430px] max-w-[335px] overflow-hidden hidden bg-main lg:block">
           <CustomImage
             Imgsrc={content?.homeSectionTwo.Images[1].imageURL}
             alt="food-pic"
           />
           </div>
-          <div className="h-[430px] w-[335px] overflow-hidden bg-main hidden xl:block">
+          <div className="max-h-[430px] max-w-[335px] overflow-hidden bg-main hidden xl:block">
           <CustomImage
             Imgsrc={content?.homeSectionTwo.Images[2].imageURL}
             alt="food-pic"

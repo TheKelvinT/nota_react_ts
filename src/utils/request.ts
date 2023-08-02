@@ -82,7 +82,7 @@ export const fetchContent = async () => {
  
   export const fetchMenuList = async () => {
     const response = await axios.get(
-        "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22menus%22%5D%20%5B%5D%7B%0A%20%20%0A%20%20%20%20title%2C%0A%20%20%20%20time%2C%0A%20%20_id%2C%0A%0A%20%20description%2C%0A%20%20callToAction-%3E%7B%0A%20%20%20%20cta%2C%0A%20%20%20%20buttonText%2C%0A%20%20%20%20routes%0A%20%20%7D%2C%0A%0A%7D"
+        "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22menus%22%5D%20%7B%0A%20%20%0A%20%20%20%20title%2C%0A%20%20%20%20time%2C%0A%20%20%20%20date%2C%0A%20%20_id%2C%0A%20%20%22image%22%3A%20image.asset-%3Eurl%2C%0A%20%20description%2C%0A%20%20callToAction-%3E%7B%0A%20%20%20%20cta%2C%0A%20%20%20%20buttonText%2C%0A%20%20%20%20routes%0A%20%20%7D%2C%0A%20%20%22images%22%3A%20Images%5B%5D.asset-%3Eurl%0A%7D"
     );
     return response.data.result
   };

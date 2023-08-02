@@ -27,6 +27,7 @@ const MenuOption = ({ content, image }: Props) => {
               <div className="flex flex-col items-center gap-y-1">
                 <CustomH1>{menu.title}</CustomH1>
                 <div className="font-gothic text-main text-xs">{menu.time}</div>
+                <div className="font-gothic text-main text-xs">{menu.date}</div>
               </div>
               <div className="text-center">
               <DescContainer >
