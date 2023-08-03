@@ -21,7 +21,7 @@ const SingleBlog = () => {
     const setLoading = useLoadingStore((state: any) => state.setLoading);
     const [postData, setPostData] = useState<SingleBlogModel | null>(null);
     const [blogs, setBlogs] = useState<BlogPostModel[] | null>(null);
-    const [, setVisible] = useState(false)
+    const [visible, setVisible] = useState(false)
     const [shuffledBlogs, setShuffledBlogs] = useState<BlogPostModel[]>([]);
 
 
@@ -159,7 +159,7 @@ const SingleBlog = () => {
        
         <Link to={FacebookShareUrl} target="_blank"><img src={FacebookIcon} alt="" /></Link>
         <Link to={LinkedShareUrl}  target="_blank"><img src={LinkedinIcon} alt="" /></Link>
-        <Popover   content="Link copied!" open={true} trigger="click"> 
+        <Popover   content="Link copied!" open={visible} trigger="click"> 
           <ShareAltOutlined style={{fontSize:'28px', color:"#595D3C"}} onClick={handleCopyLink}/>
           </Popover>
         <Link to={WhatsappShareUrl} target="_blank"><WhatsAppOutlined style={{fontSize:'28px', color:"#595D3C"}}/></Link>
