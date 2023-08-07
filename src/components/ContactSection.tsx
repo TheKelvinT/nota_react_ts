@@ -8,8 +8,10 @@ import moment from 'moment'
 import CustomH1 from "./StyleComponents/CustomH1";
 import LocalButton from "./Button";
 import reservationStore from '@/store/reservationStore.ts';
+import reservationConfig from '@/store/reservationConfigStore.ts'
 import { fetchReservationAlert } from "@/utils/request";
 import { PortableText } from "@portabletext/react";
+import { fetchReservationConfig } from "@/utils/request";
 
 type formValueModel = {
   name?:string;
@@ -32,13 +34,16 @@ function ContactSection() {
   const [formValues, setFormValues] = useState<formValueModel>({})
 
   const data = reservationStore((state: any) => state.reservationAlert);
-
+  const additionalDisabledDate = reservationConfig((state: any) => state.reservationConfig);
+  
   useEffect(() => {
     fetchReservationAlert();
+    fetchReservationConfig()
+
   }, []);
 
 
-
+  
   
   let modalContent;
 
@@ -57,11 +62,51 @@ if (hour === 21) {
   modalContent = <p>Out of operating hours range. Please try again.</p>;
 }
 
+  
 
+  // const disabledDate = (current: any) => {
+  //   const currentDate = new Date();
+  //   currentDate.setDate(currentDate.getDate() - 1); // Subtract one day from the current date
+    
+  //   return current < currentDate || new Date(current).getDay() === 3 ;
+
+   
+   
+  // };
 
   const disabledDate = (current: any) => {
-    return current < Date.now() || new Date(current).getDay() === 3;
+    // Date ranges to be disabled
+    const events = additionalDisabledDate;
+  
+    // Convert the current date to just the date (ignore the time)
+    const currentDate = new Date(current);
+    
+    // Check if the current date falls within any of the disabled date ranges
+    for (const event of events) {
+      const from = new Date(event.from);
+      const to = new Date(event.to);
+  
+    //    if (from.getTime() === to.getTime()) {
+    //   // Skip disabling if from and to are the same day
+    //   continue;
+    // } 
+
+      if (currentDate >= from && currentDate <= to) {
+        
+        return true; // Disable the date if it falls within the range
+      }
+    }
+  
+    // Check if the current date is before the current day (i.e., yesterday or earlier)
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(23, 59, 59, 999); // Set to the end of yesterday
+
+    
+  
+    return currentDate < yesterday;
   };
+  
   const disabledTime:any = () => {
   // Implement your logic to disable specific hours, minutes, and seconds
   // Return an object with the disabledHours, disabledMinutes, and disabledSeconds functions

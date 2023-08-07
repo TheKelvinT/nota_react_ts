@@ -1,5 +1,6 @@
 import axios from "axios";
 import reservationStore from '@/store/reservationStore.ts';
+import reservationConfigStore from '@/store/reservationConfigStore.ts'
 
 export const fetchCarousel = async () => {
     const response = await axios.get(
@@ -125,6 +126,25 @@ export const fetchContent = async () => {
         reservationAlert,
       }));
       return reservationAlert;
+    } catch (error) {
+      console.error('Error fetching reservation alert', error);
+    }
+  };
+
+  export const fetchReservationConfig = async () => {
+    try {
+      const response = await axios.get(
+        'https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22reservationConfig%22%5D%7B%0A%20%20title%2C%20to%2C%20from%0A%7D'
+      );
+
+      const reservationConfig = response.data.result;
+
+      reservationConfigStore.setState((state) => ({
+        ...state,
+        reservationConfig,
+      }));
+      return reservationConfig;
+
     } catch (error) {
       console.error('Error fetching reservation alert', error);
     }

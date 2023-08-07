@@ -6,7 +6,7 @@ import useLoadingStore from "@/store/loadingStore";
 import NotaLogo from "@/assets/Nota-Logo.png";
 import DarkLogo from "@/assets/nota-logo-black.png"
 import DrawerDeco from '@/assets/bottles.png'
-import CustomButton from './Button'
+// import CustomButton from './Button'
 const leftNavigation = [
   { name: "About", href: "/about" },
   { name: "Menu", href: "/menu" },
@@ -70,9 +70,9 @@ const Navbar = () => {
     <nav
       className={`relative z-50 text-white py-2  max-w-screen sticky top-0 overflow-hidden   ${bgColor}`}
     >
-       <div className="absolute right-0 mt-2.5 mr-16">
+       {/* <div className="absolute right-0 mt-2.5 mr-16">
               <CustomButton title="BOOK A TABLE" path="/reservations"/>
-            </div>
+            </div> */}
       <div className="bg-transparent">
         <div className="mx-auto max-w-7xl px-2 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
