@@ -104,7 +104,7 @@ if (hour === 21) {
 
     
   
-    return currentDate < yesterday;
+    return currentDate < yesterday || new Date(current).getDay() === 3;
   };
   
   const disabledTime:any = () => {
