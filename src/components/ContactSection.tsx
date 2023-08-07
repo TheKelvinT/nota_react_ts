@@ -101,8 +101,7 @@ if (hour === 21) {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     yesterday.setHours(23, 59, 59, 999); // Set to the end of yesterday
-    console.log(yesterday)
-    console.log(currentDate)
+
     
   
     return currentDate < yesterday || new Date(current).getDay() === 3;

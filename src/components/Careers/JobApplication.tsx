@@ -69,7 +69,7 @@ const JobApplication = ({ opening }: Props) => {
       };
       
       const  onFinish = async (values: any) => {
-        console.log('hello')
+
         const formattedDOB = moment(values?.dob?.$d).format('DD-MMMM-YYYY');
         const formattedAvailability = moment(values?.availability?.$d).format('DD-MMMM-YYYY');
         

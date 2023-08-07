@@ -23,7 +23,7 @@ const Openings = ({ openings }: Props) => {
     setShowForm(false);
   };
 
-  console.log(openings)
+
   return (
     <section
       id="opening"
