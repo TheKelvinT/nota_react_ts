@@ -19,7 +19,7 @@ function Footer({data}:Props) {
         <Link to="/reservations">RESERVATIONS</Link>
         <Link to="/blog">BLOG</Link>
       </div>
-      <div className="flex md:flex-row justify-between items-center  flex-col gap-10 md:gap-x-24 xl:gap-x-64 ">
+      <div className="flex md:flex-row justify-between items-center  flex-col my-12 md:my-0 md:gap:10 md:gap-x-24 xl:gap-x-64 ">
         <div className="w-60 text-[10px] flex flex-col items-center text-center">
         {data?.left.map((line, index:number) => (
           <p key={line._key} className={index === data.left.length - 1 ? 'underline underline-offset-2' : ''}>{line.line}</p>
@@ -33,7 +33,7 @@ function Footer({data}:Props) {
         </div>
          </Link>
         <div className="flex flex-col justify-center gap-4" >
-          <div className="flex gap-4">
+          <div className="flex gap-4 justify-center md:justify-start">
             <Link to="https://www.instagram.com/nota.kl/?hl=en" target="_blank">
             <img src={insta} alt="" className="h-7 cursor-pointer" />
             </Link>
