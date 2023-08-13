@@ -48,7 +48,7 @@ export const fetchContent = async () => {
   
   export const fetchReservations = async () => {
     const response = await axios.get(
-        "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22reservations%22%20%5D%20%7B_id%2C_createdAt%2C%22banner%22%3A%20banner.asset%20-%3E%20url%2Cdesc%2CcallToAction%2CopeningHours%2Ctitle%7D" 
+        "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22reservations%22%20%5D%20%7B_id%2C_createdAt%2C%22banner%22%3A%20banner.asset%20-%3E%20url%2Cdesc%2CgroupDesc%2CgroupTitle%2CgroupCTA-%3E%20%7B%0A%20%20%20%20%20cta%2C%0A%20%20%20%20%20%20buttonText%2C%0A%20%20%20%20%20%20routes%0A%20%20%20%20%7D%2CcallToAction%2CopeningHours%2Ctitle%7D" 
     );
     return response.data.result[0]
   };
@@ -134,7 +134,8 @@ export const fetchContent = async () => {
   export const fetchReservationConfig = async () => {
     try {
       const response = await axios.get(
-        'https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22reservationConfig%22%5D%7B%0A%20%20title%2C%20to%2C%20from%0A%7D'
+        // 'https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22reservationConfig%22%5D%7B%0A%20%20title%2C%20to%2C%20from%0A%7D'
+        "https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22reservationProto%22%20%5D%0A"
       );
 
       const reservationConfig = response.data.result;

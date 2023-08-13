@@ -36,7 +36,7 @@ export default function BlogPosts({ data }: Props) {
                 {blog.title}
               </h3>
               </Link>
-              <div className=" flex flex-col flex-auto text-[11px] text-main lea ">
+              <div className=" flex flex-col flex-auto text-[11px] text-main">
                 <PortableText value={blog.summary}    onMissingComponent={false}/>
               </div>
 

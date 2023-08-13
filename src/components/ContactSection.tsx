@@ -12,6 +12,7 @@ import reservationConfig from '@/store/reservationConfigStore.ts'
 import { fetchReservationAlert } from "@/utils/request";
 import { PortableText } from "@portabletext/react";
 import { fetchReservationConfig } from "@/utils/request";
+import { Link } from "react-router-dom";
 
 type formValueModel = {
   name?:string;
@@ -44,7 +45,7 @@ function ContactSection() {
 
 
   
-  
+  console.log(additionalDisabledDate)
   let modalContent;
 
 if (hour === 21) {
@@ -75,37 +76,40 @@ if (hour === 21) {
   // };
 
   const disabledDate = (current: any) => {
-    // Date ranges to be disabled
     const events = additionalDisabledDate;
-  
-    // Convert the current date to just the date (ignore the time)
     const currentDate = new Date(current);
     
-    // Check if the current date falls within any of the disabled date ranges
     for (const event of events) {
-      const from = new Date(event.from);
-      const to = new Date(event.to);
-  
-    //    if (from.getTime() === to.getTime()) {
-    //   // Skip disabling if from and to are the same day
-    //   continue;
-    // } 
-
-      if (currentDate >= from && currentDate <= to) {
+      if (!event.disableDay) {
+        const from = new Date(event.from);
+        const to = new Date(event.to);
+        // Handle the case when from and to are the same day
+      if (
+        from.toDateString() === to.toDateString() &&
+        currentDate.toDateString() === from.toDateString()
+      ) {
+        return true;
+      }
+        // Disable the date if it falls within the range of the event
+        if (currentDate >= from && currentDate <= to) {
+          return true;
+        }
         
-        return true; // Disable the date if it falls within the range
+      } else if(event.disableDay){
+        const date = new Date(event.singleDisabled);
+           
+
       }
     }
-  
-    // Check if the current date is before the current day (i.e., yesterday or earlier)
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    yesterday.setHours(23, 59, 59, 999); // Set to the end of yesterday
-
-    
-  
-    return currentDate < yesterday || new Date(current).getDay() === 3;
+     // Check if the current date is before the current day (i.e., yesterday or earlier)
+     const yesterday = new Date();
+     yesterday.setDate(yesterday.getDate() - 1);
+     yesterday.setHours(23, 59, 59, 999); // Set to the end of yesterday
+   
+     return currentDate < yesterday || new Date(current).getDay() === 3;
+   
   };
+  
   
   const disabledTime:any = () => {
   // Implement your logic to disable specific hours, minutes, and seconds
@@ -122,7 +126,7 @@ if (hour === 21) {
   };
 };
   const format = "HH:mm";
-
+  console.log(formValues)
   const handleTimeChange = (time: any) => {
   const hour = time?.$H;
   setHour(hour);
@@ -340,7 +344,7 @@ const handleLargeModalOK = () => {
                   <Form.Item name="pax" label={<p className="font-gothic text-lg ">pax</p>}  rules={rules.pax}   
                    labelCol={{span:12}} wrapperCol={{span:8, sm:12}} labelAlign="left" >
                     <InputNumber  name="pax"
-                      id="pax" controls={true} min={1} max={20} placeholder="1" className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "/>
+                      id="pax" controls={true} min={1} max={9} placeholder="1" className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "/>
                     </Form.Item>
                   </Col>
                   
@@ -358,8 +362,12 @@ const handleLargeModalOK = () => {
                   placeholder="additional information: (such as dietary requirements, celebration details, special care, etc)"
 
                  /> 
-  
+                  
                 </Form.Item>
+
+                <div className="text-main text-xs md:whitespace-nowrap mb-6">
+                  <p>*For reservation of 10 pax and above, please proceed with <Link to="https://wa.me/60174891189" target="_blank" className="underline underline-offset-2">group booking via Whatsapp.</Link></p>
+                </div>
             {doneRead? (
               <div className="flex justify-center md:block">
               {success? ( <Alert
