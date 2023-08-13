@@ -32,6 +32,7 @@ function ContactSection() {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(""); 
   const [formValues, setFormValues] = useState<formValueModel>({})
 
   const data = reservationStore((state: any) => state.reservationAlert);
@@ -74,6 +75,15 @@ if (hour === 21) {
    
    
   // };
+  const handleDateChange = (date: any) => {
+
+      const formattedDate = new Date(date).toISOString().split('T')[0];
+   
+    setSelectedDate(formattedDate); // Update selectedDate state with the selected date
+
+ 
+  };
+
 
   const disabledDate = (current: any) => {
     const events = additionalDisabledDate;
@@ -95,8 +105,12 @@ if (hour === 21) {
           return true;
         }
         
-      } else if(event.disableDay){
-        const date = new Date(event.singleDisabled);
+      } else {
+
+ 
+        if (event.singleDisabled && currentDate.toDateString() === new Date(event.singleDisabled).toDateString()) {
+          return false;
+        }
            
 
       }
@@ -111,20 +125,111 @@ if (hour === 21) {
   };
   
   
-  const disabledTime:any = () => {
-  // Implement your logic to disable specific hours, minutes, and seconds
-  // Return an object with the disabledHours, disabledMinutes, and disabledSeconds functions
-  return {
-    disabledHours: () => [0, 1, 2, 3, 4, 5,6,7,8,9,22,23], // Disable hours 0 to 5
-    disabledMinutes: (selectedHour:any) => {
-      if (selectedHour === 21) {
-        return [30,45]; // Disable minutes 0 to 2 when hour is 6
-      }
-      return []; // Disable no minutes for other hours
-    },
+//   const disabledTime:any = () => {
+//     const events = additionalDisabledDate;
+//     if(selectedDate == events.singleDisabled){
+      
+//     }
+//   // Implement your logic to disable specific hours, minutes, and seconds
+//   // Return an object with the disabledHours, disabledMinutes, and disabledSeconds functions
+//   return {
+    
+
+//     disabledHours: () => [0, 1, 2, 3, 4, 5,6,7,8,9,22,23], // Disable hours 0 to 5
+//     disabledMinutes: (selectedHour:any) => {
+//       if (selectedHour === 21) {
+//         return [30,45]; // Disable minutes 0 to 2 when hour is 6
+//       }
+//       return []; // Disable no minutes for other hours
+//     },
    
-  };
+//   };
+// };
+
+const disabledTime = () => {
+  const events = additionalDisabledDate;
+  
+  if (selectedDate) {
+    const defaultDisabledHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 23];
+    const defaultDisabledMinutes = [30, 45];
+    const matchingEvent = events.find((event: { singleDisabled: string; }) => event.singleDisabled === selectedDate);
+        
+    if (matchingEvent) {
+      const { fromTime, toTime } = matchingEvent.disabledTimeSlot;
+      
+      let fromHour = fromTime.fromHour;
+      if (fromTime.fromMinute !== 0){
+        fromHour = fromHour + 1
+      }
+      console.log(fromHour)
+      const fromMinute = fromTime.fromMinute;
+      let toHour = toTime.toHour;
+      
+      if (toTime.toMinute !== 0){
+        toHour = toHour - 1
+      }
+
+      const fromHH = fromTime.fromHour
+      const toHH = toTime.toHour
+      let toMinute = toTime.toMinute;
+      const disabledHoursInRange = Array.from({ length: toHour - fromHour + 1 }, (_, index) => fromHour + index);
+      console.log(disabledHoursInRange)
+      return {
+        disabledHours: () => [...disabledHoursInRange, ...defaultDisabledHours],
+        disabledMinutes: (selectedHour: number) => {
+    
+          if (selectedHour === fromHH) {
+            if(fromMinute == 15){
+              return [15, 30, 45]
+            } else if (toMinute == 30){
+              return [30, 45]
+            } else if (toMinute == 45){
+              return [45]
+            } 
+          }
+          if (selectedHour === toHH) {
+            if(toMinute == 15){
+              return [0, 15]
+            } else if (toMinute == 30){
+              return [0, 15, 30]
+            } else if (toMinute == 45){
+              return [0, 15, 30, 45]
+            } else return []
+          }
+          if (selectedHour === 21) {
+            return defaultDisabledMinutes;
+          }
+         
+          return [];
+        },
+      };
+    } 
+   return {
+        disabledHours: () => defaultDisabledHours,
+        disabledMinutes: (selectedHour: number) => {
+          if (selectedHour === 21) {
+            return defaultDisabledMinutes;
+          }
+          return [];
+        },
+      };   
+   
+  }
+
+ 
+  
+  
 };
+
+
+
+
+
+
+
+
+
+
   const format = "HH:mm";
   console.log(formValues)
   const handleTimeChange = (time: any) => {
@@ -138,7 +243,7 @@ if (hour === 21) {
 };
 
 
-
+console.log(formValues)
 const handleClose = () =>{
     setModalOpen(false)
 }
@@ -164,9 +269,13 @@ const sendEmail = async (formattedValues:any) => {
 };
 
 const [form] = Form.useForm();
-const  onFinish = async (values: any) => {
-  const formattedDate = moment(values.date.$d).format('DD-MMMM-YYYY');
 
+
+
+const  onFinish = async (values: any) => {
+  console.log(values);
+  const formattedDate = moment(values.date.$d).format('DD-MMMM-YYYY');
+ 
   const formattedTime = moment(values.time.$d).format('h:mm a');
 
   
@@ -314,6 +423,7 @@ const handleLargeModalOK = () => {
                       format="DD-MM-YYYY"
                       disabledDate={disabledDate}
                       placeholder={"date"}
+                      onChange={handleDateChange}
                       className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full h-12 custom-picker"
                     />
                   </Form.Item>
@@ -327,7 +437,7 @@ const handleLargeModalOK = () => {
                       secondStep={10}
                       format={format}
                       showNow={false}
-                 
+                      disabled={!selectedDate}
                       inputReadOnly={true}
                       disabledTime={disabledTime}
                       changeOnBlur={true}
