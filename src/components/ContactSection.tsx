@@ -77,25 +77,50 @@ if (hour === 21) {
    
   // };
   const handleDateChange = (date: any) => {
+    const selectedDateUTC = new Date(date); // Convert the date string to a UTC Date object
+    const timezoneOffset = 8 * 60; // Offset for GMT+8 in minutes
+    selectedDateUTC.setMinutes(selectedDateUTC.getMinutes() + timezoneOffset); // Convert to GMT+8
+  
+    const formattedDate = selectedDateUTC.toISOString().split('T')[0];
+    console.log(formattedDate)
+    setSelectedDate(formattedDate);
+    
 
-      const formattedDate = new Date(date).toISOString().split('T')[0];
-   
-    setSelectedDate(formattedDate); // Update selectedDate state with the selected date
-
- 
   };
+  
+  
 
 
   const disabledDate = (current: any) => {
     const events = additionalDisabledDate;
     const currentDate = new Date(current);
     
+    if (currentDate.getDay() === 3) {
+      return true; // Disable Wednesdays
+    }
+  
+    // Check if the current date is before the current day (i.e., yesterday or earlier)
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(23, 59, 59, 999); // Set to the end of yesterday
+  
+    if (currentDate < yesterday) {
+      return true; // Disable dates before yesterday
+    }
+
     for (const event of events) {
       if (!event.disableDay) {
         const from = new Date(event.from);
         const to = new Date(event.to);
         // Handle the case when from and to are the same day
-      if (
+        if (
+          currentDate.toDateString() === from.toDateString() ||
+          currentDate.toDateString() === to.toDateString()
+        ) {
+          return true;
+        }
+     
+        if (
         from.toDateString() === to.toDateString() &&
         currentDate.toDateString() === from.toDateString()
       ) {
@@ -108,7 +133,6 @@ if (hour === 21) {
         
       } else {
 
- 
         if (event.singleDisabled && currentDate.toDateString() === new Date(event.singleDisabled).toDateString()) {
           return false;
         }
@@ -116,13 +140,8 @@ if (hour === 21) {
 
       }
     }
-     // Check if the current date is before the current day (i.e., yesterday or earlier)
-     const yesterday = new Date();
-     yesterday.setDate(yesterday.getDate() - 1);
-     yesterday.setHours(23, 59, 59, 999); // Set to the end of yesterday
    
-     return currentDate < yesterday || new Date(current).getDay() === 3;
-   
+   return false
   };
   
 
@@ -131,7 +150,7 @@ const disabledTime = () => {
   const defaultDisabledHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 23];
   const defaultDisabledMinutes = [30, 45];
   if (selectedDate) {
-   
+    console.log(selectedDate)
     const matchingEvent = events.find((event: { singleDisabled: string; }) => event.singleDisabled === selectedDate);
         
     if (matchingEvent) {
