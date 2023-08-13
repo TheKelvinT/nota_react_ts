@@ -14,6 +14,7 @@ import { PortableText } from "@portabletext/react";
 import { fetchReservationConfig } from "@/utils/request";
 import { Link } from "react-router-dom";
 
+
 type formValueModel = {
   name?:string;
   contact?: string;
@@ -124,34 +125,13 @@ if (hour === 21) {
    
   };
   
-  
-//   const disabledTime:any = () => {
-//     const events = additionalDisabledDate;
-//     if(selectedDate == events.singleDisabled){
-      
-//     }
-//   // Implement your logic to disable specific hours, minutes, and seconds
-//   // Return an object with the disabledHours, disabledMinutes, and disabledSeconds functions
-//   return {
-    
-
-//     disabledHours: () => [0, 1, 2, 3, 4, 5,6,7,8,9,22,23], // Disable hours 0 to 5
-//     disabledMinutes: (selectedHour:any) => {
-//       if (selectedHour === 21) {
-//         return [30,45]; // Disable minutes 0 to 2 when hour is 6
-//       }
-//       return []; // Disable no minutes for other hours
-//     },
-   
-//   };
-// };
 
 const disabledTime = () => {
   const events = additionalDisabledDate;
-  
+  const defaultDisabledHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 23];
+  const defaultDisabledMinutes = [30, 45];
   if (selectedDate) {
-    const defaultDisabledHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 23];
-    const defaultDisabledMinutes = [30, 45];
+   
     const matchingEvent = events.find((event: { singleDisabled: string; }) => event.singleDisabled === selectedDate);
         
     if (matchingEvent) {
@@ -214,6 +194,11 @@ const disabledTime = () => {
         },
       };   
    
+  } else {
+    return {
+      disabledHours: () => defaultDisabledHours,
+      disabledMinutes: () => [], // No minutes are disabled when selectedDate is undefined
+    };
   }
 
  
