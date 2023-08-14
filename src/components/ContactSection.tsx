@@ -112,25 +112,24 @@ if (hour === 21) {
       if (!event.disableDay) {
         const from = new Date(event.from);
         const to = new Date(event.to);
-        // Handle the case when from and to are the same day
-        if (
-          currentDate.toDateString() === from.toDateString() ||
-          currentDate.toDateString() === to.toDateString()
-        ) {
-          return true;
+        if(from <= to){
+          if (
+            currentDate >= from && // Check for greater than or equal to "from"
+            currentDate <= to     // Check for less than or equal to "to"
+          ) {
+            return true; // Disable dates within the event range
+          }
+
+          if (
+            from.toDateString() === to.toDateString() &&
+            currentDate.toDateString() === from.toDateString()
+          ) {
+            return true;
+          }
+
+        } else {
+          console.log('From must be before To')
         }
-     
-        if (
-        from.toDateString() === to.toDateString() &&
-        currentDate.toDateString() === from.toDateString()
-      ) {
-        return true;
-      }
-        // Disable the date if it falls within the range of the event
-        if (currentDate >= from && currentDate <= to) {
-          return true;
-        }
-        
       } else {
 
         if (event.singleDisabled && currentDate.toDateString() === new Date(event.singleDisabled).toDateString()) {
@@ -138,8 +137,10 @@ if (hour === 21) {
         }
            
 
+      } 
+      
       }
-    }
+    
    
    return false
   };
