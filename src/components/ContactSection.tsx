@@ -165,10 +165,14 @@ const disabledTime = () => {
       const fromMinute = fromTime.fromMinute;
       let toHour = toTime.toHour;
       
-      if (toTime.toMinute !== 0){
+      if (toTime.toHour !== 21 && toTime.toMinute !== 0){
         toHour = toHour - 1
       }
 
+      if (toTime.toHour === 21 ){
+        toHour = toHour
+      }
+     
       const fromHH = fromTime.fromHour
       const toHH = toTime.toHour
       let toMinute = toTime.toMinute;
@@ -177,7 +181,7 @@ const disabledTime = () => {
       return {
         disabledHours: () => [...disabledHoursInRange, ...defaultDisabledHours],
         disabledMinutes: (selectedHour: number) => {
-    
+          
           if (selectedHour === fromHH) {
             if(fromMinute == 15){
               return [15, 30, 45]
