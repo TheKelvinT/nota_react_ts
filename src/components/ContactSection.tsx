@@ -161,18 +161,22 @@ const disabledTime = () => {
       if (fromTime.fromMinute !== 0){
         fromHour = fromHour + 1
       }
-      console.log(fromHour)
+      
       const fromMinute = fromTime.fromMinute;
       let toHour = toTime.toHour;
-      
-      if (toTime.toHour !== 21 && toTime.toMinute !== 0){
+      console.log(toHour)
+      console.log(toTime.toMinute)
+      if ( toTime.toMinute !== 0){
         toHour = toHour - 1
       }
 
-      if (toTime.toHour === 21 ){
-        toHour = toHour
-      }
+      if (toTime.toHour === 21 && toTime.toMinute <= 15 ){
+        toHour = toHour - 1
+      } 
      
+      if (toTime.toHour === 21 && toTime.toMinute > 15 ){
+        toHour = toHour + 1
+      } 
       const fromHH = fromTime.fromHour
       const toHH = toTime.toHour
       let toMinute = toTime.toMinute;
@@ -182,7 +186,7 @@ const disabledTime = () => {
         disabledHours: () => [...disabledHoursInRange, ...defaultDisabledHours],
         disabledMinutes: (selectedHour: number) => {
           
-          if (selectedHour === fromHH) {
+          if (selectedHour === fromHH && selectedHour !== 21 ) {
             if(fromMinute == 15){
               return [15, 30, 45]
             } else if (toMinute == 30){
@@ -191,7 +195,7 @@ const disabledTime = () => {
               return [45]
             } 
           }
-          if (selectedHour === toHH) {
+          if (selectedHour === toHH && selectedHour !== 21 ) {
             if(toMinute == 15){
               return [0, 15]
             } else if (toMinute == 30){
@@ -201,7 +205,12 @@ const disabledTime = () => {
             } else return []
           }
           if (selectedHour === 21) {
-            return defaultDisabledMinutes;
+            if(toMinute == 0 ){
+              return [30, 45]
+            } 
+            else if(toMinute == 15 ){
+              return [0, 30, 45]
+            } 
           }
          
           return [];
