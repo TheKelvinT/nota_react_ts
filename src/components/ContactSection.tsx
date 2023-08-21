@@ -491,7 +491,7 @@ const handleLargeModalOK = () => {
 
                 <div className="text-main text-xs md:whitespace-nowrap mb-6">
                   <p className="mb-3 md:mb-1.5">*For reservation of 10 pax and above, please proceed with <Link to="https://wa.me/60174891189" target="_blank" className="underline underline-offset-2 italic">group booking via Whatsapp.</Link></p>
-                  <p>*For same-day reservations, kindly <Link to="tel:0174891189" target="_blank" className="underline underline-offset-2 italic">call us</Link> or <Link to="https://wa.me/60174891189" target="_blank" className="underline underline-offset-2 italic">Whatsapp</Link> us.</p>
+                  <p>*For same-day reservations, kindly <Link to="tel:0174891189" target="_blank" className="underline underline-offset-2 italic">call us</Link> or <Link to="https://wa.me/60174891189" target="_blank" className="underline underline-offset-2 italic">Whatsapp us.</Link> </p>
                 </div>
             {doneRead? (
               <div className="flex justify-center md:block">
