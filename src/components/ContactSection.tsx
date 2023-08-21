@@ -100,13 +100,15 @@ if (hour === 21) {
     }
   
     // Check if the current date is before the current day (i.e., yesterday or earlier)
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    yesterday.setHours(23, 59, 59, 999); // Set to the end of yesterday
+    const today = new Date();
+    today.setDate(today.getDate());
+    today.setHours(23, 59, 59, 999); // Set to the end of today
   
-    if (currentDate < yesterday) {
+    if (currentDate < today) {
       return true; // Disable dates before yesterday
     }
+
+    
 
     for (const event of events) {
       if (!event.disableDay) {
@@ -494,7 +496,8 @@ const handleLargeModalOK = () => {
                 </Form.Item>
 
                 <div className="text-main text-xs md:whitespace-nowrap mb-6">
-                  <p>*For reservation of 10 pax and above, please proceed with <Link to="https://wa.me/60174891189" target="_blank" className="underline underline-offset-2">group booking via Whatsapp.</Link></p>
+                  <p>*For reservation of 10 pax and above, please proceed with <Link to="https://wa.me/60174891189" target="_blank" className="underline underline-offset-2 italic">group booking via Whatsapp.</Link></p>
+                  <p>*For same-day reservations, kindly <Link to="tel:0174891189" target="_blank" className="underline underline-offset-2 italic">call us</Link> or <Link to="https://wa.me/60174891189" target="_blank" className="underline underline-offset-2 italic">Whatsapp</Link> us.</p>
                 </div>
             {doneRead? (
               <div className="flex justify-center md:block">
