@@ -46,8 +46,6 @@ function ContactSection() {
   }, []);
 
 
-  
-  console.log(additionalDisabledDate)
   let modalContent;
 
 if (hour === 21) {
@@ -82,7 +80,7 @@ if (hour === 21) {
     selectedDateUTC.setMinutes(selectedDateUTC.getMinutes() + timezoneOffset); // Convert to GMT+8
   
     const formattedDate = selectedDateUTC.toISOString().split('T')[0];
-    console.log(formattedDate)
+  
     setSelectedDate(formattedDate);
     
 
@@ -153,7 +151,7 @@ const disabledTime = () => {
   const defaultDisabledHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 23];
   const defaultDisabledMinutes = [30, 45];
   if (selectedDate) {
-    console.log(selectedDate)
+
     const matchingEvent = events.find((event: { singleDisabled: string; }) => event.singleDisabled === selectedDate);
         
     if (matchingEvent) {
@@ -166,8 +164,8 @@ const disabledTime = () => {
       
       const fromMinute = fromTime.fromMinute;
       let toHour = toTime.toHour;
-      console.log(toHour)
-      console.log(toTime.toMinute)
+     
+     
       if ( toTime.toMinute !== 0){
         toHour = toHour - 1
       }
@@ -183,7 +181,7 @@ const disabledTime = () => {
       const toHH = toTime.toHour
       let toMinute = toTime.toMinute;
       const disabledHoursInRange = Array.from({ length: toHour - fromHour + 1 }, (_, index) => fromHour + index);
-      console.log(disabledHoursInRange)
+   
       return {
         disabledHours: () => [...disabledHoursInRange, ...defaultDisabledHours],
         disabledMinutes: (selectedHour: number) => {
@@ -251,7 +249,7 @@ const disabledTime = () => {
 
 
   const format = "HH:mm";
-  console.log(formValues)
+  
   const handleTimeChange = (time: any) => {
   const hour = time?.$H;
   setHour(hour);
@@ -262,8 +260,6 @@ const disabledTime = () => {
   
 };
 
-
-console.log(formValues)
 const handleClose = () =>{
     setModalOpen(false)
 }
@@ -277,7 +273,6 @@ const sendEmail = async (formattedValues:any) => {
       formattedValues,
       'k-o6gKU7rmtoFJwGq',   
     );
-    console.log('Email sent successfully');
     setIsLoading(false)
     setSuccess(true)
   } catch (error) {
@@ -293,7 +288,6 @@ const [form] = Form.useForm();
 
 
 const  onFinish = async (values: any) => {
-  console.log(values);
   const formattedDate = moment(values.date.$d).format('DD-MMMM-YYYY');
  
   const formattedTime = moment(values.time.$d).format('h:mm a');

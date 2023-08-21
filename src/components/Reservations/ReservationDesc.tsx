@@ -9,7 +9,6 @@ type Props = { data: ReservationsModel | null };
 
 export default function ReservationDesc({ data }: Props) {
   handleNullData(data)
-  console.log(data)
   return (
     <div id="reservations">
     <div className="flex flex-col items-center ">

@@ -57,7 +57,6 @@ const JobApplication = ({ opening }: Props) => {
             formattedValues,
             'k-o6gKU7rmtoFJwGq',   
           );
-          console.log('Email sent successfully');
           setIsLoading(false)
           setSuccess(true)
         } catch (error) {
