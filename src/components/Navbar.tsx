@@ -124,7 +124,7 @@ const Navbar = () => {
             <div className={`flex items-center lg:hidden ${bgColor}`}>
               {/* Mobile menu button*/}
               <button
-                className="inline-flex items-center justify-center rounded-md p-2 text-white   "
+                className="inline-flex items-center justify-center rounded-md p-2 text-white"
                 onClick={() => setOpen(!open)}
               >
                 {open ? (
