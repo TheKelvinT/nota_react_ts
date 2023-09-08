@@ -67,7 +67,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<About />} />
             <Route path="/menu" element={<Menu />} />
-            <Route path="/events" element={<Events />} />
+            <Route path="/event-space-klang-valley" element={<Events />} />
             <Route path="/reservations" element={<Reservations />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/blog" element={<Blog />} />

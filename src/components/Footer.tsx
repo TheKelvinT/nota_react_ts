@@ -14,7 +14,7 @@ function Footer({data}:Props) {
       <div className="flex gap-x-12 font-inter text-xs flex-col md:flex-row text-center gap-6">
         <Link to="/about">ABOUT</Link>
         <Link to="/menu">MENU</Link>
-        <Link to="/events">EVENT</Link>
+        <Link to="/event-space-klang-valley">EVENT</Link>
         <Link to="/careers">CAREERS</Link>
         <Link to="/reservations">RESERVATIONS</Link>
         <Link to="/blog">BLOG</Link>

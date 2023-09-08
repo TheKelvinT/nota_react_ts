@@ -10,8 +10,7 @@ import DrawerDeco from '@/assets/bottles.png'
 const leftNavigation = [
   { name: "About", href: "/about" },
   { name: "Menu", href: "/menu" },
-  { name: "Events", href: "/events" },
-  // { name: "Festive", href: "/festive" },
+  { name: "Events", href: "/event-space-klang-valley" },
 ];
 
 const rightNavigation = [
@@ -19,9 +18,7 @@ const rightNavigation = [
   { name: "Reservations", href: "/reservations" },
   { name: "Blog", href: "/blog" },
 ];
-// function classNames(...classes: string[]) {
-//   return classes.filter(Boolean).join(" ");
-// }
+
 
 const Navbar = () => {
   const loading = useLoadingStore((state: any) => state.loading);
@@ -124,7 +121,7 @@ const Navbar = () => {
             <div className={`flex items-center lg:hidden ${bgColor}`}>
               {/* Mobile menu button*/}
               <button
-                className="inline-flex items-center justify-center rounded-md p-2 text-white"
+                className="inline-flex items-center justify-center rounded-md p-2 text-white   "
                 onClick={() => setOpen(!open)}
               >
                 {open ? (
@@ -136,7 +133,6 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      
         <Drawer
           closable={false}
           placement="right"
