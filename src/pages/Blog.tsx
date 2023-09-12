@@ -39,13 +39,10 @@ const Blog = () => {
     
   }, []);
 
-  blogPost.sort((a: any, b: any) => {
-    const createdAtA = new Date(a._createdAt).getTime();
-    const createdAtB = new Date(b._createdAt).getTime();
-    return createdAtA - createdAtB;
-  });
+  blogPost.sort((a: any, b: any) => new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime());
 
 
+  console.log(blogPost)
   return <div>
       {loading ? (
           
