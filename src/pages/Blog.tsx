@@ -13,7 +13,7 @@ const Blog = () => {
   const [blogContent, setBlogContent] = useState<BlogHeroModel | null>(null);
   const loading = useLoadingStore((state: any) => state.loading);
   const setLoading = useLoadingStore((state: any) => state.setLoading);
-
+  console.log(blogPost)
 
    useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +38,12 @@ const Blog = () => {
     fetchData();
     
   }, []);
+
+  blogPost.sort((a: any, b: any) => {
+    const createdAtA = new Date(a._createdAt).getTime();
+    const createdAtB = new Date(b._createdAt).getTime();
+    return createdAtA - createdAtB;
+  });
 
 
   return <div>
