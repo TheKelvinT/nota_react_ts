@@ -45,8 +45,6 @@ const About = () => {
         <CustomImage
           Imgsrc={aboutContent?.aboutHero?.image}
           alt="hero-banner"
-        
-          
         />
       </div>
       <AboutCTA content={aboutContent}/>

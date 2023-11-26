@@ -25,17 +25,23 @@ const AboutCTA = ({content }: Props) => {
           </div>
           <p className="text-end max-w-[550px]">{data?.statementTldr}</p>
         </div>
-        <div className="text-center space-y-4 py-12 text-main max-w-[665px] w-11/12 ">
-          <CustomH1 >{data?.title}</CustomH1>
-          <DescContainer >
-          <PortableText value={data?.description}    onMissingComponent={false}/>
-          </DescContainer>
-          
-        </div>
-        <div className="md:mt-10">
+        <div className="flex justify-center items-center w-11/12">
          
-            <Button title={data?.callToAction?.buttonText} path={data?.callToAction?.routes} />
-     
+         
+            <iframe width="666" height="373" src="https://www.youtube.com/embed/oWwMY8M-hCE" title="NOTA · Cafe Restaurant | Where Warm Hospitality Meets Honest Cooking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; " allowFullScreen></iframe>
+      
+          <div className="flex justify-center flex-col items-center">
+            <div className="text-center space-y-4 py-12 text-main max-w-[665px] w-11/12 ">
+              <CustomH1 >{data?.title}</CustomH1>
+              <DescContainer >
+              <PortableText value={data?.description}    onMissingComponent={false}/>
+              </DescContainer>
+              
+            </div>
+            <div className="text-center" >
+                <Button title={data?.callToAction?.buttonText} path={data?.callToAction?.routes} />
+            </div>
+          </div>
         </div>
       </div>
     </section>

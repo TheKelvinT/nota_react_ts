@@ -317,7 +317,7 @@ const handleLargeModalOK = () => {
 // FORM VALIDATION
 
 
-  const rules = {
+const rules = {
     name:[
       {
       required: true,
