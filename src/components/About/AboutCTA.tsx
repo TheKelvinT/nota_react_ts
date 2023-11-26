@@ -25,11 +25,12 @@ const AboutCTA = ({content }: Props) => {
           </div>
           <p className="text-end max-w-[550px]">{data?.statementTldr}</p>
         </div>
-        <div className="flex justify-center items-center w-11/12">
+        <div className="flex flex-col lg:flex-row justify-center items-center w-11/12 mt-20">
          
-         
-            <iframe width="666" height="373" src="https://www.youtube.com/embed/oWwMY8M-hCE" title="NOTA · Cafe Restaurant | Where Warm Hospitality Meets Honest Cooking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; " allowFullScreen></iframe>
       
+        
+          <iframe className="h-full w-11/12 max-h-[375px] max-w-[666px] aspect-video " src="https://www.youtube.com/embed/oWwMY8M-hCE" title="NOTA · Cafe Restaurant | Where Warm Hospitality Meets Honest Cooking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; " allowFullScreen></iframe>
+         
           <div className="flex justify-center flex-col items-center">
             <div className="text-center space-y-4 py-12 text-main max-w-[665px] w-11/12 ">
               <CustomH1 >{data?.title}</CustomH1>
