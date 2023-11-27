@@ -9,6 +9,7 @@ import Loading from "@/components/Loading";
 import { fetchEvents,fetchEventAlert } from "@/utils/request";
 import useLoadingStore from "@/store/loadingStore";
 import CustomImage from '@/components/CustomImage'
+import ContactSection from "@/components/ContactSection";
 
 const Events = () => {
   const [eventContent, setEventContent] = useState< EventModel | null>(null);
@@ -64,7 +65,7 @@ const Events = () => {
       <EventCTA data={eventContent} modal={modalData} />
       <EventDesc data={eventContent} />
       <EventSlider data={eventContent} />
-      {/* <Gallery /> */}
+      <ContactSection eventType={true}/>
       </>
       )
 }

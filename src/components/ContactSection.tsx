@@ -1,5 +1,5 @@
 import  { useState,useEffect, useRef } from "react";
-import {  Modal,TimePicker,DatePicker, Form, Input, InputNumber, Row, Col, Alert} from 'antd';
+import {  Modal,TimePicker,DatePicker, Form, Input, InputNumber, Row, Col, Alert, Select, Space} from 'antd';
 import CustomButton from "./Button";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { Rule } from "antd/es/form";
@@ -14,17 +14,21 @@ import { PortableText } from "@portabletext/react";
 import { fetchReservationConfig } from "@/utils/request";
 import { Link } from "react-router-dom";
 
+interface Props  {
+  eventType?: boolean
+}
 
 type formValueModel = {
   name?:string;
   contact?: string;
   email?: string;
+  type?: string;
   special?: string;
   date?: string;
   pax?: number;
   time?:string;
 } 
-function ContactSection() {
+function ContactSection({eventType}: Props) {
   const timePickerRef = useRef<any>(null);
   const [hour, setHour] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
@@ -35,7 +39,7 @@ function ContactSection() {
   const [error, setError] = useState(false);
   const [selectedDate, setSelectedDate] = useState(""); 
   const [formValues, setFormValues] = useState<formValueModel>({})
-
+  const [others, setOthers] = useState(false)
   const data = reservationStore((state: any) => state.reservationAlert);
   const additionalDisabledDate = reservationConfig((state: any) => state.reservationConfig);
   
@@ -74,6 +78,15 @@ if (hour === 21) {
    
    
   // };
+
+  const eventTypeOptions = [
+    { value: 'Corporate', label: 'Corporate' },
+    { value: 'Birthday Celebration', label: 'Birthday Celebration' },
+    { value: 'Wedding', label: 'Wedding' },
+    { value: 'Private Family Gathering', label: 'Private Family Gathering' },
+    { value: 'Baby Shower', label: 'Baby Shower' },
+    { value: 'Others', label: 'Others' },
+  ]
   const handleDateChange = (date: any) => {
     const selectedDateUTC = new Date(date); // Convert the date string to a UTC Date object
     const timezoneOffset = 8 * 60; // Offset for GMT+8 in minutes
@@ -145,7 +158,6 @@ if (hour === 21) {
    return false
   };
   
-
 const disabledTime = () => {
   const events = additionalDisabledDate;
   const defaultDisabledHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 23];
@@ -238,16 +250,6 @@ const disabledTime = () => {
   
   
 };
-
-
-
-
-
-
-
-
-
-
   const format = "HH:mm";
   
   const handleTimeChange = (time: any) => {
@@ -285,14 +287,11 @@ const sendEmail = async (formattedValues:any) => {
 
 const [form] = Form.useForm();
 
-
-
 const  onFinish = async (values: any) => {
   const formattedDate = moment(values.date.$d).format('DD-MMMM-YYYY');
  
   const formattedTime = moment(values.time.$d).format('h:mm a');
 
-  
   const formattedValues = {
     ...values,
     date: formattedDate,
@@ -314,9 +313,19 @@ const handleLargeModalOK = () => {
   setDoneRead(true)
 }
 
+const onEventTypeChange = (value: string) => {
+  if(value === 'Others'){
+    setOthers(true)
+    
+  } else {
+    setOthers(false)
+    setFormValues({ ...formValues, type: '' })
+  }
+  setFormValues({ ...formValues, type: value }) 
+
+}
+
 // FORM VALIDATION
-
-
 const rules = {
     name:[
       {
@@ -360,6 +369,12 @@ const rules = {
       message: 'Date cannot be empty.',
     },
   ],
+  type:[
+    {
+      required: true,
+      message: 'Event Type cannot be empty.',
+    },
+  ],
   pax:[
     {
       required: true,
@@ -382,7 +397,14 @@ const rules = {
       <div className="flex flex-col md:flex-row justify-center py-20  mx-auto mt-24 md:gap-x-16 lg:gap-x-28 xl:gap-x-56 w-11/12 lg:w-auto">
         <div className="lg:w-[500px] ">
           <div className="mb-8">
-            <CustomH1>Chope A Table</CustomH1>
+            {eventType? (
+              <CustomH1>Event Enquiry Form</CustomH1>
+            ):
+            (
+              <CustomH1>Chope A Table</CustomH1>
+            )}
+            
+            
           </div>
         
             <Form form={form} colon={false} onFinish={onFinish}>
@@ -427,6 +449,42 @@ const rules = {
                      className="bg-primary border border-main/20 text-xs w-full placeholder-place font-inter rounded-none h-12"
                   />  
                   </Form.Item>
+
+                  {eventType && (<Form.Item name="type" label={<p className="font-gothic text-lg">Event Type</p>}  rules={rules.type} labelCol={{span:6}} labelAlign="left" >
+                    {/* <Input
+                     type="email"
+                     id="email"
+                     name="email"
+                     placeholder="email"
+               
+                     className="bg-primary border border-main/20 text-xs w-full placeholder-place font-inter rounded-none h-12"
+                  />   */}
+                  {others?
+                  (
+                    <Space.Compact className=" flex w-100" >
+                    <Select
+                      value={formValues.type}
+                      options={eventTypeOptions}
+                      className="flex-1 min-w-[150px]"
+                      onChange={onEventTypeChange}
+                    />
+                    <Input
+                      className="bg-primary border border-main/20 text-xs flex-2 w-full placeholder-place font-inter rounded-none h-12"
+                      placeholder="Input event type"
+                    />
+                  </Space.Compact>
+                  ):(
+                    <Select
+                 
+                   id="type"
+                   placeholder="event type"
+                   options={eventTypeOptions}
+                   onChange ={onEventTypeChange}
+                  >
+
+                  </Select>
+                  )}
+                  </Form.Item>)}
 
    
                 <Form.Item name="date" label={<p className="font-gothic text-lg">Date</p>}  rules={rules.date} labelCol={{span:6, sm:6}} labelAlign="left" >
@@ -473,14 +531,28 @@ const rules = {
                   </Col>
                   
                 </Row>
-                 
-             
                 
-                <Form.Item name="special" label={<p className="font-gothic text-lg">Special Requirements<span className="text-xs"> (if any)</span></p>} labelCol={{span:24}} wrapperCol={{span:24}} labelAlign="left">
+                
+                <Form.Item 
+                  name="special" 
+                  
+                  label={
+                    eventType? (
+                      <p className="font-gothic text-lg">
+                     Remarks
+                    </p>
+                    ) : (
+                      <p className="font-gothic text-lg">
+                      Special Requirements<span className="text-xs"> (if any)</span>
+                    </p>
+                    )
+                    
+                    } labelCol={{span:24}} wrapperCol={{span:24}} labelAlign="left">
                
                  <Input.TextArea
                   id="special"
                   name="special"
+                  
                   autoSize={{minRows:2, maxRows:6}}
                   className="bg-primary font-inter border placeholder-place border-main/20 text-xs w-full  py-2 rounded-none h-20 "
                   placeholder="additional information: (such as dietary requirements, celebration details, special care, etc)"
