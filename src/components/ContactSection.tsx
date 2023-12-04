@@ -87,6 +87,14 @@ if (hour === 21) {
     { value: 'Baby Shower', label: 'Baby Shower' },
     { value: 'Others', label: 'Others' },
   ]
+
+  const eventTimeSlot = [
+    { value: 'day', label: '10am - 2pm (Daytime)' },
+    { value: 'tea', label: '2pm - 6pm (Teatime)' },
+    { value: 'evening', label: '6pm - 10pm (Evening)' },
+  
+  ]
+
   const handleDateChange = (date: any) => {
     const selectedDateUTC = new Date(date); // Convert the date string to a UTC Date object
     const timezoneOffset = 8 * 60; // Offset for GMT+8 in minutes
@@ -467,6 +475,8 @@ const rules = {
                       options={eventTypeOptions}
                       className="flex-1 min-w-[150px]"
                       onChange={onEventTypeChange}
+                      dropdownStyle={{ width: '200px' }}
+                      
                     />
                     <Input
                       className="bg-primary border border-main/20 text-xs flex-2 w-full placeholder-place font-inter rounded-none h-12"
@@ -500,29 +510,33 @@ const rules = {
                     />
                   </Form.Item>
                 <Row>
-                <Col span={12} >
+                <Col span={16} >
                   <Form.Item name="time" label={<p className="font-gothic text-lg ">Time</p>}  rules={rules.time}   
-                   labelCol={{span:12 }} wrapperCol={{sm:12}} labelAlign="left" >
-                      <TimePicker
-                      ref={timePickerRef}
-                      minuteStep={15}
-                      secondStep={10}
-                      format={format}
-                      showNow={false}
-                      disabled={!selectedDate}
-                      inputReadOnly={true}
-                      disabledTime={disabledTime}
-                      changeOnBlur={true}
-                      onChange={handleTimeChange}
-                      placeholder="00:00"
-                      hideDisabledOptions={true}
-                      name="time"
-                      id="time"
-                      className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  h-12 font-inter custom-picker "
-                    /> 
+                   labelCol={{span:9 }} wrapperCol={{sm:15}} labelAlign="left" >
+                    {eventType? <Select    
+                 id="time" options={eventTimeSlot}></Select>
+                 : 
+                 <TimePicker
+                 ref={timePickerRef}
+                 minuteStep={15}
+                 secondStep={10}
+                 format={format}
+                 showNow={false}
+                 disabled={!selectedDate}
+                 inputReadOnly={true}
+                 disabledTime={disabledTime}
+                 changeOnBlur={true}
+                 onChange={handleTimeChange}
+                 placeholder="00:00"
+                 hideDisabledOptions={true}
+                 name="time"
+                 id="time"
+                 className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  h-12 font-inter custom-picker "
+               /> 
+                 } 
                   </Form.Item>
                   </Col>
-                  <Col span={10} offset={2} >
+                  <Col span={6} offset={2} >
                   <Form.Item name="pax" label={<p className="font-gothic text-lg ">pax</p>}  rules={rules.pax}   
                    labelCol={{span:12}} wrapperCol={{span:8, sm:12}} labelAlign="left" >
                     <InputNumber  name="pax"
