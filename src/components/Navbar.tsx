@@ -4,8 +4,8 @@ import { Drawer } from "antd";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import useLoadingStore from "@/store/loadingStore";
 import NotaLogo from "@/assets/Nota-Logo.png";
-import DarkLogo from "@/assets/nota-logo-black.png"
-import DrawerDeco from '@/assets/bottles.png'
+import DarkLogo from "@/assets/nota-logo-black.png";
+import DrawerDeco from "@/assets/bottles.png";
 // import CustomButton from './Button'
 const leftNavigation = [
   { name: "About", href: "/about" },
@@ -18,7 +18,6 @@ const rightNavigation = [
   { name: "Reservations", href: "/reservations" },
   { name: "Blog", href: "/blog" },
 ];
-
 
 const Navbar = () => {
   const loading = useLoadingStore((state: any) => state.loading);
@@ -54,20 +53,20 @@ const Navbar = () => {
     pathname === "/reservations" ||
     pathname === "/admin" ||
     pathname === "/careers" ||
-    pathname === "/404"
+    pathname === "/404";
   const bgColor =
     scrollDown || isDarkNav || loading
       ? "bg-secondary ease-out duration-300"
       : "bg-transparent ease-in duration-300";
 
-  const handleClick = () =>{
-    setOpen(false)
-  }
+  const handleClick = () => {
+    setOpen(false);
+  };
   return (
     <nav
       className={`relative z-50 text-white py-2  max-w-screen sticky top-0 overflow-hidden   ${bgColor}`}
     >
-       {/* <div className="absolute right-0 mt-2.5 mr-16">
+      {/* <div className="absolute right-0 mt-2.5 mr-16">
               <CustomButton title="BOOK A TABLE" path="/reservations"/>
             </div> */}
       <div className="bg-transparent">
@@ -115,9 +114,8 @@ const Navbar = () => {
                   ))}
                 </div>
               </div>
-              
             </div>
-           
+
             <div className={`flex items-center lg:hidden ${bgColor}`}>
               {/* Mobile menu button*/}
               <button
@@ -142,42 +140,58 @@ const Navbar = () => {
           className="bg-primary mx-auto relative max-h-screen overflow-hidden overscroll-none"
         >
           <div className="sidenav-container flex flex-col  items-center overflow-hidden">
-          <div> 
-          <div className="flex justify-end px-1">
-            <button
-              className=" inline-flex items-center justify-center rounded-md  text-secondary"
-              onClick={() => setOpen(!open)}
-            >
-              <XMarkIcon className="block h-6 w-6 " aria-hidden="true" />
-            </button>
-          </div>
-          <Link to="/">
-          <div className="pb-6 max-h-[150px]  max-w-[252px] mx-auto ">
-              <img src={DarkLogo} alt="" className="h-full w-full object-cover " />
-          </div>
-          </Link>
-          <div className="flex flex-col text-lg decoration-none text-secondary items-center gap-6 relative z-10">
-            {/* Left Navigation */}
-            {leftNavigation.map((item) => (
-              <Link to={item.href} key={item.name} onClick={handleClick} className="text-secondary">
-                <div >{item.name}</div>
+            <div>
+              <div className="flex justify-end px-1">
+                <button
+                  className=" inline-flex items-center justify-center rounded-md  text-secondary"
+                  onClick={() => setOpen(!open)}
+                >
+                  <XMarkIcon className="block h-6 w-6 " aria-hidden="true" />
+                </button>
+              </div>
+              <Link to="/">
+                <div className="pb-6 max-h-[150px]  max-w-[252px] mx-auto ">
+                  <img
+                    src={DarkLogo}
+                    alt=""
+                    className="h-full w-full object-cover "
+                  />
+                </div>
               </Link>
-            ))}
-            {/* Right Navigation */}
-            {rightNavigation.map((item) => (
-              <Link to={item.href} key={item.name} onClick={handleClick} className="text-secondary">
-                {item.name}
-              </Link>
-            ))}
-           
-          </div>
-          </div>
-       
-          <div className="overflow-hidden max-h-[280px] w-[280px] ">
-            <img src={DrawerDeco} alt="" className="object-cover h-full w-full" />
+              <div className="flex flex-col text-lg decoration-none text-secondary items-center gap-6 relative z-10">
+                {/* Left Navigation */}
+                {leftNavigation.map((item) => (
+                  <Link
+                    to={item.href}
+                    key={item.name}
+                    onClick={handleClick}
+                    className="text-secondary"
+                  >
+                    <div>{item.name}</div>
+                  </Link>
+                ))}
+                {/* Right Navigation */}
+                {rightNavigation.map((item) => (
+                  <Link
+                    to={item.href}
+                    key={item.name}
+                    onClick={handleClick}
+                    className="text-secondary"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
             </div>
-            
+
+            <div className="overflow-hidden max-h-[280px] w-[280px] ">
+              <img
+                src={DrawerDeco}
+                alt=""
+                className="object-cover h-full w-full"
+              />
             </div>
+          </div>
         </Drawer>
       </div>
     </nav>

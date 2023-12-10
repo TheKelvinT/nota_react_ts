@@ -1,6 +1,5 @@
-
 import "./App.css";
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from "react";
 import { fetchFooter } from "@/utils/request";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Home.jsx";
@@ -12,56 +11,59 @@ import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer.js";
-import { FloatButton } from 'antd';
-import WhatsappIcon from './assets/whatsapp-logo.svg'
+import { FloatButton } from "antd";
+import WhatsappIcon from "./assets/whatsapp-logo.svg";
 import useLoadingStore from "./store/loadingStore.js";
 import Admin from "./pages/Admin.js";
 import ScrollToTop from "./components/ScrollToTop.js";
 import SingleBlog from "./pages/SingleBlog.js";
 import { FooterData } from "./types/Footer.js";
 import NotFound from "./pages/NotFound.js";
-import TagManager from 'react-gtm-module'
+import TagManager from "react-gtm-module";
 
 function App() {
   const loading = useLoadingStore((state: any) => state.loading);
-  const [footer, setFooter] = useState<FooterData| null>(null);
+  const [footer, setFooter] = useState<FooterData | null>(null);
   const setLoading = useLoadingStore((state: any) => state.setLoading);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true)
-        const [data] = await Promise.all([
-          fetchFooter(),
-        ]);
-      
+        setLoading(true);
+        const [data] = await Promise.all([fetchFooter()]);
+
         setFooter(data);
-        
- 
       } catch (error) {
         console.error("Error fetching data", error);
-        setLoading(false)
+        setLoading(false);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     };
 
     fetchData();
-    
   }, []);
 
   useEffect(() => {
-    const tagManagerArgs = {gtmId: 'GTM-PQX3C7HL'};
-    TagManager.initialize(tagManagerArgs)
+    const tagManagerArgs = { gtmId: "GTM-PQX3C7HL" };
+    TagManager.initialize(tagManagerArgs);
   }, []);
 
   return (
     <>
       <BrowserRouter>
-     
-      <FloatButton icon={<div className="h-16 w-16 absolute top-1 left-1 opacity-60 hover:opacity-100 transition-all hover:scale-110"><img src={WhatsappIcon} className=""/></div>} href="https://wa.me/60174891189" target="_blank" className="h-16 w-16 " />
-      <Navbar/>
-      {/* {loading? "" : <Navbar />} */}
+        <FloatButton
+          icon={
+            <div className="h-16 w-16 absolute top-1 left-1 opacity-60 hover:opacity-100 transition-all hover:scale-110">
+              <img src={WhatsappIcon} className="" />
+            </div>
+          }
+          href="https://wa.me/60174891189"
+          target="_blank"
+          className="h-16 w-16 "
+        />
+        <Navbar />
+        {/* {loading? "" : <Navbar />} */}
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -71,17 +73,16 @@ function App() {
             <Route path="/reservations" element={<Reservations />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/admin" element={<Admin/>} />
-            <Route path="/blog/:slug" element={<SingleBlog/>} />
-            <Route path="/404" element={<NotFound/>} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/blog/:slug" element={<SingleBlog />} />
+            <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
-        </ScrollToTop> 
-        {loading? "" : <Footer data={footer}/>}
-
+        </ScrollToTop>
+        {loading ? "" : <Footer data={footer} />}
       </BrowserRouter>
     </>
   );
 }
 
-export default App
+export default App;

@@ -1,5 +1,4 @@
-
-import  { useRef } from "react";
+import { useRef } from "react";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,15 +20,10 @@ import { CarouselImage } from "@/types/Home";
 import handleNullData from "@/utils/handleNullData";
 import CustomImage from "../CustomImage";
 
-
-
-
 SwiperCore.use([Autoplay, Pagination]);
-type Props = { images:CarouselImage[] | null };
+type Props = { images: CarouselImage[] | null };
 function MainCarousel({ images }: Props) {
- handleNullData(images)
-
-
+  handleNullData(images);
 
   const swiperRef = useRef(null);
   // const carouselStyle = {
@@ -41,7 +35,7 @@ function MainCarousel({ images }: Props) {
   // }as any;
 
   return (
-        <div className="flex  mx-auto justify-center screen-limit bg-main">
+    <div className="flex  mx-auto justify-center screen-limit bg-main">
       <Swiper
         ref={swiperRef}
         cssMode={true}
@@ -63,16 +57,19 @@ function MainCarousel({ images }: Props) {
             (image: { imageURL: string | undefined }, index: number) => (
               <SwiperSlide key={index} className="  ">
                 <div className="bg-main w-[1920px] h-screen overflow-hidden">
-                {/* <img
+                  {/* <img
                
                   src={image.imageURL}
                   alt={`hero${index + 1}`}
                   className="h-full w-full object-cover"
                 /> */}
-                <CustomImage alt={`hero${index + 1}`} Imgsrc={image.imageURL}/>
+                  <CustomImage
+                    alt={`hero${index + 1}`}
+                    Imgsrc={image.imageURL}
+                  />
                 </div>
               </SwiperSlide>
-            )
+            ),
           )}
       </Swiper>
     </div>

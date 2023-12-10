@@ -22,8 +22,6 @@ body {
   width: 100%;
 }
 
-
-
 @tailwind utilities;
 
 html,
@@ -34,9 +32,9 @@ body,
   @apply text-[#1e1e1e] tracking-wider;
 }
 
-
 @layer base {
-  ul, ol {
+  ul,
+  ol {
     list-style: revert;
     margin-left: 1.25rem;
     margin-top: 0.25rem; /* Adjust the value to suit your needs */
@@ -110,10 +108,10 @@ input::-webkit-inner-spin-button {
   background-color: rgb(219 219 212 / 0.8);
 }
 
-.ant-btn-primary{
+.ant-btn-primary {
   color: #595d3c !important;
-  background-color: #F3F3EC !important;
-  border-color:#595d3c !important;
+  background-color: #f3f3ec !important;
+  border-color: #595d3c !important;
   border-radius: 0 !important;
 }
 .ant-btn:active {
@@ -125,28 +123,28 @@ input::-webkit-inner-spin-button {
 .ant-btn:focus-visible {
   outline: 4px solid #595d3c55 !important;
   outline-offset: 1px !important;
-  transition: outline-offset 0s,outline 0s;
+  transition:
+    outline-offset 0s,
+    outline 0s;
 }
 
 .ant-picker-ok .ant-btn {
   color: #595d3c;
-  background-color: #F3F3EC;
-  border-color:#595d3c;
+  background-color: #f3f3ec;
+  border-color: #595d3c;
   border-radius: 0 !important;
   font-family: "Gothic";
   font-size: 10px;
-
 }
 
 :where(.css-dev-only-do-not-override-w8mnev).ant-btn-default {
   color: #595d3c;
-  background-color: #F3F3EC;
-  border-color:#595d3c;
+  background-color: #f3f3ec;
+  border-color: #595d3c;
   border-radius: 0 !important;
   font-family: "Gothic";
   font-size: 10px;
   text-transform: uppercase;
-
 }
 
 /* .ant-modal.footer .ant-btn-default {
@@ -160,7 +158,7 @@ input::-webkit-inner-spin-button {
 
 } */
 
-.ant-modal .ant-modal-content{
+.ant-modal .ant-modal-content {
   background-color: #f5f5ef !important;
 }
 
@@ -168,10 +166,10 @@ input::-webkit-inner-spin-button {
   border-radius: 0 !important;
 }
 
-:where(.css-dev-only-do-not-override-w8mnev).ant-btn-primary{
+:where(.css-dev-only-do-not-override-w8mnev).ant-btn-primary {
   color: #595d3c;
-  background-color: #F3F3EC;
-  border-color:#595d3c;
+  background-color: #f3f3ec;
+  border-color: #595d3c;
   border-radius: 0 !important;
   font-family: "Gothic";
   font-size: 10px;
@@ -188,16 +186,13 @@ input::-webkit-inner-spin-button {
 
 } */
 
-
 .ant-picker-ok .ant-btn:hover {
   background-color: rgb(219 219 212 / 0.8);
-
-
 }
 
 .custom-picker {
   background: #f3f3ec !important;
-  border: 1px solid rgb(89 93 60 / 0.2) ;
+  border: 1px solid rgb(89 93 60 / 0.2);
   border-radius: 0px !important;
 }
 
@@ -217,79 +212,74 @@ input::placeholder {
 
 .spinner-container {
   height: calc(100vh - 200px);
-
 }
 
-.sidenav-container{
+.sidenav-container {
   height: calc(100vh - 24px);
 }
 
 .ant-spin-dot-item {
-  background-color: #30332A !important;
+  background-color: #30332a !important;
 }
 
 .ant-spin {
-  color: #30332A;
+  color: #30332a;
 }
 
 .screen-limit {
   max-width: 1920px;
-
 }
 
-.ant-float-btn-content{
+.ant-float-btn-content {
   width: 100%;
 }
 
-.ant-float-btn-body{
+.ant-float-btn-body {
   position: relative;
   display: none;
   background-color: transparent !important;
-
 }
 
-.ant-float-btn-circle{
-background-color: transparent !important;
+.ant-float-btn-circle {
+  background-color: transparent !important;
   box-shadow: none;
 }
 
 .ant-tooltip .ant-tooltip-inner {
-  background-color: #F3F3EC;
-  border: 1px solid #595D3C;
-  color: #595D3C;
-
+  background-color: #f3f3ec;
+  border: 1px solid #595d3c;
+  color: #595d3c;
 }
 
 .ant-tooltip .ant-tooltip-arrow {
- --antd-arrow-background-color: #595D3C
-
+  --antd-arrow-background-color: #595d3c;
 }
 
-.ant-form-item .ant-form-item-label{
+.ant-form-item .ant-form-item-label {
   display: flex;
   align-items: center;
   height: 48px;
 }
 
-li .ant-picker-ok{
+li .ant-picker-ok {
   display: none;
 }
 
-.ant-drawer .ant-drawer-body{
+.ant-drawer .ant-drawer-body {
   padding: 24px 0 0 0;
 }
 
-.ant-form-item-control-input-content .ant-input{
+.ant-form-item-control-input-content .ant-input {
   height: 38px;
 }
 
-#resume_extra{
+#resume_extra {
   margin-top: 0.5rem;
   font-family: Inter;
   font-size: 12px;
 }
 
-.ant-upload-list-item-actions .ant-btn{
+.ant-upload-list-item-actions .ant-btn {
   background: transparent;
 }
 
@@ -301,14 +291,13 @@ li .ant-picker-ok{
   display: flex !important;
   align-items: center !important;
   font-family: Inter !important;
-
 }
 
 /* .ant-select-focused{
   border: none !important;
 } */
 
-.ant-form-item-explain-error{
+.ant-form-item-explain-error {
   font-size: 12px;
   font-family: Inter;
 }

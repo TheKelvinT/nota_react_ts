@@ -6,10 +6,9 @@ import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
 import CustomImage from "../CustomImage";
 
+type Props = { content: HomeContent | null | undefined };
 
-type Props = {content:HomeContent | null | undefined};
-
-const IndexCTA2 = ({content}: Props) => {
+const IndexCTA2 = ({ content }: Props) => {
   handleNullData(content);
 
   if (!content || !content.homeSectionTwo) {
@@ -18,7 +17,7 @@ const IndexCTA2 = ({content}: Props) => {
 
   const data = content.cards;
 
-return (
+  return (
     <section className=" flex flex-col mx-auto items-center gap-32 mt-20 md:mt-48 screen-limit ">
       {/* Desktop */}
       {data.map((card, index: number) => (
@@ -26,12 +25,13 @@ return (
           key={index}
           className="hidden md:flex justify-center md:h-[585px]  lg:gap-32  w-11/12 lg:w-4/5  gap-10  "
         >
-          <div className={` ${index % 2 === 1 ? "order-2" : ""} max-h-[585px] max-w-[468px] overflow-hidden`}>
-            <div className="h-[585px] w-[468px] bg-main">           
-            <CustomImage
-              Imgsrc={card.image}
-              alt="food-pic"
-            />
+          <div
+            className={` ${
+              index % 2 === 1 ? "order-2" : ""
+            } max-h-[585px] max-w-[468px] overflow-hidden`}
+          >
+            <div className="h-[585px] w-[468px] bg-main">
+              <CustomImage Imgsrc={card.image} alt="food-pic" />
             </div>
           </div>
           <div
@@ -41,11 +41,17 @@ return (
           >
             <div className="space-y-10 text-main text-start ">
               <CustomH1>{card.title}</CustomH1>
-              <DescContainer >
-                <PortableText value={card.description}    onMissingComponent={false}/>
+              <DescContainer>
+                <PortableText
+                  value={card.description}
+                  onMissingComponent={false}
+                />
               </DescContainer>
               <div className="mt-10">
-                  <Button title={card.callToAction.buttonText} path={card.callToAction.routes}/>
+                <Button
+                  title={card.callToAction.buttonText}
+                  path={card.callToAction.routes}
+                />
               </div>
             </div>
           </div>
@@ -63,10 +69,7 @@ return (
               index % 2 === 1 ? "order-2" : ""
             } w-full h-[350px] basis-5/12 overflow-hidden bg-main `}
           >
-            <CustomImage
-              Imgsrc={card.image}
-              alt="food-pic"            
-            />
+            <CustomImage Imgsrc={card.image} alt="food-pic" />
           </div>
           <div
             className={` ${
@@ -75,11 +78,17 @@ return (
           >
             <div className="space-y-6 text-main text-start ">
               <CustomH1>{card.title}</CustomH1>
-              <DescContainer >
-                <PortableText value={card.description}   onMissingComponent={false}/>
+              <DescContainer>
+                <PortableText
+                  value={card.description}
+                  onMissingComponent={false}
+                />
               </DescContainer>
               <div className="mt-10">
-                  <Button title={card.callToAction.buttonText} path={card.callToAction.routes}/>
+                <Button
+                  title={card.callToAction.buttonText}
+                  path={card.callToAction.routes}
+                />
               </div>
             </div>
           </div>
@@ -93,10 +102,7 @@ return (
           className="flex sm:hidden flex-col justify-center gap-4 w-11/12 "
         >
           <div className=" h-[320px] w-full overflow-hidden bg-main">
-            <CustomImage
-              Imgsrc={card.image}
-              alt="food-pic"
-            />
+            <CustomImage Imgsrc={card.image} alt="food-pic" />
           </div>
           <div
             className={` ${
@@ -105,11 +111,17 @@ return (
           >
             <div className="space-y-6 text-main text-center ">
               <CustomH1>{card.title}</CustomH1>
-              <DescContainer >
-                <PortableText value={card.description}    onMissingComponent={false}/>
+              <DescContainer>
+                <PortableText
+                  value={card.description}
+                  onMissingComponent={false}
+                />
               </DescContainer>
               <div className="mt-10">
-                  <Button title={card.callToAction.buttonText} path={card.callToAction.routes}/>
+                <Button
+                  title={card.callToAction.buttonText}
+                  path={card.callToAction.routes}
+                />
               </div>
             </div>
           </div>

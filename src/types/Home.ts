@@ -12,12 +12,12 @@ export type HomeContent = {
     title: string;
     callToAction: {
       cta: string;
-      buttonText: string 
+      buttonText: string;
       routes: string;
     };
-     Logo: string; 
+    Logo: string;
   };
-homeSectionTwo: {
+  homeSectionTwo: {
     description: PortableTextBlock[];
     title: string;
     Images: {
@@ -28,7 +28,7 @@ homeSectionTwo: {
     bannerURL: string;
   };
   cards: {
-    description: PortableTextBlock[] ;
+    description: PortableTextBlock[];
     image: string;
     title: string;
     callToAction: {

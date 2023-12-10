@@ -1,7 +1,7 @@
 import { PortableTextBlock } from "sanity";
 
 export type JobOpeningModel = {
-  upToSalary: string
+  upToSalary: string;
   salaryToggle: boolean;
   _rev: string;
   jobDescription: string[];
@@ -44,7 +44,7 @@ export type CareersModel = {
   };
   sectionOne: {
     pageHeader: string;
-    description: PortableTextBlock[] 
+    description: PortableTextBlock[];
     callToAction1: {
       routes: string;
       buttonText: string;
@@ -56,7 +56,7 @@ export type CareersModel = {
   };
   lastSection: {
     pageHeader: string;
-    description: PortableTextBlock[]
+    description: PortableTextBlock[];
     callToAction1: {
       routes: string;
       buttonText: string;

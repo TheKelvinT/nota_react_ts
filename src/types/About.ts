@@ -1,10 +1,10 @@
- export type AboutModel = {
+export type AboutModel = {
   aboutHero: {
     image: string;
   };
   sectionOne: {
-    statement:string,
-    statementTldr:string
+    statement: string;
+    statementTldr: string;
     title: string;
     callToAction: {
       cta: string;

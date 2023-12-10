@@ -1,10 +1,10 @@
 import { PortableTextBlock } from "sanity";
 
-export type FaqModel ={
+export type FaqModel = {
   _id: string;
   _createdAt: string;
   question: string;
-  answer: string; 
+  answer: string;
 }[];
 
 export type ReservationsModel = {
@@ -19,7 +19,7 @@ export type ReservationsModel = {
   groupCTA: {
     _type: string;
     _ref: string;
-    buttonText:string;
+    buttonText: string;
     routes: string;
   };
   groupTitle: string;
