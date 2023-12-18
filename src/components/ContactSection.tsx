@@ -149,9 +149,6 @@ function ContactSection({ eventType }: Props) {
     return false
   }
 
-  useEffect(() => {
-    console.log(others)
-  }, [others])
   const disabledTime = () => {
     const events = additionalDisabledDate
     const defaultDisabledHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 23]
@@ -288,7 +285,6 @@ function ContactSection({ eventType }: Props) {
   const [form] = Form.useForm()
 
   const onFinish = async (values: any) => {
-    console.log(values)
     if (values.newType) {
       values.type = values.newType
     }
@@ -305,7 +301,6 @@ function ContactSection({ eventType }: Props) {
       type: values.type ? values.type : "-",
     }
     setFormValues(formattedValues)
-    console.log(formattedValues)
     sendEmail(formattedValues)
   }
 
@@ -322,7 +317,6 @@ function ContactSection({ eventType }: Props) {
   // }
 
   const onEventTypeChange = (value: string) => {
-    console.log(value)
     if (value === "Others") {
       setOthers(true)
       setFormValues((prevFormValues) => ({
@@ -401,15 +395,6 @@ function ContactSection({ eventType }: Props) {
     ],
   }
 
-  const handleFormValuesChange = (
-    changedValues: formValueModel,
-    allValues: formValueModel
-  ) => {
-    console.log("Changed values:", changedValues)
-    console.log("All values:", allValues)
-    // Do something with the changed values
-  }
-
   return (
     <div id="book" className="bg-primary   text-main">
       <div className="flex flex-col md:flex-row justify-center py-20  mx-auto mt-24 md:gap-x-16 lg:gap-x-28 xl:gap-x-56 w-11/12 lg:w-auto">
@@ -422,12 +407,7 @@ function ContactSection({ eventType }: Props) {
             )}
           </div>
 
-          <Form
-            form={form}
-            colon={false}
-            onFinish={onFinish}
-            onValuesChange={handleFormValuesChange}
-          >
+          <Form form={form} colon={false} onFinish={onFinish}>
             <Form.Item
               name="name"
               label={<p className="font-gothic text-lg">Name</p>}
