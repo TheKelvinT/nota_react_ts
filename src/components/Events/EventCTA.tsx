@@ -1,31 +1,31 @@
-import Button from "@/components/Button";
-import { EventModel, ModalModel } from "@/types/Event";
-import handleNullData from "@/utils/handleNullData";
-import CustomH1 from "../StyleComponents/CustomH1";
-import DescContainer from "../StyleComponents/DescContainer";
-import { Modal } from "antd";
-import LocalButton from "@/components/Button";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { PortableText } from "@portabletext/react";
+import Button from "@/components/Button"
+import { EventModel, ModalModel } from "@/types/Event"
+import handleNullData from "@/utils/handleNullData"
+import CustomH1 from "../StyleComponents/CustomH1"
+import DescContainer from "../StyleComponents/DescContainer"
+import { Modal } from "antd"
+import LocalButton from "@/components/Button"
+import { Link } from "react-router-dom"
+import { useState } from "react"
+import { PortableText } from "@portabletext/react"
 
-type Props = { data: EventModel | null; modal: ModalModel | null };
+type Props = { data: EventModel | null; modal: ModalModel | null }
 
 const EventCTA = ({ data, modal }: Props) => {
-  const [largeModalOpen, setLargeModalOpen] = useState(false);
+  const [largeModalOpen, setLargeModalOpen] = useState(false)
 
-  handleNullData(data);
+  handleNullData(data)
 
   const handleOpen = () => {
-    setLargeModalOpen(true);
-  };
+    setLargeModalOpen(true)
+  }
 
   const handleClose = () => {
-    setLargeModalOpen(false);
-  };
+    setLargeModalOpen(false)
+  }
 
   return (
-    <section className="w-screen flex flex-col justify-center items-center py-20 ">
+    <section className="w-screen max-w-screen flex flex-col justify-center items-center py-20 ">
       <div className="text-center  flex flex-col items-center space-y-4 pb-8 text-main max-w-[665px] w-4/5">
         <CustomH1>{data?.sectionOne?.title}</CustomH1>
         <DescContainer>{data?.sectionOne?.desc}</DescContainer>
@@ -61,7 +61,7 @@ const EventCTA = ({ data, modal }: Props) => {
         </div>
       </Modal>
     </section>
-  );
-};
+  )
+}
 
-export default EventCTA;
+export default EventCTA
