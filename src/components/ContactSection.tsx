@@ -18,14 +18,14 @@ import { Rule } from "antd/es/form"
 import emailjs from "emailjs-com"
 import moment from "moment"
 import CustomH1 from "./StyleComponents/CustomH1"
-import LocalButton from "./Button"
-import reservationStore from "@/store/reservationStore.ts"
+// import LocalButton from "./Button"
+// import reservationStore from "@/store/reservationStore.ts"
 import reservationConfig from "@/store/reservationConfigStore.ts"
 import { fetchReservationAlert } from "@/utils/request"
-import { PortableText } from "@portabletext/react"
+// import { PortableText } from "@portabletext/react"
 import { fetchReservationConfig } from "@/utils/request"
-import { Link } from "react-router-dom"
 import { formValueModel } from "@/types/Contact"
+import EventTypeNotes from "./Events/EventTypeNotes"
 interface Props {
   eventType?: boolean
 }
@@ -34,15 +34,14 @@ function ContactSection({ eventType }: Props) {
   const timePickerRef = useRef<any>(null)
   const [hour, setHour] = useState(0)
   const [modalOpen, setModalOpen] = useState(false)
-  const [largeModalOpen, setLargeModalOpen] = useState(false)
-  const [doneRead, setDoneRead] = useState(false)
+  // const [largeModalOpen, setLargeModalOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
   const [selectedDate, setSelectedDate] = useState("")
   const [formValues, setFormValues] = useState<formValueModel>({})
   const [others, setOthers] = useState(false)
-  const data = reservationStore((state: any) => state.reservationAlert)
+  // const data = reservationStore((state: any) => state.reservationAlert)
   const additionalDisabledDate = reservationConfig(
     (state: any) => state.reservationConfig
   )
@@ -260,6 +259,13 @@ function ContactSection({ eventType }: Props) {
     setModalOpen(false)
   }
 
+  const getAlertDescription = () => {
+    if (!eventType) {
+      return `Thank you ${formValues?.name}, we have received your reservation request for ${formValues.pax} pax on ${formValues.time} ${formValues.date}. We will reach out to you shortly to confirm your reservation.`
+    } else {
+      return `Thank you ${formValues?.name}, we have received your event enquiry for ${formValues.pax} pax on ${formValues.time} ${formValues.date}. Our designated representative will contact you shortly to help with your inquiry.`
+    }
+  }
   const sendEmail = async (formattedValues: any) => {
     try {
       setIsLoading(true)
@@ -290,29 +296,30 @@ function ContactSection({ eventType }: Props) {
 
     const formattedTime = moment(values.time.$d).format("h:mm a")
 
-    const enquiryType = eventType ? "Event Reservation" : "General Reservation"
+    const enquiryType = eventType ? "Event Enquiry" : "General Reservation"
     const formattedValues = {
       ...values,
       date: formattedDate,
       time: formattedTime,
       enquiryType: enquiryType,
+      type: values.type ? values.type : "-",
     }
     setFormValues(formattedValues)
     console.log(formattedValues)
     sendEmail(formattedValues)
   }
 
-  const handleOpenLargeModal = () => {
-    setLargeModalOpen(true)
-  }
+  // const handleOpenLargeModal = () => {
+  //   setLargeModalOpen(true)
+  // }
 
-  const handleCloseLargeModal = () => {
-    setLargeModalOpen(false)
-  }
-  const handleLargeModalOK = () => {
-    setLargeModalOpen(false)
-    setDoneRead(true)
-  }
+  // const handleCloseLargeModal = () => {
+  //   setLargeModalOpen(false)
+  // }
+  // const handleLargeModalOK = () => {
+  //   setLargeModalOpen(false)
+  //   setDoneRead(true)
+  // }
 
   const onEventTypeChange = (value: string) => {
     console.log(value)
@@ -616,67 +623,35 @@ function ContactSection({ eventType }: Props) {
               />
             </Form.Item>
 
-            <div className="text-main text-xs md:whitespace-nowrap mb-6">
-              <p className="mb-3 md:mb-1.5">
-                *For reservation of 10 pax and above, please proceed with{" "}
-                <Link
-                  to="https://wa.me/60174891189"
-                  target="_blank"
-                  className="underline underline-offset-2 italic"
-                >
-                  group booking via Whatsapp.
-                </Link>
-              </p>
-              <p>
-                *For same-day reservations, kindly{" "}
-                <Link
-                  to="tel:0174891189"
-                  target="_blank"
-                  className="underline underline-offset-2 italic"
-                >
-                  call us
-                </Link>{" "}
-                or{" "}
-                <Link
-                  to="https://wa.me/60174891189"
-                  target="_blank"
-                  className="underline underline-offset-2 italic"
-                >
-                  Whatsapp us.
-                </Link>{" "}
-              </p>
+            <EventTypeNotes eventType={eventType} />
+
+            <div className="flex justify-center md:block">
+              {success ? (
+                <Alert
+                  message="Booking Request Submitted! "
+                  description={getAlertDescription()}
+                  type="success"
+                  showIcon
+                />
+              ) : error ? (
+                <Alert
+                  message="Oops..."
+                  description="Something went wrong. Please try again later."
+                  type="error"
+                  showIcon
+                />
+              ) : (
+                <CustomButton
+                  title="SUBMIT NOW"
+                  htmlType="submit"
+                  loading={isLoading}
+                />
+              )}
             </div>
-            {doneRead ? (
-              <div className="flex justify-center md:block">
-                {success ? (
-                  <Alert
-                    message="Booking Request Submitted! "
-                    description={`Thank you ${formValues?.name}, you've successfully choped a table for ${formValues.pax} pax on ${formValues.time}, ${formValues.date}!  `}
-                    type="success"
-                    showIcon
-                  />
-                ) : error ? (
-                  <Alert
-                    message="Oops..."
-                    description="Something went wrong. Please try again later."
-                    type="error"
-                    showIcon
-                  />
-                ) : (
-                  <CustomButton
-                    title="SUBMIT NOW"
-                    htmlType="submit"
-                    loading={isLoading}
-                  />
-                )}
-              </div>
-            ) : (
-              <CustomButton title="Submit now" onClick={handleOpenLargeModal} />
-            )}
           </Form>
         </div>
 
-        <div className="flex flex-col sm:justify-between sm:flex-row  md:flex-col mt-7 py-4 space-x-0 sm:space-x-8  md:space-x-0 w-4/5 md:w-auto ">
+        <div className="flex flex-col  sm:flex-row  md:flex-col mt-7 py-4 space-x-0 sm:space-x-`8  md:space-x-0 w-4/5 md:w-auto ">
           <div className="flex flex-col pb-12 pt-12 sm:pt-0">
             <div className=" sm:order-0  pb-12">
               <CustomH1>Operating Hours </CustomH1>
@@ -727,7 +702,7 @@ function ContactSection({ eventType }: Props) {
         {modalContent}
       </Modal>
 
-      <Modal
+      {/* <Modal
         className="w-11/12 "
         title={
           <div className="px-12 text-[30px] bg-[#f5f5ef] py-8  text-main font-marcellus">
@@ -748,7 +723,7 @@ function ContactSection({ eventType }: Props) {
         <div className="px-12 pb-8 font-inter text-xs sm:text-[17px] leading-5 text-main">
           <PortableText value={data?.body || []} onMissingComponent={false} />
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   )
 }
