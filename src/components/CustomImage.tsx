@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from "react"
 
 type Props = {
-  Imgsrc: string | undefined;
-  alt: string | undefined;
-};
+  Imgsrc: string | undefined
+  alt: string | undefined
+}
 
 const CustomImage = ({ Imgsrc, alt }: Props) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
 
   const handleImageLoad = () => {
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
     <>
@@ -28,7 +28,7 @@ const CustomImage = ({ Imgsrc, alt }: Props) => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CustomImage;
+export default CustomImage

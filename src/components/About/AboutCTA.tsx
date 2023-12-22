@@ -1,17 +1,17 @@
-import Button from "@/components/Button";
-import { PortableText } from "@portabletext/react";
-import { AboutModel } from "@/types/About";
-import CustomH1 from "../StyleComponents/CustomH1";
-import DescContainer from "../StyleComponents/DescContainer";
-import CustomImage from "../CustomImage";
+import Button from "@/components/Button"
+import { PortableText } from "@portabletext/react"
+import { AboutModel } from "@/types/About"
+import CustomH1 from "../StyleComponents/CustomH1"
+import DescContainer from "../StyleComponents/DescContainer"
+import CustomImage from "../CustomImage"
 type Props = {
-  content: AboutModel | null;
-};
+  content: AboutModel | null
+}
 const AboutCTA = ({ content }: Props) => {
-  const data = content?.sectionOne;
+  const data = content?.sectionOne
   if (!data) {
     // Handle the case when content is null
-    return null; // or display a loading state, error message, etc.
+    return null // or display a loading state, error message, etc.
   }
   return (
     <section className=" py-20">
@@ -23,7 +23,7 @@ const AboutCTA = ({ content }: Props) => {
           <div>{data?.statement}</div>
           <p className="text-end max-w-[550px]">{data?.statementTldr}</p>
         </div>
-        <div className="flex flex-col lg:flex-row justify-center items-center w-11/12 mt-20">
+        <div className="flex flex-col lg:flex-row  lg:gap-8 justify-center items-center w-11/12 mt-20">
           <iframe
             className="h-full w-11/12 max-h-[375px] max-w-[666px] aspect-video "
             src="https://www.youtube.com/embed/oWwMY8M-hCE"
@@ -52,7 +52,7 @@ const AboutCTA = ({ content }: Props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default AboutCTA;
+export default AboutCTA
