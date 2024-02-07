@@ -97,12 +97,22 @@ function ContactSection({ eventType }: Props) {
     setSelectedDate(formattedDate)
   }
 
+  function isSameDate(date1: any, date2: any) {
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    )
+  }
+
   const disabledDate = (current: any) => {
     const events = additionalDisabledDate
     const currentDate = new Date(current)
 
-    if (currentDate.getDay() === 3) {
-      return true // Disable Wednesdays
+    const feb142024 = new Date("2024-02-14")
+
+    if (currentDate.getDay() === 3 && !isSameDate(currentDate, feb142024)) {
+      return true // Disable Wednesdays except February 14th, 2024
     }
 
     // Check if the current date is before the current day (i.e., yesterday or earlier)
