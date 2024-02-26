@@ -5,12 +5,12 @@ import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
 import CustomImage from "../CustomImage";
 
-type Props = { content: MenuList[] | null; image: MenuContent | null; };
+type Props = { content: MenuList[] | null; image: MenuContent | null };
 
 const MenuOption = ({ content, image }: Props) => {
-  const data = content
-    const data2 = image
- if (!data || !data2) {
+  const data = content;
+  const data2 = image;
+  if (!data || !data2) {
     // Handle the case when content is null
     return null; // or display a loading state, error message, etc.
   }
@@ -27,24 +27,27 @@ const MenuOption = ({ content, image }: Props) => {
               <div className="flex flex-col items-center gap-y-1">
                 <CustomH1>{menu.title}</CustomH1>
                 <div className="font-gothic text-main text-xs">{menu.time}</div>
+                <div className="font-gothic text-main text-xs">{menu.date}</div>
               </div>
               <div className="text-center">
-              <DescContainer >
-                <PortableText value={menu.description}    onMissingComponent={false}/>
-              </DescContainer>
+                <DescContainer>
+                  <PortableText
+                    value={menu.description}
+                    onMissingComponent={false}
+                  />
+                </DescContainer>
               </div>
               <div className="text-center">
-                <Button title={menu.callToAction.buttonText} path={menu?.callToAction.routes} />
+                <Button
+                  title={menu.callToAction.buttonText}
+                  path={menu?.callToAction.routes}
+                />
               </div>
             </div>
           ))}
-       
         </div>
-        <div className="hidden md:block w-[365px] h-[565px] overflow-hidden bg-main">
-          <CustomImage
-            Imgsrc={image?.image || ""}
-            alt="menu-img"
-          />
+        <div className="hidden md:block w-[435px] h-full overflow-hidden bg-main">
+          <CustomImage Imgsrc={image?.image || ""} alt="menu-img" />
         </div>
       </div>
     </section>

@@ -6,10 +6,10 @@ const Gallery = () => {
     <section className="py-24">
       <div className="flex flex-col items-center">
         <div className="pb-12">
-        <CustomH1 >Gallery</CustomH1>
+          <CustomH1>Gallery</CustomH1>
         </div>
         <div className="w-11/12 flex justify-center max-w-[1337px] max-h-[767px] overflow-hidden">
-          <img src={GalleryImg} alt="gallery-img"  />
+          <img src={GalleryImg} alt="gallery-img" />
         </div>
       </div>
     </section>

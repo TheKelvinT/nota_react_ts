@@ -1,4 +1,3 @@
-
 import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
 import DescContainer from "../StyleComponents/DescContainer";
@@ -10,10 +9,7 @@ const SpecialMenu = ({ content }: Props) => {
   return (
     <section className="bg-primary mx-auto  lg:flex lg:justify-center  ">
       <div className="sm:hidden max-w-[639px] h-[337px] bg-main overflow-hidden">
-        <CustomImage
-          Imgsrc={content?.image}
-          alt="menu-img"
-        />
+        <CustomImage Imgsrc={content?.image} alt="menu-img" />
       </div>
       <div className="flex justify-between md:gap-8 lg:gap-16 xl:gap-36 h-[400px]    ">
         <div className="my-auto md:pl-8 md:basis-1/2 lg:basis-1/3 flex justify-center w-11/12 mx-auto ">
@@ -26,19 +22,22 @@ const SpecialMenu = ({ content }: Props) => {
               <p>{content?.date}</p>
               <p>{content?.time}</p>
             </div>
-            <DescContainer >
-              <PortableText value={content?.description}    onMissingComponent={false}/>
+            <DescContainer>
+              <PortableText
+                value={content?.description}
+                onMissingComponent={false}
+              />
             </DescContainer>
             <div>
-                <Button title={content?.callToAction?.buttonText} path={content?.callToAction?.routes}/>
+              <Button
+                title={content?.callToAction?.buttonText}
+                path={content?.callToAction?.routes}
+              />
             </div>
           </div>
         </div>
         <div className="hidden sm:block basis-1/2 md:basis-2/3  max-h-[400px] min-w-[50vw] w-full bg-main overflow-hidden">
-          <CustomImage
-            Imgsrc={content?.image}
-            alt="menu-img"
-          />
+          <CustomImage Imgsrc={content?.image} alt="menu-img" />
         </div>
       </div>
     </section>

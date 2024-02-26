@@ -1,9 +1,7 @@
-
 import Button from "@/components/Button";
 import { PortableText } from "@portabletext/react";
 import CustomH1 from "../StyleComponents/CustomH1";
 import DescContainer from "../StyleComponents/DescContainer";
-
 
 type Props = { data: any };
 
@@ -12,14 +10,20 @@ const CareerCTA = ({ data }: Props) => {
     <section className="flex flex-col justify-center items-center py-20">
       <div className="text-center space-y-4 pb-8 text-main w-11/12 max-w-[665px]">
         <div className="pb-4">
-        <CustomH1>{data?.sectionTwo.pageHeader || ""}</CustomH1>
+          <CustomH1>{data?.sectionTwo.pageHeader || ""}</CustomH1>
         </div>
-        <DescContainer >
-          <PortableText value={data?.sectionTwo.description || []}    onMissingComponent={false}/>
+        <DescContainer>
+          <PortableText
+            value={data?.sectionTwo.description || []}
+            onMissingComponent={false}
+          />
         </DescContainer>
       </div>
       <div className=" flex justify-center gap-x-6">
-          <Button title={data?.sectionTwo.callToAction1.buttonText || ""} path={data?.sectionTwo.callToAction1.routes || ""}/>
+        <Button
+          title={data?.sectionTwo.callToAction1.buttonText || ""}
+          path={data?.sectionTwo.callToAction1.routes || ""}
+        />
       </div>
     </section>
   );

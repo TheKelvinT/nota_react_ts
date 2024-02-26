@@ -16,8 +16,7 @@ module.exports = {
   theme: {
     extend: {
       listStyleType: {
-        
-        disc: 'disc',
+        disc: "disc",
       },
       colors: {
         primary: "#F3F3EC",
@@ -36,7 +35,7 @@ module.exports = {
     },
     screens: {
       xs: "428px",
-       ssm: "576px",
+      ssm: "576px",
       ...defaultTheme.screens,
     },
   },

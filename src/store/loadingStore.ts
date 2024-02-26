@@ -1,14 +1,9 @@
-
-import {create} from 'zustand';
-
+import { create } from "zustand";
 
 const useLoadingStore = create((set) => ({
-
   loading: true,
-  hasErrors:false,
+  hasErrors: false,
   setLoading: (isLoading: boolean) => set({ loading: isLoading }),
- 
+}));
 
-}))
-
-export default useLoadingStore
+export default useLoadingStore;

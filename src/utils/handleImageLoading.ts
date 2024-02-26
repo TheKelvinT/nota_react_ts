@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const handleImageLoading = (totalImagesCount : number) => {
+const handleImageLoading = (totalImagesCount: number) => {
   const [imageLoadedCount, setImageLoadedCount] = useState(0);
   const [loading, setLoading] = useState(true);
 

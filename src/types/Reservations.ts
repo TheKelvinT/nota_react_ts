@@ -1,8 +1,10 @@
-export type FaqModel ={
+import { PortableTextBlock } from "sanity";
+
+export type FaqModel = {
   _id: string;
   _createdAt: string;
   question: string;
-  answer: string; 
+  answer: string;
 }[];
 
 export type ReservationsModel = {
@@ -14,6 +16,15 @@ export type ReservationsModel = {
     _type: string;
     _ref: string;
   };
+  groupCTA: {
+    _type: string;
+    _ref: string;
+    buttonText: string;
+    routes: string;
+  };
+  groupTitle: string;
+  groupDesc: PortableTextBlock[];
+
   openingHours: {
     lastCall: string;
     openingHoursTitle: string;

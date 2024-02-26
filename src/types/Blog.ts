@@ -14,47 +14,47 @@ export type BlogHeroModel = {
   header: string;
 };
 export type BlogPostModel = {
-    title: string;
-    slug: string;
-    image: string;
-    content: {
+  title: string;
+  slug: string;
+  image: string;
+  content: {
+    _key: string;
+    markDefs: {
+      _type: "link";
+      href: string;
       _key: string;
-      markDefs: {
-        _type: "link";
-        href: string;
-        _key: string;
-      }[];
-      children: {
-        _type: "span";
-        marks: string[];
-        text: string;
-        _key: string;
-      }[];
-      _type: "block";
-      style: string;
     }[];
-    _id: string;
-    _createdAt: string;
-    summary: {
-      children: {
-        _type: "span";
-        marks: string[];
-        text: string;
-        _key: string;
-      }[];
-      _type: "block";
-      style: string;
+    children: {
+      _type: "span";
+      marks: string[];
+      text: string;
       _key: string;
-      markDefs: {
-        _key: string;
-        _type: "link";
-        href: string;
-      }[];
     }[];
+    _type: "block";
+    style: string;
+  }[];
+  _id: string;
+  _createdAt: string;
+  summary: {
+    children: {
+      _type: "span";
+      marks: string[];
+      text: string;
+      _key: string;
+    }[];
+    _type: "block";
+    style: string;
+    _key: string;
+    markDefs: {
+      _key: string;
+      _type: "link";
+      href: string;
+    }[];
+  }[];
 };
 
 export type SingleBlogModel = {
-  author?:string;
+  author?: string;
   title?: string;
   image?: string;
   content?: PortableTextContent[] | any[];
@@ -63,7 +63,7 @@ export type SingleBlogModel = {
 
 export type PortableTextContent = {
   _key: string;
-  _type: 'block';
+  _type: "block";
   children: PortableTextSpan[];
   markDefs?: PortableTextMarkDef[];
   style: string;
@@ -71,13 +71,13 @@ export type PortableTextContent = {
 
 export type PortableTextSpan = {
   _key: string;
-  _type: 'span';
+  _type: "span";
   text: string;
   marks?: string[];
 };
 
 export type PortableTextMarkDef = {
-  _type: 'link';
+  _type: "link";
   href: string;
   _key: string;
 };

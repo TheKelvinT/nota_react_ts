@@ -60,6 +60,6 @@ export type EventModel = {
 };
 
 export type ModalModel = {
-  title: string, 
-  body: PortableTextBlock[]
-}
+  title: string;
+  body: PortableTextBlock[];
+};
