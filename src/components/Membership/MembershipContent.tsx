@@ -3,9 +3,8 @@ import CustomImage from "../CustomImage"
 import handleNullData from "@/utils/handleNullData"
 import DescContainer from "../StyleComponents/DescContainer"
 import { PortableText } from "@portabletext/react"
-import { useLocation, useNavigate, useParams } from "react-router"
-import { useSearchParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import { HashLink } from "react-router-hash-link"
 
 type Props = {
   [x: string]: any
@@ -18,9 +17,6 @@ const MembershipContent = ({ data, setPageType }: Props) => {
 
   handleNullData(data)
 
-  const onTermsClick = () => {
-    setPageType("terms")
-  }
   return (
     <section className="bg-primary flex justify-center py-8 ">
       <div className="flex flex-col items-center ">
@@ -31,9 +27,13 @@ const MembershipContent = ({ data, setPageType }: Props) => {
               value={data?.membershipSectionTwo?.description}
               onMissingComponent={false}
             />
-            <a className="underline" onClick={onTermsClick}>
+            <Link
+              className="underline"
+              to="/membership/terms#tnc"
+              target="_blank"
+            >
               View our Terms and Conditions
-            </a>
+            </Link>
           </DescContainer>
         </div>
         <div className="max-w-[500px] hidden md:block">

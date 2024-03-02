@@ -55,6 +55,7 @@ const Navbar = () => {
     pathname === "/admin" ||
     pathname === "/careers" ||
     pathname === "/membership" ||
+    pathname === "/membership/terms" ||
     pathname === "/404"
   const bgColor =
     scrollDown || isDarkNav || loading

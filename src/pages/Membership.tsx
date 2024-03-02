@@ -2,12 +2,13 @@ import CustomImage from "@/components/CustomImage"
 import Loading from "@/components/Loading"
 import useLoadingStore from "@/store/loadingStore"
 import MembershipBanner from "@/assets/membership-banner.png"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import MembershipDesc from "@/components/Membership/MembershipDesc"
 import MembershipContent from "@/components/Membership/MembershipContent"
 import ContactSection from "@/components/ContactSection"
 import { fetchMembershipConfig } from "@/utils/request"
 import MembershipTerms from "@/components/Membership/MembershipTerms"
+import { useLocation } from "react-router-dom"
 
 type Props = {}
 
@@ -16,6 +17,9 @@ const Membership = (props: Props) => {
   const setLoading = useLoadingStore((state: any) => state.setLoading)
   const [data, setData] = useState(null)
   const [pageType, setPageType] = useState("benefit")
+  const location = useLocation()
+  const tncRef = useRef<HTMLDivElement>(null) // Create a ref for the tnc element
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,6 +37,17 @@ const Membership = (props: Props) => {
 
     fetchData()
   }, [])
+  useEffect(() => {
+    if (location.hash === "#tnc" && location.pathname === "/membership/terms") {
+      setPageType("terms")
+      if (tncRef.current) {
+        tncRef.current.scrollIntoView({ behavior: "smooth" })
+      }
+    } else {
+      setPageType("benefit")
+    }
+  }, [location])
+
   return (
     <div>
       {loading ? (
@@ -45,15 +60,18 @@ const Membership = (props: Props) => {
           {/* <ReservationDesc data={reservationsContent} />
         <ContactSection />
         <Faq faq={faq} /> */}
-          {pageType === "benefit" ? (
-            <>
-              <MembershipDesc data={data} />
-              <MembershipContent data={data} setPageType={setPageType} />
-            </>
-          ) : (
-            <MembershipTerms data={data} setPageType={setPageType} />
+          {data && (
+            <div id="tnc" ref={tncRef}>
+              {pageType === "benefit" ? (
+                <>
+                  <MembershipDesc data={data} />
+                  <MembershipContent data={data} setPageType={setPageType} />
+                </>
+              ) : (
+                <MembershipTerms data={data} setPageType={setPageType} />
+              )}
+            </div>
           )}
-
           <ContactSection eventType={true} />
         </>
       )}
