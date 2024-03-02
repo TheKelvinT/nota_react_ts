@@ -152,3 +152,15 @@ export const fetchReservationConfig = async () => {
     console.error("Error fetching reservation alert", error);
   }
 };
+ 
+export const fetchMembershipConfig = async () => {
+  try {
+    const response = await axios.get(
+      'https://9cqbua0r.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22membership%22%5D%7B%0A%20membershipHero%20%7B%0A%20%20%20%20desktopImage%7B%22image%22%3A%20asset-%3Eurl%7D%2C%0A%20%20%20%20mobileImage%7B%22image%22%3A%20asset-%3Eurl%7D%0A%20%20%7D%2C%0A%20%20terms%2C%0AmembershipSectionOne%7B%0A%20%20title%2C%0Adescription%2C%0AcallToAction-%3E%7B%0A%20%20%20%20cta%2C%0A%20%20%20%20buttonText%2C%0A%20%20%20%20routes%0A%20%20%7D%2C%0A%7D%2C%0A%20%20membershipSectionTwo%20%7B%0A%20%20%20%20title%2C%0A%20%20%20%20description%2C%0A%20%20%20%20privilegesImage%20%7B%0A%20%20%20%20%20%20desktopImage%7B%22image%22%3A%20asset-%3Eurl%7D%2C%0A%20%20%20%20%20%20mobileImage%7B%22image%22%3A%20asset-%3Eurl%7D%0A%20%20%20%20%7D%2C%0A%20%20%7D%2C%0A%7D'
+    );
+
+   return response.data.result[0]
+  } catch (error) {
+    console.error("Error fetching membership alert", error);
+  }
+};

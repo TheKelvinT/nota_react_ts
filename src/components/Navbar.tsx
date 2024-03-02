@@ -1,67 +1,69 @@
-import { useState, useRef, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { Drawer } from "antd";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import useLoadingStore from "@/store/loadingStore";
-import NotaLogo from "@/assets/Nota-Logo.png";
-import DarkLogo from "@/assets/nota-logo-black.png";
-import DrawerDeco from "@/assets/bottles.png";
+import { useState, useRef, useEffect } from "react"
+import { useLocation, Link } from "react-router-dom"
+import { Drawer } from "antd"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import useLoadingStore from "@/store/loadingStore"
+import NotaLogo from "@/assets/Nota-Logo.png"
+import DarkLogo from "@/assets/nota-logo-black.png"
+import DrawerDeco from "@/assets/bottles.png"
 // import CustomButton from './Button'
 const leftNavigation = [
   { name: "About", href: "/about" },
   { name: "Menu", href: "/menu" },
   { name: "Events", href: "/event-space-klang-valley" },
-];
+  { name: "Membership", href: "/membership" },
+]
 
 const rightNavigation = [
   { name: "Careers", href: "/careers" },
   { name: "Reservations", href: "/reservations" },
   { name: "Blog", href: "/blog" },
-];
+]
 
 const Navbar = () => {
-  const loading = useLoadingStore((state: any) => state.loading);
-  const location = useLocation();
-  const { pathname } = location;
-  const [scrollDown, setScrollDown] = useState(false);
-  const [open, setOpen] = useState(false);
+  const loading = useLoadingStore((state: any) => state.loading)
+  const location = useLocation()
+  const { pathname } = location
+  const [scrollDown, setScrollDown] = useState(false)
+  const [open, setOpen] = useState(false)
 
-  let menuRef = useRef<HTMLDivElement>(null);
+  let menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let mousedownHandler = (e: { target: any }) => {
       if (menuRef?.current && !menuRef?.current?.contains(e.target)) {
-        setOpen(false);
+        setOpen(false)
       }
-    };
+    }
 
     let scrollHandler = () => {
-      setScrollDown(window.scrollY > 50);
-    };
+      setScrollDown(window.scrollY > 50)
+    }
 
-    document.addEventListener("mousedown", mousedownHandler);
-    document.addEventListener("scroll", scrollHandler);
+    document.addEventListener("mousedown", mousedownHandler)
+    document.addEventListener("scroll", scrollHandler)
 
     return () => {
-      document.removeEventListener("mousedown", mousedownHandler);
-      document.removeEventListener("scroll", scrollHandler);
-    };
-  }, []);
+      document.removeEventListener("mousedown", mousedownHandler)
+      document.removeEventListener("scroll", scrollHandler)
+    }
+  }, [])
 
   const isDarkNav =
     pathname.startsWith("/blog") ||
     pathname === "/reservations" ||
     pathname === "/admin" ||
     pathname === "/careers" ||
-    pathname === "/404";
+    pathname === "/membership" ||
+    pathname === "/404"
   const bgColor =
     scrollDown || isDarkNav || loading
       ? "bg-secondary ease-out duration-300"
-      : "bg-transparent ease-in duration-300";
+      : "bg-transparent ease-in duration-300"
 
   const handleClick = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
   return (
     <nav
       className={`relative z-50 text-white py-2  max-w-screen sticky top-0 overflow-hidden   ${bgColor}`}
@@ -195,7 +197,7 @@ const Navbar = () => {
         </Drawer>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
