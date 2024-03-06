@@ -11,7 +11,7 @@ const leftNavigation = [
   { name: "About", href: "/about" },
   { name: "Menu", href: "/menu" },
   { name: "Events", href: "/event-space-klang-valley" },
-  { name: "Membership", href: "/membership" },
+  { name: "Communal Table", href: "/membership" },
 ]
 
 const rightNavigation = [
@@ -74,7 +74,7 @@ const Navbar = () => {
             </div> */}
       <div className="bg-transparent">
         <div className="mx-auto max-w-7xl px-2 lg:px-8">
-          <div className="relative flex h-16 items-center justify-between">
+          <div className="relative flex h-16 items-center justify-between ">
             <div className="flex flex-1 items-center justify-start lg:justify-center ">
               <div className="hidden lg:block">
                 <div className="flex gap-x-5">
@@ -83,7 +83,6 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       className="rounded-md px-3 py-2 text-sm"
-                      // aria-current={item.current ? "page" : undefined}
                     >
                       {item.name}
                     </Link>
@@ -110,7 +109,6 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       className="px-2 py-2 text-sm "
-                      // aria-current={item.current ? "page" : undefined}
                     >
                       {item.name}
                     </Link>

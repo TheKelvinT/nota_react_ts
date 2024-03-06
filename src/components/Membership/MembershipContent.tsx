@@ -3,22 +3,23 @@ import CustomImage from "../CustomImage"
 import handleNullData from "@/utils/handleNullData"
 import DescContainer from "../StyleComponents/DescContainer"
 import { PortableText } from "@portabletext/react"
-import { Link } from "react-router-dom"
 import { HashLink } from "react-router-hash-link"
 
 type Props = {
   [x: string]: any
   data: any
-  setPageType: any
 }
 
-const MembershipContent = ({ data, setPageType }: Props) => {
+const MembershipContent = ({ data }: Props) => {
   console.log(data)
 
   handleNullData(data)
 
   return (
-    <section className="bg-primary flex justify-center py-8 ">
+    <section
+      className="bg-primary flex justify-center py-8 "
+      id="member-benefits"
+    >
       <div className="flex flex-col items-center ">
         <div className="text-center mx-auto space-y-4 pb-8 text-main  w-11/12 max-w-[665px] py-20">
           <CustomH1>{data?.membershipSectionTwo?.title}</CustomH1>
@@ -27,13 +28,9 @@ const MembershipContent = ({ data, setPageType }: Props) => {
               value={data?.membershipSectionTwo?.description}
               onMissingComponent={false}
             />
-            <Link
-              className="underline"
-              to="/membership/terms#tnc"
-              target="_blank"
-            >
+            <HashLink className="underline" to="/membership/terms#tnc">
               View our Terms and Conditions
-            </Link>
+            </HashLink>
           </DescContainer>
         </div>
         <div className="max-w-[500px] hidden md:block">

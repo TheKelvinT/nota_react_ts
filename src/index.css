@@ -301,3 +301,19 @@ li .ant-picker-ok {
   font-size: 12px;
   font-family: Inter;
 }
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #595d3c;
+  border-color: #595d3c;
+}
+.ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover
+  .ant-checkbox-checked:not(.ant-checkbox-disabled)
+  .ant-checkbox-inner {
+  background-color: #595d3c;
+  border-color: #595d3c;
+}
+.ant-checkbox-checked:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+  background-color: #595d3c;
+  border-color: #595d3c;
+}
+

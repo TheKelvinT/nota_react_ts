@@ -8,4 +8,5 @@ export type formValueModel = {
     pax?: number
     time?: string
     newType?: string
+    checked?: boolean
   }

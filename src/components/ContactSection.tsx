@@ -11,6 +11,7 @@ import {
   Alert,
   Select,
   Space,
+  Checkbox,
 } from "antd"
 import CustomButton from "./Button"
 import { ExclamationCircleFilled } from "@ant-design/icons"
@@ -26,11 +27,13 @@ import { fetchReservationAlert } from "@/utils/request"
 import { fetchReservationConfig } from "@/utils/request"
 import { formValueModel } from "@/types/Contact"
 import EventTypeNotes from "./Events/EventTypeNotes"
+import { Link } from "react-router-dom"
 interface Props {
   eventType?: boolean
+  membershipType?: boolean
 }
 
-function ContactSection({ eventType }: Props) {
+function ContactSection({ eventType = false, membershipType }: Props) {
   const timePickerRef = useRef<any>(null)
   const [hour, setHour] = useState(0)
   const [modalOpen, setModalOpen] = useState(false)
@@ -285,8 +288,6 @@ function ContactSection({ eventType }: Props) {
       setIsLoading(false)
       setSuccess(true)
     } catch (error) {
-      // console.error('Error sending email:', error);
-      // Add an error message or handle the error as needed
       setIsLoading(false)
       setError(true)
     }
@@ -298,15 +299,22 @@ function ContactSection({ eventType }: Props) {
     if (values.newType) {
       values.type = values.newType
     }
-    const formattedDate = moment(values.date.$d).format("DD-MMMM-YYYY")
 
-    const formattedTime = moment(values.time.$d).format("h:mm a")
+    const formattedDate =
+      values.date && moment(values.date.$d).format("DD-MMMM-YYYY")
 
-    const enquiryType = eventType ? "Event Enquiry" : "General Reservation"
+    const formattedTime = values.date && moment(values.time.$d).format("h:mm a")
+
+    const enquiryType =
+      eventType && !membershipType
+        ? "Event Enquiry"
+        : !eventType && membershipType
+          ? "Membership Enquiry"
+          : "General Reservation"
     const formattedValues = {
       ...values,
-      date: formattedDate,
-      time: formattedTime,
+      date: formattedDate ? formattedDate : "-",
+      time: formattedTime ? formattedTime : "-",
       enquiryType: enquiryType,
       type: values.type ? values.type : "-",
     }
@@ -391,6 +399,16 @@ function ContactSection({ eventType }: Props) {
         message: "Event Type cannot be empty.",
       },
     ],
+    checked: [
+      {
+        required: true,
+        message: "You must agree to the terms.",
+        validator: (_: any, value: boolean) =>
+          value
+            ? Promise.resolve()
+            : Promise.reject(new Error("Should accept agreement")),
+      },
+    ],
     pax: [
       {
         required: true,
@@ -412,12 +430,19 @@ function ContactSection({ eventType }: Props) {
           <div className="mb-8">
             {eventType ? (
               <CustomH1>Event Enquiry Form</CustomH1>
+            ) : membershipType ? (
+              <CustomH1>Register for The Communal Table</CustomH1>
             ) : (
               <CustomH1>Chope A Table</CustomH1>
             )}
           </div>
 
-          <Form form={form} colon={false} onFinish={onFinish}>
+          <Form
+            form={form}
+            colon={false}
+            onFinish={onFinish}
+            initialValues={{ agreement: true }}
+          >
             <Form.Item
               name="name"
               label={<p className="font-gothic text-lg">Name</p>}
@@ -512,87 +537,95 @@ function ContactSection({ eventType }: Props) {
               </>
             )}
 
-            <Form.Item
-              name="date"
-              label={<p className="font-gothic text-lg">Date</p>}
-              rules={rules.date}
-              labelCol={{ span: 6, sm: 6 }}
-              labelAlign="left"
-            >
-              <DatePicker
+            {!membershipType && (
+              <Form.Item
                 name="date"
-                id="date"
-                format="DD-MM-YYYY"
-                disabledDate={disabledDate}
-                placeholder={"date"}
-                onChange={handleDateChange}
-                className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full h-12 custom-picker"
-              />
-            </Form.Item>
-            <Row>
-              <Col span={16}>
-                <Form.Item
-                  name="time"
-                  label={<p className="font-gothic text-lg ">Time</p>}
-                  rules={rules.time}
-                  labelCol={{ span: 9 }}
-                  wrapperCol={{ sm: 15 }}
-                  labelAlign="left"
-                >
-                  {eventType ? (
-                    <Select
-                      id="time"
-                      options={eventTimeSlot}
-                      placeholder="time"
-                    ></Select>
-                  ) : (
-                    <TimePicker
-                      ref={timePickerRef}
-                      minuteStep={15}
-                      secondStep={10}
-                      format={format}
-                      showNow={false}
-                      disabled={!selectedDate}
-                      inputReadOnly={true}
-                      disabledTime={disabledTime}
-                      changeOnBlur={true}
-                      onChange={handleTimeChange}
-                      placeholder="00:00"
-                      hideDisabledOptions={true}
-                      name="time"
-                      id="time"
-                      className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  h-12 font-inter custom-picker "
-                    />
-                  )}
-                </Form.Item>
-              </Col>
-              <Col span={6} offset={2}>
-                <Form.Item
-                  name="pax"
-                  label={<p className="font-gothic text-lg ">pax</p>}
-                  rules={rules.pax}
-                  labelCol={{ span: 12 }}
-                  wrapperCol={{ span: 8, sm: 12 }}
-                  labelAlign="left"
-                >
-                  <InputNumber
+                label={<p className="font-gothic text-lg">Date</p>}
+                rules={rules.date}
+                labelCol={{ span: 6, sm: 6 }}
+                labelAlign="left"
+              >
+                <DatePicker
+                  name="date"
+                  id="date"
+                  format="DD-MM-YYYY"
+                  disabledDate={disabledDate}
+                  placeholder={"date"}
+                  onChange={handleDateChange}
+                  className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full h-12 custom-picker"
+                />
+              </Form.Item>
+            )}
+            {!membershipType && (
+              <Row>
+                <Col span={16}>
+                  <Form.Item
+                    name="time"
+                    label={<p className="font-gothic text-lg ">Time</p>}
+                    rules={rules.time}
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ sm: 15 }}
+                    labelAlign="left"
+                  >
+                    {eventType ? (
+                      <Select
+                        id="time"
+                        options={eventTimeSlot}
+                        placeholder="time"
+                      ></Select>
+                    ) : (
+                      <TimePicker
+                        ref={timePickerRef}
+                        minuteStep={15}
+                        secondStep={10}
+                        format={format}
+                        showNow={false}
+                        disabled={!selectedDate}
+                        inputReadOnly={true}
+                        disabledTime={disabledTime}
+                        changeOnBlur={true}
+                        onChange={handleTimeChange}
+                        placeholder="00:00"
+                        hideDisabledOptions={true}
+                        name="time"
+                        id="time"
+                        className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  h-12 font-inter custom-picker "
+                      />
+                    )}
+                  </Form.Item>
+                </Col>
+                <Col span={6} offset={2}>
+                  <Form.Item
                     name="pax"
-                    id="pax"
-                    controls={true}
-                    min={1}
-                    max={eventType ? 70 : 9}
-                    placeholder="1"
-                    className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
+                    label={<p className="font-gothic text-lg ">pax</p>}
+                    rules={rules.pax}
+                    labelCol={{ span: 12 }}
+                    wrapperCol={{ span: 8, sm: 12 }}
+                    labelAlign="left"
+                  >
+                    <InputNumber
+                      name="pax"
+                      id="pax"
+                      controls={true}
+                      min={1}
+                      max={eventType ? 70 : 9}
+                      placeholder="1"
+                      className="bg-primary border border-main/20 text-xs rounded-none w-full text-black/30  py-2 font-inter "
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+            )}
 
             <Form.Item
               name="special"
               label={
                 eventType ? (
                   <p className="font-gothic text-lg">Remarks</p>
+                ) : membershipType ? (
+                  <p className="font-gothic text-lg">
+                    Preferences you’d like us to remember:
+                  </p>
                 ) : (
                   <p className="font-gothic text-lg">
                     Special Requirements
@@ -612,8 +645,29 @@ function ContactSection({ eventType }: Props) {
                 placeholder="additional information: (such as dietary requirements, celebration details, special care, etc)"
               />
             </Form.Item>
-
-            <EventTypeNotes eventType={eventType} />
+            {!eventType && membershipType && (
+              <Form.Item
+                name="agreement"
+                rules={rules.checked}
+                valuePropName="checked"
+              >
+                <Checkbox
+                  defaultChecked
+                  className="text-main  md:whitespace-nowrap "
+                >
+                  I agree with the{" "}
+                  <Link
+                    to="/membership/terms#tnc"
+                    target="_blank"
+                    className="underline hover:text-main"
+                  >
+                    terms and conditions
+                  </Link>{" "}
+                  of The Communal Table program
+                </Checkbox>
+              </Form.Item>
+            )}
+            {!membershipType && <EventTypeNotes eventType={eventType} />}
 
             <div className="flex justify-center md:block">
               {success ? (
