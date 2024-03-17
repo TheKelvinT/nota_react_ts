@@ -270,12 +270,15 @@ function ContactSection({ eventType = false, membershipType }: Props) {
   }
 
   const getAlertDescription = () => {
-    if (!eventType) {
-      return `Thank you ${formValues?.name}, we have received your reservation request for ${formValues.pax} pax on ${formValues.time} ${formValues.date}. We will reach out to you shortly to confirm your reservation.`
-    } else {
+    if (!eventType && membershipType) {
+      return `Thank you ${formValues?.name}, we have received your registration details The Communal Table. We will reach out to you shortly to confirm your sign-up!`
+    } else if (!eventType && !membershipType) {
       return `Thank you ${formValues?.name}, we have received your event enquiry for ${formValues.pax} pax on ${formValues.time} ${formValues.date}. Our designated representative will contact you shortly to help with your inquiry.`
+    } else {
+      return `Thank you ${formValues?.name}, we have received your reservation request for ${formValues.pax} pax on ${formValues.time} ${formValues.date}. We will reach out to you shortly to confirm your reservation.`
     }
   }
+
   const sendEmail = async (formattedValues: any) => {
     try {
       setIsLoading(true)
@@ -657,7 +660,7 @@ function ContactSection({ eventType = false, membershipType }: Props) {
                 >
                   I agree with the{" "}
                   <Link
-                    to="/membership/terms#tnc"
+                    to="/communal-nota-membership/terms#tnc"
                     target="_blank"
                     className="underline hover:text-main"
                   >

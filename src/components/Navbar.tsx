@@ -11,7 +11,7 @@ const leftNavigation = [
   { name: "About", href: "/about" },
   { name: "Menu", href: "/menu" },
   { name: "Events", href: "/event-space-klang-valley" },
-  { name: "Communal Table", href: "/membership" },
+  { name: "Membership", href: "/communal-nota-membership" },
 ]
 
 const rightNavigation = [
@@ -54,8 +54,8 @@ const Navbar = () => {
     pathname === "/reservations" ||
     pathname === "/admin" ||
     pathname === "/careers" ||
-    pathname === "/membership" ||
-    pathname === "/membership/terms" ||
+    pathname === "/communal-nota-membership" ||
+    pathname === "/communal-nota-membership/terms" ||
     pathname === "/404"
   const bgColor =
     scrollDown || isDarkNav || loading
@@ -113,6 +113,7 @@ const Navbar = () => {
                       {item.name}
                     </Link>
                   ))}
+                  <div className="w-[135px]"></div>
                 </div>
               </div>
             </div>

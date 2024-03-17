@@ -11,7 +11,6 @@ type Props = {
 }
 
 const MembershipContent = ({ data }: Props) => {
-  console.log(data)
 
   handleNullData(data)
 
@@ -28,7 +27,7 @@ const MembershipContent = ({ data }: Props) => {
               value={data?.membershipSectionTwo?.description}
               onMissingComponent={false}
             />
-            <HashLink className="underline" to="/membership/terms#tnc">
+            <HashLink className="underline" to="/communal-nota-membership/terms#tnc">
               View our Terms and Conditions
             </HashLink>
           </DescContainer>

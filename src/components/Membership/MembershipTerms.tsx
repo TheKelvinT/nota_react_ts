@@ -21,7 +21,7 @@ const MembershipTerms = ({ data }: Props) => {
             <li key={idx}>{req}</li>
           ))}
       </ol>
-      <HashLink to="/membership#member-benefits">
+      <HashLink to="/communal-nota-membership#member-benefits">
         <Button title="View Benefits" />
       </HashLink>
     </div>

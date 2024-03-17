@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom"
 const Membership = () => {
   const loading = useLoadingStore((state: any) => state.loading)
   const setLoading = useLoadingStore((state: any) => state.setLoading)
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<any>(null)
   const [pageType, setPageType] = useState("benefit")
   const location = useLocation()
   const tncRef = useRef<HTMLDivElement>(null) // Create a ref for the tnc element
@@ -36,7 +36,10 @@ const Membership = () => {
     fetchData()
   }, [])
   useEffect(() => {
-    if (location.hash === "#tnc" && location.pathname === "/membership/terms") {
+    if (
+      location.hash === "#tnc" &&
+      location.pathname === "/communal-nota-membership/terms"
+    ) {
       setPageType("terms")
       if (tncRef.current) {
         tncRef.current.scrollIntoView({ behavior: "smooth" })
@@ -52,8 +55,17 @@ const Membership = () => {
         <Loading />
       ) : (
         <>
-          <div className="relative  overflow-hidden mx-auto max-w-[1920px] h-[55vh] lg:h-auto bg-main">
-            <CustomImage Imgsrc={MembershipBanner} alt="reservation-hero" />
+          <div className="relative  overflow-hidden mx-auto max-w-[1920px] h-[55vh] hidden md:block lg:h-auto bg-main">
+            <CustomImage
+              Imgsrc={data?.membershipHero?.desktopImage?.image}
+              alt="reservation-hero"
+            />
+          </div>
+          <div className="relative  overflow-hidden mx-auto  h-[92vh] md:hidden lg:h-auto bg-main">
+            <CustomImage
+              Imgsrc={data?.membershipHero?.mobileImage?.image}
+              alt="reservation-hero"
+            />
           </div>
           {/* <ReservationDesc data={reservationsContent} />
         <ContactSection />

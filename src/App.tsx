@@ -73,8 +73,8 @@ function App() {
             <Route path="/event-space-klang-valley" element={<Events />} />
             <Route path="/reservations" element={<Reservations />} />
             <Route path="/careers" element={<Careers />} />
-            <Route path="/membership" element={<Membership />} />
-            <Route path="/membership/terms" element={<Membership />} />
+            <Route path="/communal-nota-membership" element={<Membership />} />
+            <Route path="/communal-nota-membership/terms" element={<Membership />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/blog/:slug" element={<SingleBlog />} />
