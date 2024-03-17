@@ -1,7 +1,6 @@
 import CustomImage from "@/components/CustomImage"
 import Loading from "@/components/Loading"
 import useLoadingStore from "@/store/loadingStore"
-import MembershipBanner from "@/assets/membership-banner.png"
 import { useEffect, useRef, useState } from "react"
 import MembershipDesc from "@/components/Membership/MembershipDesc"
 import MembershipContent from "@/components/Membership/MembershipContent"
