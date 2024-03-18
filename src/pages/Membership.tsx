@@ -8,7 +8,6 @@ import ContactSection from "@/components/ContactSection"
 import { fetchMembershipConfig } from "@/utils/request"
 import MembershipTerms from "@/components/Membership/MembershipTerms"
 import { useLocation } from "react-router-dom"
-import { Divider } from "antd"
 
 const Membership = () => {
   const loading = useLoadingStore((state: any) => state.loading)
