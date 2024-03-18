@@ -11,12 +11,11 @@ type Props = {
 }
 
 const MembershipContent = ({ data }: Props) => {
-
   handleNullData(data)
 
   return (
     <section
-      className="bg-primary flex justify-center py-8 "
+      className="bg-primary flex justify-center py-8 pb-16 "
       id="member-benefits"
     >
       <div className="flex flex-col items-center ">
@@ -27,7 +26,10 @@ const MembershipContent = ({ data }: Props) => {
               value={data?.membershipSectionTwo?.description}
               onMissingComponent={false}
             />
-            <HashLink className="underline" to="/communal-nota-membership/terms#tnc">
+            <HashLink
+              className="underline"
+              to="/communal-nota-membership/terms#tnc"
+            >
               View our Terms and Conditions
             </HashLink>
           </DescContainer>

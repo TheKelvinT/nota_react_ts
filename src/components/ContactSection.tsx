@@ -312,7 +312,7 @@ function ContactSection({ eventType = false, membershipType }: Props) {
       eventType && !membershipType
         ? "Event Enquiry"
         : !eventType && membershipType
-          ? "Membership Enquiry"
+          ? "The Communal Table Membership Registration"
           : "General Reservation"
     const formattedValues = {
       ...values,
@@ -427,8 +427,15 @@ function ContactSection({ eventType = false, membershipType }: Props) {
   }
 
   return (
-    <div id="book" className="bg-primary   text-main">
-      <div className="flex flex-col md:flex-row justify-center py-20  mx-auto mt-24 md:gap-x-16 lg:gap-x-28 xl:gap-x-56 w-11/12 lg:w-auto">
+    <div
+      id="book"
+      className={`${membershipType ? "" : "bg-primary"}   text-main`}
+    >
+      <div
+        className={`flex flex-col md:flex-row justify-center py-20 mx-auto ${
+          !membershipType ? "mt-24" : ""
+        } md:gap-x-16 lg:gap-x-28 xl:gap-x-56 w-11/12 lg:w-auto`}
+      >
         <div className="lg:w-[500px] ">
           <div className="mb-8">
             {eventType ? (
