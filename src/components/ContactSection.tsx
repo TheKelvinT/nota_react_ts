@@ -109,6 +109,9 @@ function ContactSection({ eventType = false, membershipType }: Props) {
   }
 
   const disabledDate = (current: any) => {
+    if (membershipType) {
+      return false // Don't disable any dates if membershipType is true
+    }
     const events = additionalDisabledDate
     const currentDate = new Date(current)
 
@@ -166,6 +169,7 @@ function ContactSection({ eventType = false, membershipType }: Props) {
     const events = additionalDisabledDate
     const defaultDisabledHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 23]
     const defaultDisabledMinutes = [30, 45]
+
     if (selectedDate) {
       const matchingEvent = events.find(
         (event: { singleDisabled: string }) =>
@@ -306,7 +310,7 @@ function ContactSection({ eventType = false, membershipType }: Props) {
     const formattedDate =
       values.date && moment(values.date.$d).format("DD-MMMM-YYYY")
 
-    const formattedTime = values.date && moment(values.time.$d).format("h:mm a")
+    const formattedTime = values.date && moment(values.time?.$d).format("h:mm a")
 
     const enquiryType =
       eventType && !membershipType
@@ -547,25 +551,28 @@ function ContactSection({ eventType = false, membershipType }: Props) {
               </>
             )}
 
-            {!membershipType && (
-              <Form.Item
+            <Form.Item
+              name="date"
+              label={
+                <p className="font-gothic text-lg">
+                  {membershipType ? "Birth Date" : "Date"}
+                </p>
+              }
+              rules={rules.date}
+              labelCol={{ span: 6, sm: 6 }}
+              labelAlign="left"
+            >
+              <DatePicker
                 name="date"
-                label={<p className="font-gothic text-lg">Date</p>}
-                rules={rules.date}
-                labelCol={{ span: 6, sm: 6 }}
-                labelAlign="left"
-              >
-                <DatePicker
-                  name="date"
-                  id="date"
-                  format="DD-MM-YYYY"
-                  disabledDate={disabledDate}
-                  placeholder={"date"}
-                  onChange={handleDateChange}
-                  className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full h-12 custom-picker"
-                />
-              </Form.Item>
-            )}
+                id="date"
+                format="DD-MM-YYYY"
+                disabledDate={disabledDate}
+                placeholder={membershipType ? "date of birth" : "date"}
+                onChange={handleDateChange}
+                className="bg-primary border text-[#333333] rounded-none border-main/20 text-xs font-inter w-full h-12 custom-picker"
+              />
+            </Form.Item>
+
             {!membershipType && (
               <Row>
                 <Col span={16}>
